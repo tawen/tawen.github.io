@@ -9,7 +9,12 @@ tags: "生活"
 今天天气虽然有点冷，但是阳光明媚。。。
 欢迎大家关注的我[新浪微博](http://weibo.com/3168014535/profile?topnav=1&wvr=6&is_all=1)!
 
+### hexo
 发布blog的命令：
 ```
 hexo clean & hexo g & hexo deploy
+```
+markdown在线编辑器:
+```
+http://dillinger.io/
 ```
