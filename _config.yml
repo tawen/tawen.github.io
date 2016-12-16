@@ -76,7 +76,8 @@ date_format: YYYY-MM-DD
 time_format: HH:mm:ss
 
 # Disqus Disqus插件，我们会替换成“多说”，不修改
-disqus_shortname:
+#disqus_shortname:
+duoshuo_shortname:  
 
 # Pagination
 ## Set per_page to 0 to disable pagination
