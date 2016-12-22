@@ -25,14 +25,14 @@ date: 2016-12-14 11:27:28
 ## 技术
 
 * 熟练技术：Javascript/jQuery/Html/CSS/Html/Html5/CSS3
-* 会使用的的技术：Node.js/ AngularJS/ Bootstrap/ React/ Sass/Less/ Vue.js/ WebApp
-* 正在学习的技术：Java/Servlet/JSP/JDBC
- 
-主要软件
-Sublime/Photoshop/DW/Eclipse/Axcure/Navicat/Premiere
+* 前端框架：Node.js/ AngularJS/ Bootstrap/ React/ Sass/Less/ Vue.js/ WebApp
+* 学习技术：Java/Servlet/JSP/JDBC
+
+## 软件
+Sublime/Photoshop/DW/Eclipse/Axcure/Navicat
 
 ## 经历
-2009.6 之前：       个人INIT阶段（各种淘气、各种玩玩、学习知识）；
+2009.6 之前：       个人INIT阶段（各种淘气、各种玩玩、顺便上个学）；
 2019.7 - 2010.2 ：  第一家公司接触Web网站设计（主要处理图片、学习Html/CSS）
 2010.4 - 2011.6 ：  合肥唐创电子商务公司主要设计界面Html/CSS布局页面 
 2011.7 - 2013.5 ：  合肥置顶信息技术有限公司 主要设计界面Html/CSS布局页面、学习并使用Javascript/jQuery，并使用各种框架（bootstrap、easyui）     
