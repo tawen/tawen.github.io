@@ -29,7 +29,9 @@ date: 2016-12-14 11:27:28
 * 学习技术：Java/Servlet/JSP/JDBC
 
 ## 软件
-Sublime/Photoshop/DW/Eclipse/Axcure/Navicat
+
+* 经常使用：Sublime/WebStorm/Brackets/Photoshop/DW/Eclipse/
+* 偶尔使用：Illustrator/Axcure/Navicat/Eidtplus/
 
 ## 经历
 2009.6 之前：       个人INIT阶段（各种淘气、各种玩玩、顺便上个学）；
