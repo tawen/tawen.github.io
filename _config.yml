@@ -100,4 +100,5 @@ plugins:
 deploy:
   type: git
   repository: https://github.com/tawen/tawen.github.io.git
+  # repository: https://git.coding.net/tawen/tawen.git
   branch: master
