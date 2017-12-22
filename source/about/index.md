@@ -11,7 +11,7 @@ date: 2016-12-14 11:27:28
 | col 3 is |  2010.4 - 2011.6   |    $1                            | 
 -->
 
-![Alt text](https://tawen.github.io/images/about.jpg)
+![Alt text](https://tawen.github.io/res/timg.jpg)
 
 ## 基本信息
 

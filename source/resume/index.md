@@ -13,7 +13,7 @@ date: 2016-12-14 11:41:59
 
 
 ## 学习计划
-短期：vue服务端渲染；
+短期：react-native、vue服务端渲染；
 长期：three.js原理学习、nodejs深入，express深入；
 
 

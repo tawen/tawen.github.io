@@ -5,8 +5,8 @@ menu: #站点右上角导航栏，暂时默认，后面介绍修改
   存档: /archives
   关于: /about
   简历: /resume
-  tags: /tags
-  categories: /categories
+  #tags: /tags
+  #categories: /categories
 
 widgets: #站点右边栏，暂时默认，后面介绍修改和添加
 - search
