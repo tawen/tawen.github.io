@@ -1,0 +1,1 @@
+git add . & git commit -a -m "push auto" & git push origin dev
