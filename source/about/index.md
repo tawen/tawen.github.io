@@ -30,7 +30,7 @@ date: 2016-12-14 11:27:28
 
 ## 软件
 
-* 经常使用：Sublime、WebStorm、Brackets、Photoshop、DW、Eclipse
+* 经常使用：VSCode、Sublime、WebStorm、Brackets、Photoshop、DW、Eclipse
 * 偶尔使用：Illustrator、Axcure、Navicat、Eidtplus
 
 ## 经历
