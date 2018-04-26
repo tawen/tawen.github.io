@@ -1,0 +1,3700 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="renderer" content="webkit">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" >
+  <link rel="dns-prefetch" href="http://tawen.github.io">
+  <title>Immutable 详解及 React 中实践 | 影子爱乘凉</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="Shared mutable state is the root of all evil（共享的可变状态是万恶之源）– Pete Hunt有人说 Immutable 可以给 React 应用带来数十倍的提升，也有人说 Immutable 的引入是近期 JavaScript 中伟大的发明，因为同期 React 太火，它的光芒被掩盖了。这些至少说明 Immutable 是很有价值的，下面我们来一探究">
+<meta name="keywords" content="Immutable">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Immutable 详解及 React 中实践">
+<meta property="og:url" content="http://tawen.github.io/2017/12/22/blog20171222/index.html">
+<meta property="og:site_name" content="影子爱乘凉">
+<meta property="og:description" content="Shared mutable state is the root of all evil（共享的可变状态是万恶之源）– Pete Hunt有人说 Immutable 可以给 React 应用带来数十倍的提升，也有人说 Immutable 的引入是近期 JavaScript 中伟大的发明，因为同期 React 太火，它的光芒被掩盖了。这些至少说明 Immutable 是很有价值的，下面我们来一探究">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:image" content="https://tawen.github.io/res/20171222immutable.gif">
+<meta property="og:image" content="https://tawen.github.io/res/20171222immutable2.png">
+<meta property="og:updated_time" content="2018-04-16T02:58:40.197Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Immutable 详解及 React 中实践">
+<meta name="twitter:description" content="Shared mutable state is the root of all evil（共享的可变状态是万恶之源）– Pete Hunt有人说 Immutable 可以给 React 应用带来数十倍的提升，也有人说 Immutable 的引入是近期 JavaScript 中伟大的发明，因为同期 React 太火，它的光芒被掩盖了。这些至少说明 Immutable 是很有价值的，下面我们来一探究">
+<meta name="twitter:image" content="https://tawen.github.io/res/20171222immutable.gif">
+  
+    <link rel="alternative" href="/atom.xml" title="影子爱乘凉" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+  <link rel="stylesheet" href="/main.css?v=4.0.0">
+  
+
+  
+
+</head>
+
+<body>
+  <div id="container" q-class="show:isCtnShow">
+    <canvas id="anm-canvas" class="anm-canvas"></canvas>
+    <div class="left-col" q-class="show:isShow">
+      <div class="overlay">
+	<svg style="position:absolute;left:0;bottom:0" class="editorial" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 24 150 28" preserveAspectRatio="none">
+		<defs><path id="gentle-wave" d="M-160 44c30 0
+		  58-18 88-18s
+		  58 18 88 18
+		  58-18 88-18
+		  58 18 88 18
+		  v44h-352z"></path>
+		  </defs>
+		  <g class="parallax">
+			<use xlink:href="#gentle-wave" x="50" y="0" fill="rgba(128,128,128,.5)"></use>
+			<use xlink:href="#gentle-wave" x="50" y="3" fill="rgba(128,128,128,.5)"></use>
+			<use xlink:href="#gentle-wave" x="50" y="6" fill="rgba(128,128,128,.5)"></use>
+			</g>
+		</svg>
+		
+</div>
+<style>
+	.parallax>use {
+    animation: move-forever 12s linear infinite
+  }
+  .parallax>use:nth-child(1) {
+    animation-delay: -2s
+  }
+  .parallax>use:nth-child(2) {
+    animation-delay: -2s;
+    animation-duration: 5s
+  }
+  .parallax>use:nth-child(3) {
+    animation-delay: -4s;
+    animation-duration: 3s
+  }
+  @keyframes move-forever {
+    0% {
+      transform: translate(-90px, 0)
+    }
+    100% {
+      transform: translate(85px, 0)
+    }
+	}
+	#header .profilepic:hover {
+  -webkit-animation: btnGroups 1s linear;
+  -webkit-animation: btnGroups 1s linear;
+  -moz-animation: btnGroups 1s linear;
+  -ms-animation: btnGroups 1s linear;
+  animation: btnGroups 1s linear;
+}
+@-webkit-keyframes btnGroups {
+  0% {
+    -webkit-transform: scale(1.2, 0.8);
+  }
+  1% {
+    -webkit-transform: scale(1.18, 0.82);
+  }
+  2% {
+    -webkit-transform: scale(1.16, 0.84);
+  }
+  3% {
+    -webkit-transform: scale(1.13, 0.87);
+  }
+  4% {
+    -webkit-transform: scale(1.1, 0.9);
+  }
+  5% {
+    -webkit-transform: scale(1.07, 0.93);
+  }
+  6% {
+    -webkit-transform: scale(1.04, 0.96);
+  }
+  7% {
+    -webkit-transform: scale(1.01, 0.99);
+  }
+  8% {
+    -webkit-transform: scale(0.99, 1.01);
+  }
+  9% {
+    -webkit-transform: scale(0.97, 1.03);
+  }
+  10% {
+    -webkit-transform: scale(0.95, 1.05);
+  }
+  11% {
+    -webkit-transform: scale(0.94, 1.06);
+  }
+  12% {
+    -webkit-transform: scale(0.93, 1.07);
+  }
+  13% {
+    -webkit-transform: scale(0.93, 1.07);
+  }
+  14% {
+    -webkit-transform: scale(0.93, 1.07);
+  }
+  15% {
+    -webkit-transform: scale(0.93, 1.07);
+  }
+  16% {
+    -webkit-transform: scale(0.94, 1.06);
+  }
+  17% {
+    -webkit-transform: scale(0.94, 1.06);
+  }
+  18% {
+    -webkit-transform: scale(0.95, 1.05);
+  }
+  19% {
+    -webkit-transform: scale(0.96, 1.04);
+  }
+  20% {
+    -webkit-transform: scale(0.98, 1.02);
+  }
+  21% {
+    -webkit-transform: scale(0.99, 1.01);
+  }
+  22% {
+    -webkit-transform: scale(1, 1);
+  }
+  23% {
+    -webkit-transform: scale(1, 1);
+  }
+  24% {
+    -webkit-transform: scale(1.01, 0.99);
+  }
+  25% {
+    -webkit-transform: scale(1.02, 0.98);
+  }
+  26% {
+    -webkit-transform: scale(1.02, 0.98);
+  }
+  27% {
+    -webkit-transform: scale(1.02, 0.98);
+  }
+  28% {
+    -webkit-transform: scale(1.03, 0.97);
+  }
+  29% {
+    -webkit-transform: scale(1.03, 0.97);
+  }
+  30% {
+    -webkit-transform: scale(1.02, 0.98);
+  }
+  31% {
+    -webkit-transform: scale(1.02, 0.98);
+  }
+  32% {
+    -webkit-transform: scale(1.02, 0.98);
+  }
+  33% {
+    -webkit-transform: scale(1.02, 0.98);
+  }
+  34% {
+    -webkit-transform: scale(1.01, 0.99);
+  }
+  35% {
+    -webkit-transform: scale(1.01, 0.99);
+  }
+  36% {
+    -webkit-transform: scale(1.01, 0.99);
+  }
+  37% {
+    -webkit-transform: scale(1, 1);
+  }
+  38% {
+    -webkit-transform: scale(1, 1);
+  }
+  39% {
+    -webkit-transform: scale(1, 1);
+  }
+  40% {
+    -webkit-transform: scale(0.99, 1.01);
+  }
+  41% {
+    -webkit-transform: scale(0.99, 1.01);
+  }
+  42% {
+    -webkit-transform: scale(0.99, 1.01);
+  }
+  43% {
+    -webkit-transform: scale(0.99, 1.01);
+  }
+  44% {
+    -webkit-transform: scale(0.99, 1.01);
+  }
+  45% {
+    -webkit-transform: scale(0.99, 1.01);
+  }
+  46% {
+    -webkit-transform: scale(0.99, 1.01);
+  }
+  47% {
+    -webkit-transform: scale(0.99, 1.01);
+  }
+  48% {
+    -webkit-transform: scale(0.99, 1.01);
+  }
+  49% {
+    -webkit-transform: scale(1, 1);
+  }
+}
+@-moz-keyframes btnGroups {
+  0% {
+    -webkit-transform: scale(1.2, 0.8);
+    -moz-transform: scale(1.2, 0.8);
+    -ms-transform: scale(1.2, 0.8);
+    transform: scale(1.2, 0.8);
+  }
+  1% {
+    -webkit-transform: scale(1.18, 0.82);
+    -moz-transform: scale(1.18, 0.82);
+    -ms-transform: scale(1.18, 0.82);
+    transform: scale(1.18, 0.82);
+  }
+  2% {
+    -webkit-transform: scale(1.16, 0.84);
+    -moz-transform: scale(1.16, 0.84);
+    -ms-transform: scale(1.16, 0.84);
+    transform: scale(1.16, 0.84);
+  }
+  3% {
+    -webkit-transform: scale(1.13, 0.87);
+    -moz-transform: scale(1.13, 0.87);
+    -ms-transform: scale(1.13, 0.87);
+    transform: scale(1.13, 0.87);
+  }
+  4% {
+    -webkit-transform: scale(1.1, 0.9);
+    -moz-transform: scale(1.1, 0.9);
+    -ms-transform: scale(1.1, 0.9);
+    transform: scale(1.1, 0.9);
+  }
+  5% {
+    -webkit-transform: scale(1.07, 0.93);
+    -moz-transform: scale(1.07, 0.93);
+    -ms-transform: scale(1.07, 0.93);
+    transform: scale(1.07, 0.93);
+  }
+  6% {
+    -webkit-transform: scale(1.04, 0.96);
+    -moz-transform: scale(1.04, 0.96);
+    -ms-transform: scale(1.04, 0.96);
+    transform: scale(1.04, 0.96);
+  }
+  7% {
+    -webkit-transform: scale(1.01, 0.99);
+    -moz-transform: scale(1.01, 0.99);
+    -ms-transform: scale(1.01, 0.99);
+    transform: scale(1.01, 0.99);
+  }
+  8% {
+    -webkit-transform: scale(0.99, 1.01);
+    -moz-transform: scale(0.99, 1.01);
+    -ms-transform: scale(0.99, 1.01);
+    transform: scale(0.99, 1.01);
+  }
+  9% {
+    -webkit-transform: scale(0.97, 1.03);
+    -moz-transform: scale(0.97, 1.03);
+    -ms-transform: scale(0.97, 1.03);
+    transform: scale(0.97, 1.03);
+  }
+  10% {
+    -webkit-transform: scale(0.95, 1.05);
+    -moz-transform: scale(0.95, 1.05);
+    -ms-transform: scale(0.95, 1.05);
+    transform: scale(0.95, 1.05);
+  }
+  11% {
+    -webkit-transform: scale(0.94, 1.06);
+    -moz-transform: scale(0.94, 1.06);
+    -ms-transform: scale(0.94, 1.06);
+    transform: scale(0.94, 1.06);
+  }
+  12% {
+    -webkit-transform: scale(0.93, 1.07);
+    -moz-transform: scale(0.93, 1.07);
+    -ms-transform: scale(0.93, 1.07);
+    transform: scale(0.93, 1.07);
+  }
+  13% {
+    -webkit-transform: scale(0.93, 1.07);
+    -moz-transform: scale(0.93, 1.07);
+    -ms-transform: scale(0.93, 1.07);
+    transform: scale(0.93, 1.07);
+  }
+  14% {
+    -webkit-transform: scale(0.93, 1.07);
+    -moz-transform: scale(0.93, 1.07);
+    -ms-transform: scale(0.93, 1.07);
+    transform: scale(0.93, 1.07);
+  }
+  15% {
+    -webkit-transform: scale(0.93, 1.07);
+    -moz-transform: scale(0.93, 1.07);
+    -ms-transform: scale(0.93, 1.07);
+    transform: scale(0.93, 1.07);
+  }
+  16% {
+    -webkit-transform: scale(0.94, 1.06);
+    -moz-transform: scale(0.94, 1.06);
+    -ms-transform: scale(0.94, 1.06);
+    transform: scale(0.94, 1.06);
+  }
+  17% {
+    -webkit-transform: scale(0.94, 1.06);
+    -moz-transform: scale(0.94, 1.06);
+    -ms-transform: scale(0.94, 1.06);
+    transform: scale(0.94, 1.06);
+  }
+  18% {
+    -webkit-transform: scale(0.95, 1.05);
+    -moz-transform: scale(0.95, 1.05);
+    -ms-transform: scale(0.95, 1.05);
+    transform: scale(0.95, 1.05);
+  }
+  19% {
+    -webkit-transform: scale(0.96, 1.04);
+    -moz-transform: scale(0.96, 1.04);
+    -ms-transform: scale(0.96, 1.04);
+    transform: scale(0.96, 1.04);
+  }
+  20% {
+    -webkit-transform: scale(0.98, 1.02);
+    -moz-transform: scale(0.98, 1.02);
+    -ms-transform: scale(0.98, 1.02);
+    transform: scale(0.98, 1.02);
+  }
+  21% {
+    -webkit-transform: scale(0.99, 1.01);
+    -moz-transform: scale(0.99, 1.01);
+    -ms-transform: scale(0.99, 1.01);
+    transform: scale(0.99, 1.01);
+  }
+  22% {
+    -webkit-transform: scale(1, 1);
+    -moz-transform: scale(1, 1);
+    -ms-transform: scale(1, 1);
+    transform: scale(1, 1);
+  }
+  23% {
+    -webkit-transform: scale(1, 1);
+    -moz-transform: scale(1, 1);
+    -ms-transform: scale(1, 1);
+    transform: scale(1, 1);
+  }
+  24% {
+    -webkit-transform: scale(1.01, 0.99);
+    -moz-transform: scale(1.01, 0.99);
+    -ms-transform: scale(1.01, 0.99);
+    transform: scale(1.01, 0.99);
+  }
+  25% {
+    -webkit-transform: scale(1.02, 0.98);
+    -moz-transform: scale(1.02, 0.98);
+    -ms-transform: scale(1.02, 0.98);
+    transform: scale(1.02, 0.98);
+  }
+  26% {
+    -webkit-transform: scale(1.02, 0.98);
+    -moz-transform: scale(1.02, 0.98);
+    -ms-transform: scale(1.02, 0.98);
+    transform: scale(1.02, 0.98);
+  }
+  27% {
+    -webkit-transform: scale(1.02, 0.98);
+    -moz-transform: scale(1.02, 0.98);
+    -ms-transform: scale(1.02, 0.98);
+    transform: scale(1.02, 0.98);
+  }
+  28% {
+    -webkit-transform: scale(1.03, 0.97);
+    -moz-transform: scale(1.03, 0.97);
+    -ms-transform: scale(1.03, 0.97);
+    transform: scale(1.03, 0.97);
+  }
+  29% {
+    -webkit-transform: scale(1.03, 0.97);
+    -moz-transform: scale(1.03, 0.97);
+    -ms-transform: scale(1.03, 0.97);
+    transform: scale(1.03, 0.97);
+  }
+  30% {
+    -webkit-transform: scale(1.02, 0.98);
+    -moz-transform: scale(1.02, 0.98);
+    -ms-transform: scale(1.02, 0.98);
+    transform: scale(1.02, 0.98);
+  }
+  31% {
+    -webkit-transform: scale(1.02, 0.98);
+    -moz-transform: scale(1.02, 0.98);
+    -ms-transform: scale(1.02, 0.98);
+    transform: scale(1.02, 0.98);
+  }
+  32% {
+    -webkit-transform: scale(1.02, 0.98);
+    -moz-transform: scale(1.02, 0.98);
+    -ms-transform: scale(1.02, 0.98);
+    transform: scale(1.02, 0.98);
+  }
+  33% {
+    -webkit-transform: scale(1.02, 0.98);
+    -moz-transform: scale(1.02, 0.98);
+    -ms-transform: scale(1.02, 0.98);
+    transform: scale(1.02, 0.98);
+  }
+  34% {
+    -webkit-transform: scale(1.01, 0.99);
+    -moz-transform: scale(1.01, 0.99);
+    -ms-transform: scale(1.01, 0.99);
+    transform: scale(1.01, 0.99);
+  }
+  35% {
+    -webkit-transform: scale(1.01, 0.99);
+    -moz-transform: scale(1.01, 0.99);
+    -ms-transform: scale(1.01, 0.99);
+    transform: scale(1.01, 0.99);
+  }
+  36% {
+    -webkit-transform: scale(1.01, 0.99);
+    -moz-transform: scale(1.01, 0.99);
+    -ms-transform: scale(1.01, 0.99);
+    transform: scale(1.01, 0.99);
+  }
+  37% {
+    -webkit-transform: scale(1, 1);
+    -moz-transform: scale(1, 1);
+    -ms-transform: scale(1, 1);
+    transform: scale(1, 1);
+  }
+  38% {
+    -webkit-transform: scale(1, 1);
+    -moz-transform: scale(1, 1);
+    -ms-transform: scale(1, 1);
+    transform: scale(1, 1);
+  }
+  39% {
+    -webkit-transform: scale(1, 1);
+    -moz-transform: scale(1, 1);
+    -ms-transform: scale(1, 1);
+    transform: scale(1, 1);
+  }
+  40% {
+    -webkit-transform: scale(0.99, 1.01);
+    -moz-transform: scale(0.99, 1.01);
+    -ms-transform: scale(0.99, 1.01);
+    transform: scale(0.99, 1.01);
+  }
+  41% {
+    -webkit-transform: scale(0.99, 1.01);
+    -moz-transform: scale(0.99, 1.01);
+    -ms-transform: scale(0.99, 1.01);
+    transform: scale(0.99, 1.01);
+  }
+  42% {
+    -webkit-transform: scale(0.99, 1.01);
+    -moz-transform: scale(0.99, 1.01);
+    -ms-transform: scale(0.99, 1.01);
+    transform: scale(0.99, 1.01);
+  }
+  43% {
+    -webkit-transform: scale(0.99, 1.01);
+    -moz-transform: scale(0.99, 1.01);
+    -ms-transform: scale(0.99, 1.01);
+    transform: scale(0.99, 1.01);
+  }
+  44% {
+    -webkit-transform: scale(0.99, 1.01);
+    -moz-transform: scale(0.99, 1.01);
+    -ms-transform: scale(0.99, 1.01);
+    transform: scale(0.99, 1.01);
+  }
+  45% {
+    -webkit-transform: scale(0.99, 1.01);
+    -moz-transform: scale(0.99, 1.01);
+    -ms-transform: scale(0.99, 1.01);
+    transform: scale(0.99, 1.01);
+  }
+  46% {
+    -webkit-transform: scale(0.99, 1.01);
+    -moz-transform: scale(0.99, 1.01);
+    -ms-transform: scale(0.99, 1.01);
+    transform: scale(0.99, 1.01);
+  }
+  47% {
+    -webkit-transform: scale(0.99, 1.01);
+    -moz-transform: scale(0.99, 1.01);
+    -ms-transform: scale(0.99, 1.01);
+    transform: scale(0.99, 1.01);
+  }
+  48% {
+    -webkit-transform: scale(0.99, 1.01);
+    -moz-transform: scale(0.99, 1.01);
+    -ms-transform: scale(0.99, 1.01);
+    transform: scale(0.99, 1.01);
+  }
+  49% {
+    -webkit-transform: scale(1, 1);
+    -moz-transform: scale(1, 1);
+    -ms-transform: scale(1, 1);
+    transform: scale(1, 1);
+  }
+}
+@-webkit-keyframes btnGroups {
+  0% {
+    -webkit-transform: scale(1.2, 0.8);
+    -moz-transform: scale(1.2, 0.8);
+    -ms-transform: scale(1.2, 0.8);
+    transform: scale(1.2, 0.8);
+  }
+  1% {
+    -webkit-transform: scale(1.18, 0.82);
+    -moz-transform: scale(1.18, 0.82);
+    -ms-transform: scale(1.18, 0.82);
+    transform: scale(1.18, 0.82);
+  }
+  2% {
+    -webkit-transform: scale(1.16, 0.84);
+    -moz-transform: scale(1.16, 0.84);
+    -ms-transform: scale(1.16, 0.84);
+    transform: scale(1.16, 0.84);
+  }
+  3% {
+    -webkit-transform: scale(1.13, 0.87);
+    -moz-transform: scale(1.13, 0.87);
+    -ms-transform: scale(1.13, 0.87);
+    transform: scale(1.13, 0.87);
+  }
+  4% {
+    -webkit-transform: scale(1.1, 0.9);
+    -moz-transform: scale(1.1, 0.9);
+    -ms-transform: scale(1.1, 0.9);
+    transform: scale(1.1, 0.9);
+  }
+  5% {
+    -webkit-transform: scale(1.07, 0.93);
+    -moz-transform: scale(1.07, 0.93);
+    -ms-transform: scale(1.07, 0.93);
+    transform: scale(1.07, 0.93);
+  }
+  6% {
+    -webkit-transform: scale(1.04, 0.96);
+    -moz-transform: scale(1.04, 0.96);
+    -ms-transform: scale(1.04, 0.96);
+    transform: scale(1.04, 0.96);
+  }
+  7% {
+    -webkit-transform: scale(1.01, 0.99);
+    -moz-transform: scale(1.01, 0.99);
+    -ms-transform: scale(1.01, 0.99);
+    transform: scale(1.01, 0.99);
+  }
+  8% {
+    -webkit-transform: scale(0.99, 1.01);
+    -moz-transform: scale(0.99, 1.01);
+    -ms-transform: scale(0.99, 1.01);
+    transform: scale(0.99, 1.01);
+  }
+  9% {
+    -webkit-transform: scale(0.97, 1.03);
+    -moz-transform: scale(0.97, 1.03);
+    -ms-transform: scale(0.97, 1.03);
+    transform: scale(0.97, 1.03);
+  }
+  10% {
+    -webkit-transform: scale(0.95, 1.05);
+    -moz-transform: scale(0.95, 1.05);
+    -ms-transform: scale(0.95, 1.05);
+    transform: scale(0.95, 1.05);
+  }
+  11% {
+    -webkit-transform: scale(0.94, 1.06);
+    -moz-transform: scale(0.94, 1.06);
+    -ms-transform: scale(0.94, 1.06);
+    transform: scale(0.94, 1.06);
+  }
+  12% {
+    -webkit-transform: scale(0.93, 1.07);
+    -moz-transform: scale(0.93, 1.07);
+    -ms-transform: scale(0.93, 1.07);
+    transform: scale(0.93, 1.07);
+  }
+  13% {
+    -webkit-transform: scale(0.93, 1.07);
+    -moz-transform: scale(0.93, 1.07);
+    -ms-transform: scale(0.93, 1.07);
+    transform: scale(0.93, 1.07);
+  }
+  14% {
+    -webkit-transform: scale(0.93, 1.07);
+    -moz-transform: scale(0.93, 1.07);
+    -ms-transform: scale(0.93, 1.07);
+    transform: scale(0.93, 1.07);
+  }
+  15% {
+    -webkit-transform: scale(0.93, 1.07);
+    -moz-transform: scale(0.93, 1.07);
+    -ms-transform: scale(0.93, 1.07);
+    transform: scale(0.93, 1.07);
+  }
+  16% {
+    -webkit-transform: scale(0.94, 1.06);
+    -moz-transform: scale(0.94, 1.06);
+    -ms-transform: scale(0.94, 1.06);
+    transform: scale(0.94, 1.06);
+  }
+  17% {
+    -webkit-transform: scale(0.94, 1.06);
+    -moz-transform: scale(0.94, 1.06);
+    -ms-transform: scale(0.94, 1.06);
+    transform: scale(0.94, 1.06);
+  }
+  18% {
+    -webkit-transform: scale(0.95, 1.05);
+    -moz-transform: scale(0.95, 1.05);
+    -ms-transform: scale(0.95, 1.05);
+    transform: scale(0.95, 1.05);
+  }
+  19% {
+    -webkit-transform: scale(0.96, 1.04);
+    -moz-transform: scale(0.96, 1.04);
+    -ms-transform: scale(0.96, 1.04);
+    transform: scale(0.96, 1.04);
+  }
+  20% {
+    -webkit-transform: scale(0.98, 1.02);
+    -moz-transform: scale(0.98, 1.02);
+    -ms-transform: scale(0.98, 1.02);
+    transform: scale(0.98, 1.02);
+  }
+  21% {
+    -webkit-transform: scale(0.99, 1.01);
+    -moz-transform: scale(0.99, 1.01);
+    -ms-transform: scale(0.99, 1.01);
+    transform: scale(0.99, 1.01);
+  }
+  22% {
+    -webkit-transform: scale(1, 1);
+    -moz-transform: scale(1, 1);
+    -ms-transform: scale(1, 1);
+    transform: scale(1, 1);
+  }
+  23% {
+    -webkit-transform: scale(1, 1);
+    -moz-transform: scale(1, 1);
+    -ms-transform: scale(1, 1);
+    transform: scale(1, 1);
+  }
+  24% {
+    -webkit-transform: scale(1.01, 0.99);
+    -moz-transform: scale(1.01, 0.99);
+    -ms-transform: scale(1.01, 0.99);
+    transform: scale(1.01, 0.99);
+  }
+  25% {
+    -webkit-transform: scale(1.02, 0.98);
+    -moz-transform: scale(1.02, 0.98);
+    -ms-transform: scale(1.02, 0.98);
+    transform: scale(1.02, 0.98);
+  }
+  26% {
+    -webkit-transform: scale(1.02, 0.98);
+    -moz-transform: scale(1.02, 0.98);
+    -ms-transform: scale(1.02, 0.98);
+    transform: scale(1.02, 0.98);
+  }
+  27% {
+    -webkit-transform: scale(1.02, 0.98);
+    -moz-transform: scale(1.02, 0.98);
+    -ms-transform: scale(1.02, 0.98);
+    transform: scale(1.02, 0.98);
+  }
+  28% {
+    -webkit-transform: scale(1.03, 0.97);
+    -moz-transform: scale(1.03, 0.97);
+    -ms-transform: scale(1.03, 0.97);
+    transform: scale(1.03, 0.97);
+  }
+  29% {
+    -webkit-transform: scale(1.03, 0.97);
+    -moz-transform: scale(1.03, 0.97);
+    -ms-transform: scale(1.03, 0.97);
+    transform: scale(1.03, 0.97);
+  }
+  30% {
+    -webkit-transform: scale(1.02, 0.98);
+    -moz-transform: scale(1.02, 0.98);
+    -ms-transform: scale(1.02, 0.98);
+    transform: scale(1.02, 0.98);
+  }
+  31% {
+    -webkit-transform: scale(1.02, 0.98);
+    -moz-transform: scale(1.02, 0.98);
+    -ms-transform: scale(1.02, 0.98);
+    transform: scale(1.02, 0.98);
+  }
+  32% {
+    -webkit-transform: scale(1.02, 0.98);
+    -moz-transform: scale(1.02, 0.98);
+    -ms-transform: scale(1.02, 0.98);
+    transform: scale(1.02, 0.98);
+  }
+  33% {
+    -webkit-transform: scale(1.02, 0.98);
+    -moz-transform: scale(1.02, 0.98);
+    -ms-transform: scale(1.02, 0.98);
+    transform: scale(1.02, 0.98);
+  }
+  34% {
+    -webkit-transform: scale(1.01, 0.99);
+    -moz-transform: scale(1.01, 0.99);
+    -ms-transform: scale(1.01, 0.99);
+    transform: scale(1.01, 0.99);
+  }
+  35% {
+    -webkit-transform: scale(1.01, 0.99);
+    -moz-transform: scale(1.01, 0.99);
+    -ms-transform: scale(1.01, 0.99);
+    transform: scale(1.01, 0.99);
+  }
+  36% {
+    -webkit-transform: scale(1.01, 0.99);
+    -moz-transform: scale(1.01, 0.99);
+    -ms-transform: scale(1.01, 0.99);
+    transform: scale(1.01, 0.99);
+  }
+  37% {
+    -webkit-transform: scale(1, 1);
+    -moz-transform: scale(1, 1);
+    -ms-transform: scale(1, 1);
+    transform: scale(1, 1);
+  }
+  38% {
+    -webkit-transform: scale(1, 1);
+    -moz-transform: scale(1, 1);
+    -ms-transform: scale(1, 1);
+    transform: scale(1, 1);
+  }
+  39% {
+    -webkit-transform: scale(1, 1);
+    -moz-transform: scale(1, 1);
+    -ms-transform: scale(1, 1);
+    transform: scale(1, 1);
+  }
+  40% {
+    -webkit-transform: scale(0.99, 1.01);
+    -moz-transform: scale(0.99, 1.01);
+    -ms-transform: scale(0.99, 1.01);
+    transform: scale(0.99, 1.01);
+  }
+  41% {
+    -webkit-transform: scale(0.99, 1.01);
+    -moz-transform: scale(0.99, 1.01);
+    -ms-transform: scale(0.99, 1.01);
+    transform: scale(0.99, 1.01);
+  }
+  42% {
+    -webkit-transform: scale(0.99, 1.01);
+    -moz-transform: scale(0.99, 1.01);
+    -ms-transform: scale(0.99, 1.01);
+    transform: scale(0.99, 1.01);
+  }
+  43% {
+    -webkit-transform: scale(0.99, 1.01);
+    -moz-transform: scale(0.99, 1.01);
+    -ms-transform: scale(0.99, 1.01);
+    transform: scale(0.99, 1.01);
+  }
+  44% {
+    -webkit-transform: scale(0.99, 1.01);
+    -moz-transform: scale(0.99, 1.01);
+    -ms-transform: scale(0.99, 1.01);
+    transform: scale(0.99, 1.01);
+  }
+  45% {
+    -webkit-transform: scale(0.99, 1.01);
+    -moz-transform: scale(0.99, 1.01);
+    -ms-transform: scale(0.99, 1.01);
+    transform: scale(0.99, 1.01);
+  }
+  46% {
+    -webkit-transform: scale(0.99, 1.01);
+    -moz-transform: scale(0.99, 1.01);
+    -ms-transform: scale(0.99, 1.01);
+    transform: scale(0.99, 1.01);
+  }
+  47% {
+    -webkit-transform: scale(0.99, 1.01);
+    -moz-transform: scale(0.99, 1.01);
+    -ms-transform: scale(0.99, 1.01);
+    transform: scale(0.99, 1.01);
+  }
+  48% {
+    -webkit-transform: scale(0.99, 1.01);
+    -moz-transform: scale(0.99, 1.01);
+    -ms-transform: scale(0.99, 1.01);
+    transform: scale(0.99, 1.01);
+  }
+  49% {
+    -webkit-transform: scale(1, 1);
+    -moz-transform: scale(1, 1);
+    -ms-transform: scale(1, 1);
+    transform: scale(1, 1);
+  }
+}
+@-o-keyframes btnGroups {
+  0% {
+    -webkit-transform: scale(1.2, 0.8);
+    -moz-transform: scale(1.2, 0.8);
+    -ms-transform: scale(1.2, 0.8);
+    transform: scale(1.2, 0.8);
+  }
+  1% {
+    -webkit-transform: scale(1.18, 0.82);
+    -moz-transform: scale(1.18, 0.82);
+    -ms-transform: scale(1.18, 0.82);
+    transform: scale(1.18, 0.82);
+  }
+  2% {
+    -webkit-transform: scale(1.16, 0.84);
+    -moz-transform: scale(1.16, 0.84);
+    -ms-transform: scale(1.16, 0.84);
+    transform: scale(1.16, 0.84);
+  }
+  3% {
+    -webkit-transform: scale(1.13, 0.87);
+    -moz-transform: scale(1.13, 0.87);
+    -ms-transform: scale(1.13, 0.87);
+    transform: scale(1.13, 0.87);
+  }
+  4% {
+    -webkit-transform: scale(1.1, 0.9);
+    -moz-transform: scale(1.1, 0.9);
+    -ms-transform: scale(1.1, 0.9);
+    transform: scale(1.1, 0.9);
+  }
+  5% {
+    -webkit-transform: scale(1.07, 0.93);
+    -moz-transform: scale(1.07, 0.93);
+    -ms-transform: scale(1.07, 0.93);
+    transform: scale(1.07, 0.93);
+  }
+  6% {
+    -webkit-transform: scale(1.04, 0.96);
+    -moz-transform: scale(1.04, 0.96);
+    -ms-transform: scale(1.04, 0.96);
+    transform: scale(1.04, 0.96);
+  }
+  7% {
+    -webkit-transform: scale(1.01, 0.99);
+    -moz-transform: scale(1.01, 0.99);
+    -ms-transform: scale(1.01, 0.99);
+    transform: scale(1.01, 0.99);
+  }
+  8% {
+    -webkit-transform: scale(0.99, 1.01);
+    -moz-transform: scale(0.99, 1.01);
+    -ms-transform: scale(0.99, 1.01);
+    transform: scale(0.99, 1.01);
+  }
+  9% {
+    -webkit-transform: scale(0.97, 1.03);
+    -moz-transform: scale(0.97, 1.03);
+    -ms-transform: scale(0.97, 1.03);
+    transform: scale(0.97, 1.03);
+  }
+  10% {
+    -webkit-transform: scale(0.95, 1.05);
+    -moz-transform: scale(0.95, 1.05);
+    -ms-transform: scale(0.95, 1.05);
+    transform: scale(0.95, 1.05);
+  }
+  11% {
+    -webkit-transform: scale(0.94, 1.06);
+    -moz-transform: scale(0.94, 1.06);
+    -ms-transform: scale(0.94, 1.06);
+    transform: scale(0.94, 1.06);
+  }
+  12% {
+    -webkit-transform: scale(0.93, 1.07);
+    -moz-transform: scale(0.93, 1.07);
+    -ms-transform: scale(0.93, 1.07);
+    transform: scale(0.93, 1.07);
+  }
+  13% {
+    -webkit-transform: scale(0.93, 1.07);
+    -moz-transform: scale(0.93, 1.07);
+    -ms-transform: scale(0.93, 1.07);
+    transform: scale(0.93, 1.07);
+  }
+  14% {
+    -webkit-transform: scale(0.93, 1.07);
+    -moz-transform: scale(0.93, 1.07);
+    -ms-transform: scale(0.93, 1.07);
+    transform: scale(0.93, 1.07);
+  }
+  15% {
+    -webkit-transform: scale(0.93, 1.07);
+    -moz-transform: scale(0.93, 1.07);
+    -ms-transform: scale(0.93, 1.07);
+    transform: scale(0.93, 1.07);
+  }
+  16% {
+    -webkit-transform: scale(0.94, 1.06);
+    -moz-transform: scale(0.94, 1.06);
+    -ms-transform: scale(0.94, 1.06);
+    transform: scale(0.94, 1.06);
+  }
+  17% {
+    -webkit-transform: scale(0.94, 1.06);
+    -moz-transform: scale(0.94, 1.06);
+    -ms-transform: scale(0.94, 1.06);
+    transform: scale(0.94, 1.06);
+  }
+  18% {
+    -webkit-transform: scale(0.95, 1.05);
+    -moz-transform: scale(0.95, 1.05);
+    -ms-transform: scale(0.95, 1.05);
+    transform: scale(0.95, 1.05);
+  }
+  19% {
+    -webkit-transform: scale(0.96, 1.04);
+    -moz-transform: scale(0.96, 1.04);
+    -ms-transform: scale(0.96, 1.04);
+    transform: scale(0.96, 1.04);
+  }
+  20% {
+    -webkit-transform: scale(0.98, 1.02);
+    -moz-transform: scale(0.98, 1.02);
+    -ms-transform: scale(0.98, 1.02);
+    transform: scale(0.98, 1.02);
+  }
+  21% {
+    -webkit-transform: scale(0.99, 1.01);
+    -moz-transform: scale(0.99, 1.01);
+    -ms-transform: scale(0.99, 1.01);
+    transform: scale(0.99, 1.01);
+  }
+  22% {
+    -webkit-transform: scale(1, 1);
+    -moz-transform: scale(1, 1);
+    -ms-transform: scale(1, 1);
+    transform: scale(1, 1);
+  }
+  23% {
+    -webkit-transform: scale(1, 1);
+    -moz-transform: scale(1, 1);
+    -ms-transform: scale(1, 1);
+    transform: scale(1, 1);
+  }
+  24% {
+    -webkit-transform: scale(1.01, 0.99);
+    -moz-transform: scale(1.01, 0.99);
+    -ms-transform: scale(1.01, 0.99);
+    transform: scale(1.01, 0.99);
+  }
+  25% {
+    -webkit-transform: scale(1.02, 0.98);
+    -moz-transform: scale(1.02, 0.98);
+    -ms-transform: scale(1.02, 0.98);
+    transform: scale(1.02, 0.98);
+  }
+  26% {
+    -webkit-transform: scale(1.02, 0.98);
+    -moz-transform: scale(1.02, 0.98);
+    -ms-transform: scale(1.02, 0.98);
+    transform: scale(1.02, 0.98);
+  }
+  27% {
+    -webkit-transform: scale(1.02, 0.98);
+    -moz-transform: scale(1.02, 0.98);
+    -ms-transform: scale(1.02, 0.98);
+    transform: scale(1.02, 0.98);
+  }
+  28% {
+    -webkit-transform: scale(1.03, 0.97);
+    -moz-transform: scale(1.03, 0.97);
+    -ms-transform: scale(1.03, 0.97);
+    transform: scale(1.03, 0.97);
+  }
+  29% {
+    -webkit-transform: scale(1.03, 0.97);
+    -moz-transform: scale(1.03, 0.97);
+    -ms-transform: scale(1.03, 0.97);
+    transform: scale(1.03, 0.97);
+  }
+  30% {
+    -webkit-transform: scale(1.02, 0.98);
+    -moz-transform: scale(1.02, 0.98);
+    -ms-transform: scale(1.02, 0.98);
+    transform: scale(1.02, 0.98);
+  }
+  31% {
+    -webkit-transform: scale(1.02, 0.98);
+    -moz-transform: scale(1.02, 0.98);
+    -ms-transform: scale(1.02, 0.98);
+    transform: scale(1.02, 0.98);
+  }
+  32% {
+    -webkit-transform: scale(1.02, 0.98);
+    -moz-transform: scale(1.02, 0.98);
+    -ms-transform: scale(1.02, 0.98);
+    transform: scale(1.02, 0.98);
+  }
+  33% {
+    -webkit-transform: scale(1.02, 0.98);
+    -moz-transform: scale(1.02, 0.98);
+    -ms-transform: scale(1.02, 0.98);
+    transform: scale(1.02, 0.98);
+  }
+  34% {
+    -webkit-transform: scale(1.01, 0.99);
+    -moz-transform: scale(1.01, 0.99);
+    -ms-transform: scale(1.01, 0.99);
+    transform: scale(1.01, 0.99);
+  }
+  35% {
+    -webkit-transform: scale(1.01, 0.99);
+    -moz-transform: scale(1.01, 0.99);
+    -ms-transform: scale(1.01, 0.99);
+    transform: scale(1.01, 0.99);
+  }
+  36% {
+    -webkit-transform: scale(1.01, 0.99);
+    -moz-transform: scale(1.01, 0.99);
+    -ms-transform: scale(1.01, 0.99);
+    transform: scale(1.01, 0.99);
+  }
+  37% {
+    -webkit-transform: scale(1, 1);
+    -moz-transform: scale(1, 1);
+    -ms-transform: scale(1, 1);
+    transform: scale(1, 1);
+  }
+  38% {
+    -webkit-transform: scale(1, 1);
+    -moz-transform: scale(1, 1);
+    -ms-transform: scale(1, 1);
+    transform: scale(1, 1);
+  }
+  39% {
+    -webkit-transform: scale(1, 1);
+    -moz-transform: scale(1, 1);
+    -ms-transform: scale(1, 1);
+    transform: scale(1, 1);
+  }
+  40% {
+    -webkit-transform: scale(0.99, 1.01);
+    -moz-transform: scale(0.99, 1.01);
+    -ms-transform: scale(0.99, 1.01);
+    transform: scale(0.99, 1.01);
+  }
+  41% {
+    -webkit-transform: scale(0.99, 1.01);
+    -moz-transform: scale(0.99, 1.01);
+    -ms-transform: scale(0.99, 1.01);
+    transform: scale(0.99, 1.01);
+  }
+  42% {
+    -webkit-transform: scale(0.99, 1.01);
+    -moz-transform: scale(0.99, 1.01);
+    -ms-transform: scale(0.99, 1.01);
+    transform: scale(0.99, 1.01);
+  }
+  43% {
+    -webkit-transform: scale(0.99, 1.01);
+    -moz-transform: scale(0.99, 1.01);
+    -ms-transform: scale(0.99, 1.01);
+    transform: scale(0.99, 1.01);
+  }
+  44% {
+    -webkit-transform: scale(0.99, 1.01);
+    -moz-transform: scale(0.99, 1.01);
+    -ms-transform: scale(0.99, 1.01);
+    transform: scale(0.99, 1.01);
+  }
+  45% {
+    -webkit-transform: scale(0.99, 1.01);
+    -moz-transform: scale(0.99, 1.01);
+    -ms-transform: scale(0.99, 1.01);
+    transform: scale(0.99, 1.01);
+  }
+  46% {
+    -webkit-transform: scale(0.99, 1.01);
+    -moz-transform: scale(0.99, 1.01);
+    -ms-transform: scale(0.99, 1.01);
+    transform: scale(0.99, 1.01);
+  }
+  47% {
+    -webkit-transform: scale(0.99, 1.01);
+    -moz-transform: scale(0.99, 1.01);
+    -ms-transform: scale(0.99, 1.01);
+    transform: scale(0.99, 1.01);
+  }
+  48% {
+    -webkit-transform: scale(0.99, 1.01);
+    -moz-transform: scale(0.99, 1.01);
+    -ms-transform: scale(0.99, 1.01);
+    transform: scale(0.99, 1.01);
+  }
+  49% {
+    -webkit-transform: scale(1, 1);
+    -moz-transform: scale(1, 1);
+    -ms-transform: scale(1, 1);
+    transform: scale(1, 1);
+  }
+}
+@keyframes btnGroups {
+  0% {
+    -webkit-transform: scale(1.2, 0.8);
+    -moz-transform: scale(1.2, 0.8);
+    -ms-transform: scale(1.2, 0.8);
+    transform: scale(1.2, 0.8);
+  }
+  1% {
+    -webkit-transform: scale(1.18, 0.82);
+    -moz-transform: scale(1.18, 0.82);
+    -ms-transform: scale(1.18, 0.82);
+    transform: scale(1.18, 0.82);
+  }
+  2% {
+    -webkit-transform: scale(1.16, 0.84);
+    -moz-transform: scale(1.16, 0.84);
+    -ms-transform: scale(1.16, 0.84);
+    transform: scale(1.16, 0.84);
+  }
+  3% {
+    -webkit-transform: scale(1.13, 0.87);
+    -moz-transform: scale(1.13, 0.87);
+    -ms-transform: scale(1.13, 0.87);
+    transform: scale(1.13, 0.87);
+  }
+  4% {
+    -webkit-transform: scale(1.1, 0.9);
+    -moz-transform: scale(1.1, 0.9);
+    -ms-transform: scale(1.1, 0.9);
+    transform: scale(1.1, 0.9);
+  }
+  5% {
+    -webkit-transform: scale(1.07, 0.93);
+    -moz-transform: scale(1.07, 0.93);
+    -ms-transform: scale(1.07, 0.93);
+    transform: scale(1.07, 0.93);
+  }
+  6% {
+    -webkit-transform: scale(1.04, 0.96);
+    -moz-transform: scale(1.04, 0.96);
+    -ms-transform: scale(1.04, 0.96);
+    transform: scale(1.04, 0.96);
+  }
+  7% {
+    -webkit-transform: scale(1.01, 0.99);
+    -moz-transform: scale(1.01, 0.99);
+    -ms-transform: scale(1.01, 0.99);
+    transform: scale(1.01, 0.99);
+  }
+  8% {
+    -webkit-transform: scale(0.99, 1.01);
+    -moz-transform: scale(0.99, 1.01);
+    -ms-transform: scale(0.99, 1.01);
+    transform: scale(0.99, 1.01);
+  }
+  9% {
+    -webkit-transform: scale(0.97, 1.03);
+    -moz-transform: scale(0.97, 1.03);
+    -ms-transform: scale(0.97, 1.03);
+    transform: scale(0.97, 1.03);
+  }
+  10% {
+    -webkit-transform: scale(0.95, 1.05);
+    -moz-transform: scale(0.95, 1.05);
+    -ms-transform: scale(0.95, 1.05);
+    transform: scale(0.95, 1.05);
+  }
+  11% {
+    -webkit-transform: scale(0.94, 1.06);
+    -moz-transform: scale(0.94, 1.06);
+    -ms-transform: scale(0.94, 1.06);
+    transform: scale(0.94, 1.06);
+  }
+  12% {
+    -webkit-transform: scale(0.93, 1.07);
+    -moz-transform: scale(0.93, 1.07);
+    -ms-transform: scale(0.93, 1.07);
+    transform: scale(0.93, 1.07);
+  }
+  13% {
+    -webkit-transform: scale(0.93, 1.07);
+    -moz-transform: scale(0.93, 1.07);
+    -ms-transform: scale(0.93, 1.07);
+    transform: scale(0.93, 1.07);
+  }
+  14% {
+    -webkit-transform: scale(0.93, 1.07);
+    -moz-transform: scale(0.93, 1.07);
+    -ms-transform: scale(0.93, 1.07);
+    transform: scale(0.93, 1.07);
+  }
+  15% {
+    -webkit-transform: scale(0.93, 1.07);
+    -moz-transform: scale(0.93, 1.07);
+    -ms-transform: scale(0.93, 1.07);
+    transform: scale(0.93, 1.07);
+  }
+  16% {
+    -webkit-transform: scale(0.94, 1.06);
+    -moz-transform: scale(0.94, 1.06);
+    -ms-transform: scale(0.94, 1.06);
+    transform: scale(0.94, 1.06);
+  }
+  17% {
+    -webkit-transform: scale(0.94, 1.06);
+    -moz-transform: scale(0.94, 1.06);
+    -ms-transform: scale(0.94, 1.06);
+    transform: scale(0.94, 1.06);
+  }
+  18% {
+    -webkit-transform: scale(0.95, 1.05);
+    -moz-transform: scale(0.95, 1.05);
+    -ms-transform: scale(0.95, 1.05);
+    transform: scale(0.95, 1.05);
+  }
+  19% {
+    -webkit-transform: scale(0.96, 1.04);
+    -moz-transform: scale(0.96, 1.04);
+    -ms-transform: scale(0.96, 1.04);
+    transform: scale(0.96, 1.04);
+  }
+  20% {
+    -webkit-transform: scale(0.98, 1.02);
+    -moz-transform: scale(0.98, 1.02);
+    -ms-transform: scale(0.98, 1.02);
+    transform: scale(0.98, 1.02);
+  }
+  21% {
+    -webkit-transform: scale(0.99, 1.01);
+    -moz-transform: scale(0.99, 1.01);
+    -ms-transform: scale(0.99, 1.01);
+    transform: scale(0.99, 1.01);
+  }
+  22% {
+    -webkit-transform: scale(1, 1);
+    -moz-transform: scale(1, 1);
+    -ms-transform: scale(1, 1);
+    transform: scale(1, 1);
+  }
+  23% {
+    -webkit-transform: scale(1, 1);
+    -moz-transform: scale(1, 1);
+    -ms-transform: scale(1, 1);
+    transform: scale(1, 1);
+  }
+  24% {
+    -webkit-transform: scale(1.01, 0.99);
+    -moz-transform: scale(1.01, 0.99);
+    -ms-transform: scale(1.01, 0.99);
+    transform: scale(1.01, 0.99);
+  }
+  25% {
+    -webkit-transform: scale(1.02, 0.98);
+    -moz-transform: scale(1.02, 0.98);
+    -ms-transform: scale(1.02, 0.98);
+    transform: scale(1.02, 0.98);
+  }
+  26% {
+    -webkit-transform: scale(1.02, 0.98);
+    -moz-transform: scale(1.02, 0.98);
+    -ms-transform: scale(1.02, 0.98);
+    transform: scale(1.02, 0.98);
+  }
+  27% {
+    -webkit-transform: scale(1.02, 0.98);
+    -moz-transform: scale(1.02, 0.98);
+    -ms-transform: scale(1.02, 0.98);
+    transform: scale(1.02, 0.98);
+  }
+  28% {
+    -webkit-transform: scale(1.03, 0.97);
+    -moz-transform: scale(1.03, 0.97);
+    -ms-transform: scale(1.03, 0.97);
+    transform: scale(1.03, 0.97);
+  }
+  29% {
+    -webkit-transform: scale(1.03, 0.97);
+    -moz-transform: scale(1.03, 0.97);
+    -ms-transform: scale(1.03, 0.97);
+    transform: scale(1.03, 0.97);
+  }
+  30% {
+    -webkit-transform: scale(1.02, 0.98);
+    -moz-transform: scale(1.02, 0.98);
+    -ms-transform: scale(1.02, 0.98);
+    transform: scale(1.02, 0.98);
+  }
+  31% {
+    -webkit-transform: scale(1.02, 0.98);
+    -moz-transform: scale(1.02, 0.98);
+    -ms-transform: scale(1.02, 0.98);
+    transform: scale(1.02, 0.98);
+  }
+  32% {
+    -webkit-transform: scale(1.02, 0.98);
+    -moz-transform: scale(1.02, 0.98);
+    -ms-transform: scale(1.02, 0.98);
+    transform: scale(1.02, 0.98);
+  }
+  33% {
+    -webkit-transform: scale(1.02, 0.98);
+    -moz-transform: scale(1.02, 0.98);
+    -ms-transform: scale(1.02, 0.98);
+    transform: scale(1.02, 0.98);
+  }
+  34% {
+    -webkit-transform: scale(1.01, 0.99);
+    -moz-transform: scale(1.01, 0.99);
+    -ms-transform: scale(1.01, 0.99);
+    transform: scale(1.01, 0.99);
+  }
+  35% {
+    -webkit-transform: scale(1.01, 0.99);
+    -moz-transform: scale(1.01, 0.99);
+    -ms-transform: scale(1.01, 0.99);
+    transform: scale(1.01, 0.99);
+  }
+  36% {
+    -webkit-transform: scale(1.01, 0.99);
+    -moz-transform: scale(1.01, 0.99);
+    -ms-transform: scale(1.01, 0.99);
+    transform: scale(1.01, 0.99);
+  }
+  37% {
+    -webkit-transform: scale(1, 1);
+    -moz-transform: scale(1, 1);
+    -ms-transform: scale(1, 1);
+    transform: scale(1, 1);
+  }
+  38% {
+    -webkit-transform: scale(1, 1);
+    -moz-transform: scale(1, 1);
+    -ms-transform: scale(1, 1);
+    transform: scale(1, 1);
+  }
+  39% {
+    -webkit-transform: scale(1, 1);
+    -moz-transform: scale(1, 1);
+    -ms-transform: scale(1, 1);
+    transform: scale(1, 1);
+  }
+  40% {
+    -webkit-transform: scale(0.99, 1.01);
+    -moz-transform: scale(0.99, 1.01);
+    -ms-transform: scale(0.99, 1.01);
+    transform: scale(0.99, 1.01);
+  }
+  41% {
+    -webkit-transform: scale(0.99, 1.01);
+    -moz-transform: scale(0.99, 1.01);
+    -ms-transform: scale(0.99, 1.01);
+    transform: scale(0.99, 1.01);
+  }
+  42% {
+    -webkit-transform: scale(0.99, 1.01);
+    -moz-transform: scale(0.99, 1.01);
+    -ms-transform: scale(0.99, 1.01);
+    transform: scale(0.99, 1.01);
+  }
+  43% {
+    -webkit-transform: scale(0.99, 1.01);
+    -moz-transform: scale(0.99, 1.01);
+    -ms-transform: scale(0.99, 1.01);
+    transform: scale(0.99, 1.01);
+  }
+  44% {
+    -webkit-transform: scale(0.99, 1.01);
+    -moz-transform: scale(0.99, 1.01);
+    -ms-transform: scale(0.99, 1.01);
+    transform: scale(0.99, 1.01);
+  }
+  45% {
+    -webkit-transform: scale(0.99, 1.01);
+    -moz-transform: scale(0.99, 1.01);
+    -ms-transform: scale(0.99, 1.01);
+    transform: scale(0.99, 1.01);
+  }
+  46% {
+    -webkit-transform: scale(0.99, 1.01);
+    -moz-transform: scale(0.99, 1.01);
+    -ms-transform: scale(0.99, 1.01);
+    transform: scale(0.99, 1.01);
+  }
+  47% {
+    -webkit-transform: scale(0.99, 1.01);
+    -moz-transform: scale(0.99, 1.01);
+    -ms-transform: scale(0.99, 1.01);
+    transform: scale(0.99, 1.01);
+  }
+  48% {
+    -webkit-transform: scale(0.99, 1.01);
+    -moz-transform: scale(0.99, 1.01);
+    -ms-transform: scale(0.99, 1.01);
+    transform: scale(0.99, 1.01);
+  }
+  49% {
+    -webkit-transform: scale(1, 1);
+    -moz-transform: scale(1, 1);
+    -ms-transform: scale(1, 1);
+    transform: scale(1, 1);
+  }
+}
+</style>
+<div class="intrude-less">
+	<header id="header" class="inner">
+		<a href="/" class="profilepic">
+			<img src="https://tawen.github.io/img/photo.jpg" class="js-avatar">
+		</a>
+
+		<hgroup>
+		  <h1 class="header-author"><a href="/">影子爱乘凉</a></h1>
+		</hgroup>
+
+		
+		<p class="header-subtitle">路走了28年，方向始终不变。</p>
+		
+
+		<nav class="header-menu">
+			<ul>
+			
+				<li><a href="/">首页</a></li>
+	        
+				<li><a href="/archives">存档</a></li>
+	        
+				<li><a href="/about">关于</a></li>
+	        
+			</ul>
+		</nav>
+		<nav class="header-smart-menu">
+	        
+    		
+    			
+    			<a data-idx="0" q-on="click: openSlider(e, 'innerArchive')" href="javascript:void(0)">所有文章</a>
+    			
+    			
+            
+		</nav>
+		<nav class="header-nav">
+			<div class="social">
+				
+					<a class="github" target="_blank" href="https://github.com/tawen" title="github"><i class="icon-github"></i></a>
+		        
+					<a class="weibo" target="_blank" href="http://weibo.com/3168014535/profile?topnav=1&wvr=6&is_all=1" title="weibo"><i class="icon-weibo"></i></a>
+		        
+					<a class="rss" target="_blank" href="/atom.xml" title="rss"><i class="icon-rss"></i></a>
+		        
+					<a class="zhihu" target="_blank" href="https://www.zhihu.com/people/liu-zhen-hua-74-57" title="zhihu"><i class="icon-zhihu"></i></a>
+		        
+			</div>
+		</nav>
+	</header>		
+</div>
+
+    </div>
+    <div class="mid-col" q-class="show:isShow,hide:isShow|isFalse">
+      <nav id="mobile-nav">
+  	<div class="overlay">
+  		<div class="slider-trigger"><i class="icon-sort"></i></div>
+		  <h1 class="header-author js-mobile-header hide">影子爱乘凉</h1>
+		  <svg style="position:absolute;left:0;bottom:0" class="editorial" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 24 150 28" preserveAspectRatio="none">
+			<defs><path id="gentle-wave" d="M-160 44c30 0
+			  58-18 88-18s
+			  58 18 88 18
+			  58-18 88-18
+			  58 18 88 18
+			  v44h-352z"></path>
+			  </defs>
+			  <g class="parallax">
+				<use xlink:href="#gentle-wave" x="50" y="0" fill="rgba(128,128,128,.5)"></use>
+				<use xlink:href="#gentle-wave" x="50" y="3" fill="rgba(128,128,128,.5)"></use>
+				<use xlink:href="#gentle-wave" x="50" y="6" fill="rgba(128,128,128,.5)"></use>
+				</g>
+			</svg>
+	  </div>
+	  
+	  <style>
+		.parallax>use {
+		animation: move-forever 12s linear infinite
+	  }
+	  .parallax>use:nth-child(1) {
+		animation-delay: -2s
+	  }
+	  .parallax>use:nth-child(2) {
+		animation-delay: -2s;
+		animation-duration: 5s
+	  }
+	  .parallax>use:nth-child(3) {
+		animation-delay: -4s;
+		animation-duration: 3s
+	  }
+	  @keyframes move-forever {
+		0% {
+		  transform: translate(-90px, 0)
+		}
+		100% {
+		  transform: translate(85px, 0)
+		}
+		}
+		#header .profilepic:hover {
+  -webkit-animation: btnGroups 1s linear;
+  -webkit-animation: btnGroups 1s linear;
+  -moz-animation: btnGroups 1s linear;
+  -ms-animation: btnGroups 1s linear;
+  animation: btnGroups 1s linear;
+}
+@-webkit-keyframes btnGroups {
+  0% {
+    -webkit-transform: scale(1.2, 0.8);
+  }
+  1% {
+    -webkit-transform: scale(1.18, 0.82);
+  }
+  2% {
+    -webkit-transform: scale(1.16, 0.84);
+  }
+  3% {
+    -webkit-transform: scale(1.13, 0.87);
+  }
+  4% {
+    -webkit-transform: scale(1.1, 0.9);
+  }
+  5% {
+    -webkit-transform: scale(1.07, 0.93);
+  }
+  6% {
+    -webkit-transform: scale(1.04, 0.96);
+  }
+  7% {
+    -webkit-transform: scale(1.01, 0.99);
+  }
+  8% {
+    -webkit-transform: scale(0.99, 1.01);
+  }
+  9% {
+    -webkit-transform: scale(0.97, 1.03);
+  }
+  10% {
+    -webkit-transform: scale(0.95, 1.05);
+  }
+  11% {
+    -webkit-transform: scale(0.94, 1.06);
+  }
+  12% {
+    -webkit-transform: scale(0.93, 1.07);
+  }
+  13% {
+    -webkit-transform: scale(0.93, 1.07);
+  }
+  14% {
+    -webkit-transform: scale(0.93, 1.07);
+  }
+  15% {
+    -webkit-transform: scale(0.93, 1.07);
+  }
+  16% {
+    -webkit-transform: scale(0.94, 1.06);
+  }
+  17% {
+    -webkit-transform: scale(0.94, 1.06);
+  }
+  18% {
+    -webkit-transform: scale(0.95, 1.05);
+  }
+  19% {
+    -webkit-transform: scale(0.96, 1.04);
+  }
+  20% {
+    -webkit-transform: scale(0.98, 1.02);
+  }
+  21% {
+    -webkit-transform: scale(0.99, 1.01);
+  }
+  22% {
+    -webkit-transform: scale(1, 1);
+  }
+  23% {
+    -webkit-transform: scale(1, 1);
+  }
+  24% {
+    -webkit-transform: scale(1.01, 0.99);
+  }
+  25% {
+    -webkit-transform: scale(1.02, 0.98);
+  }
+  26% {
+    -webkit-transform: scale(1.02, 0.98);
+  }
+  27% {
+    -webkit-transform: scale(1.02, 0.98);
+  }
+  28% {
+    -webkit-transform: scale(1.03, 0.97);
+  }
+  29% {
+    -webkit-transform: scale(1.03, 0.97);
+  }
+  30% {
+    -webkit-transform: scale(1.02, 0.98);
+  }
+  31% {
+    -webkit-transform: scale(1.02, 0.98);
+  }
+  32% {
+    -webkit-transform: scale(1.02, 0.98);
+  }
+  33% {
+    -webkit-transform: scale(1.02, 0.98);
+  }
+  34% {
+    -webkit-transform: scale(1.01, 0.99);
+  }
+  35% {
+    -webkit-transform: scale(1.01, 0.99);
+  }
+  36% {
+    -webkit-transform: scale(1.01, 0.99);
+  }
+  37% {
+    -webkit-transform: scale(1, 1);
+  }
+  38% {
+    -webkit-transform: scale(1, 1);
+  }
+  39% {
+    -webkit-transform: scale(1, 1);
+  }
+  40% {
+    -webkit-transform: scale(0.99, 1.01);
+  }
+  41% {
+    -webkit-transform: scale(0.99, 1.01);
+  }
+  42% {
+    -webkit-transform: scale(0.99, 1.01);
+  }
+  43% {
+    -webkit-transform: scale(0.99, 1.01);
+  }
+  44% {
+    -webkit-transform: scale(0.99, 1.01);
+  }
+  45% {
+    -webkit-transform: scale(0.99, 1.01);
+  }
+  46% {
+    -webkit-transform: scale(0.99, 1.01);
+  }
+  47% {
+    -webkit-transform: scale(0.99, 1.01);
+  }
+  48% {
+    -webkit-transform: scale(0.99, 1.01);
+  }
+  49% {
+    -webkit-transform: scale(1, 1);
+  }
+}
+@-moz-keyframes btnGroups {
+  0% {
+    -webkit-transform: scale(1.2, 0.8);
+    -moz-transform: scale(1.2, 0.8);
+    -ms-transform: scale(1.2, 0.8);
+    transform: scale(1.2, 0.8);
+  }
+  1% {
+    -webkit-transform: scale(1.18, 0.82);
+    -moz-transform: scale(1.18, 0.82);
+    -ms-transform: scale(1.18, 0.82);
+    transform: scale(1.18, 0.82);
+  }
+  2% {
+    -webkit-transform: scale(1.16, 0.84);
+    -moz-transform: scale(1.16, 0.84);
+    -ms-transform: scale(1.16, 0.84);
+    transform: scale(1.16, 0.84);
+  }
+  3% {
+    -webkit-transform: scale(1.13, 0.87);
+    -moz-transform: scale(1.13, 0.87);
+    -ms-transform: scale(1.13, 0.87);
+    transform: scale(1.13, 0.87);
+  }
+  4% {
+    -webkit-transform: scale(1.1, 0.9);
+    -moz-transform: scale(1.1, 0.9);
+    -ms-transform: scale(1.1, 0.9);
+    transform: scale(1.1, 0.9);
+  }
+  5% {
+    -webkit-transform: scale(1.07, 0.93);
+    -moz-transform: scale(1.07, 0.93);
+    -ms-transform: scale(1.07, 0.93);
+    transform: scale(1.07, 0.93);
+  }
+  6% {
+    -webkit-transform: scale(1.04, 0.96);
+    -moz-transform: scale(1.04, 0.96);
+    -ms-transform: scale(1.04, 0.96);
+    transform: scale(1.04, 0.96);
+  }
+  7% {
+    -webkit-transform: scale(1.01, 0.99);
+    -moz-transform: scale(1.01, 0.99);
+    -ms-transform: scale(1.01, 0.99);
+    transform: scale(1.01, 0.99);
+  }
+  8% {
+    -webkit-transform: scale(0.99, 1.01);
+    -moz-transform: scale(0.99, 1.01);
+    -ms-transform: scale(0.99, 1.01);
+    transform: scale(0.99, 1.01);
+  }
+  9% {
+    -webkit-transform: scale(0.97, 1.03);
+    -moz-transform: scale(0.97, 1.03);
+    -ms-transform: scale(0.97, 1.03);
+    transform: scale(0.97, 1.03);
+  }
+  10% {
+    -webkit-transform: scale(0.95, 1.05);
+    -moz-transform: scale(0.95, 1.05);
+    -ms-transform: scale(0.95, 1.05);
+    transform: scale(0.95, 1.05);
+  }
+  11% {
+    -webkit-transform: scale(0.94, 1.06);
+    -moz-transform: scale(0.94, 1.06);
+    -ms-transform: scale(0.94, 1.06);
+    transform: scale(0.94, 1.06);
+  }
+  12% {
+    -webkit-transform: scale(0.93, 1.07);
+    -moz-transform: scale(0.93, 1.07);
+    -ms-transform: scale(0.93, 1.07);
+    transform: scale(0.93, 1.07);
+  }
+  13% {
+    -webkit-transform: scale(0.93, 1.07);
+    -moz-transform: scale(0.93, 1.07);
+    -ms-transform: scale(0.93, 1.07);
+    transform: scale(0.93, 1.07);
+  }
+  14% {
+    -webkit-transform: scale(0.93, 1.07);
+    -moz-transform: scale(0.93, 1.07);
+    -ms-transform: scale(0.93, 1.07);
+    transform: scale(0.93, 1.07);
+  }
+  15% {
+    -webkit-transform: scale(0.93, 1.07);
+    -moz-transform: scale(0.93, 1.07);
+    -ms-transform: scale(0.93, 1.07);
+    transform: scale(0.93, 1.07);
+  }
+  16% {
+    -webkit-transform: scale(0.94, 1.06);
+    -moz-transform: scale(0.94, 1.06);
+    -ms-transform: scale(0.94, 1.06);
+    transform: scale(0.94, 1.06);
+  }
+  17% {
+    -webkit-transform: scale(0.94, 1.06);
+    -moz-transform: scale(0.94, 1.06);
+    -ms-transform: scale(0.94, 1.06);
+    transform: scale(0.94, 1.06);
+  }
+  18% {
+    -webkit-transform: scale(0.95, 1.05);
+    -moz-transform: scale(0.95, 1.05);
+    -ms-transform: scale(0.95, 1.05);
+    transform: scale(0.95, 1.05);
+  }
+  19% {
+    -webkit-transform: scale(0.96, 1.04);
+    -moz-transform: scale(0.96, 1.04);
+    -ms-transform: scale(0.96, 1.04);
+    transform: scale(0.96, 1.04);
+  }
+  20% {
+    -webkit-transform: scale(0.98, 1.02);
+    -moz-transform: scale(0.98, 1.02);
+    -ms-transform: scale(0.98, 1.02);
+    transform: scale(0.98, 1.02);
+  }
+  21% {
+    -webkit-transform: scale(0.99, 1.01);
+    -moz-transform: scale(0.99, 1.01);
+    -ms-transform: scale(0.99, 1.01);
+    transform: scale(0.99, 1.01);
+  }
+  22% {
+    -webkit-transform: scale(1, 1);
+    -moz-transform: scale(1, 1);
+    -ms-transform: scale(1, 1);
+    transform: scale(1, 1);
+  }
+  23% {
+    -webkit-transform: scale(1, 1);
+    -moz-transform: scale(1, 1);
+    -ms-transform: scale(1, 1);
+    transform: scale(1, 1);
+  }
+  24% {
+    -webkit-transform: scale(1.01, 0.99);
+    -moz-transform: scale(1.01, 0.99);
+    -ms-transform: scale(1.01, 0.99);
+    transform: scale(1.01, 0.99);
+  }
+  25% {
+    -webkit-transform: scale(1.02, 0.98);
+    -moz-transform: scale(1.02, 0.98);
+    -ms-transform: scale(1.02, 0.98);
+    transform: scale(1.02, 0.98);
+  }
+  26% {
+    -webkit-transform: scale(1.02, 0.98);
+    -moz-transform: scale(1.02, 0.98);
+    -ms-transform: scale(1.02, 0.98);
+    transform: scale(1.02, 0.98);
+  }
+  27% {
+    -webkit-transform: scale(1.02, 0.98);
+    -moz-transform: scale(1.02, 0.98);
+    -ms-transform: scale(1.02, 0.98);
+    transform: scale(1.02, 0.98);
+  }
+  28% {
+    -webkit-transform: scale(1.03, 0.97);
+    -moz-transform: scale(1.03, 0.97);
+    -ms-transform: scale(1.03, 0.97);
+    transform: scale(1.03, 0.97);
+  }
+  29% {
+    -webkit-transform: scale(1.03, 0.97);
+    -moz-transform: scale(1.03, 0.97);
+    -ms-transform: scale(1.03, 0.97);
+    transform: scale(1.03, 0.97);
+  }
+  30% {
+    -webkit-transform: scale(1.02, 0.98);
+    -moz-transform: scale(1.02, 0.98);
+    -ms-transform: scale(1.02, 0.98);
+    transform: scale(1.02, 0.98);
+  }
+  31% {
+    -webkit-transform: scale(1.02, 0.98);
+    -moz-transform: scale(1.02, 0.98);
+    -ms-transform: scale(1.02, 0.98);
+    transform: scale(1.02, 0.98);
+  }
+  32% {
+    -webkit-transform: scale(1.02, 0.98);
+    -moz-transform: scale(1.02, 0.98);
+    -ms-transform: scale(1.02, 0.98);
+    transform: scale(1.02, 0.98);
+  }
+  33% {
+    -webkit-transform: scale(1.02, 0.98);
+    -moz-transform: scale(1.02, 0.98);
+    -ms-transform: scale(1.02, 0.98);
+    transform: scale(1.02, 0.98);
+  }
+  34% {
+    -webkit-transform: scale(1.01, 0.99);
+    -moz-transform: scale(1.01, 0.99);
+    -ms-transform: scale(1.01, 0.99);
+    transform: scale(1.01, 0.99);
+  }
+  35% {
+    -webkit-transform: scale(1.01, 0.99);
+    -moz-transform: scale(1.01, 0.99);
+    -ms-transform: scale(1.01, 0.99);
+    transform: scale(1.01, 0.99);
+  }
+  36% {
+    -webkit-transform: scale(1.01, 0.99);
+    -moz-transform: scale(1.01, 0.99);
+    -ms-transform: scale(1.01, 0.99);
+    transform: scale(1.01, 0.99);
+  }
+  37% {
+    -webkit-transform: scale(1, 1);
+    -moz-transform: scale(1, 1);
+    -ms-transform: scale(1, 1);
+    transform: scale(1, 1);
+  }
+  38% {
+    -webkit-transform: scale(1, 1);
+    -moz-transform: scale(1, 1);
+    -ms-transform: scale(1, 1);
+    transform: scale(1, 1);
+  }
+  39% {
+    -webkit-transform: scale(1, 1);
+    -moz-transform: scale(1, 1);
+    -ms-transform: scale(1, 1);
+    transform: scale(1, 1);
+  }
+  40% {
+    -webkit-transform: scale(0.99, 1.01);
+    -moz-transform: scale(0.99, 1.01);
+    -ms-transform: scale(0.99, 1.01);
+    transform: scale(0.99, 1.01);
+  }
+  41% {
+    -webkit-transform: scale(0.99, 1.01);
+    -moz-transform: scale(0.99, 1.01);
+    -ms-transform: scale(0.99, 1.01);
+    transform: scale(0.99, 1.01);
+  }
+  42% {
+    -webkit-transform: scale(0.99, 1.01);
+    -moz-transform: scale(0.99, 1.01);
+    -ms-transform: scale(0.99, 1.01);
+    transform: scale(0.99, 1.01);
+  }
+  43% {
+    -webkit-transform: scale(0.99, 1.01);
+    -moz-transform: scale(0.99, 1.01);
+    -ms-transform: scale(0.99, 1.01);
+    transform: scale(0.99, 1.01);
+  }
+  44% {
+    -webkit-transform: scale(0.99, 1.01);
+    -moz-transform: scale(0.99, 1.01);
+    -ms-transform: scale(0.99, 1.01);
+    transform: scale(0.99, 1.01);
+  }
+  45% {
+    -webkit-transform: scale(0.99, 1.01);
+    -moz-transform: scale(0.99, 1.01);
+    -ms-transform: scale(0.99, 1.01);
+    transform: scale(0.99, 1.01);
+  }
+  46% {
+    -webkit-transform: scale(0.99, 1.01);
+    -moz-transform: scale(0.99, 1.01);
+    -ms-transform: scale(0.99, 1.01);
+    transform: scale(0.99, 1.01);
+  }
+  47% {
+    -webkit-transform: scale(0.99, 1.01);
+    -moz-transform: scale(0.99, 1.01);
+    -ms-transform: scale(0.99, 1.01);
+    transform: scale(0.99, 1.01);
+  }
+  48% {
+    -webkit-transform: scale(0.99, 1.01);
+    -moz-transform: scale(0.99, 1.01);
+    -ms-transform: scale(0.99, 1.01);
+    transform: scale(0.99, 1.01);
+  }
+  49% {
+    -webkit-transform: scale(1, 1);
+    -moz-transform: scale(1, 1);
+    -ms-transform: scale(1, 1);
+    transform: scale(1, 1);
+  }
+}
+@-webkit-keyframes btnGroups {
+  0% {
+    -webkit-transform: scale(1.2, 0.8);
+    -moz-transform: scale(1.2, 0.8);
+    -ms-transform: scale(1.2, 0.8);
+    transform: scale(1.2, 0.8);
+  }
+  1% {
+    -webkit-transform: scale(1.18, 0.82);
+    -moz-transform: scale(1.18, 0.82);
+    -ms-transform: scale(1.18, 0.82);
+    transform: scale(1.18, 0.82);
+  }
+  2% {
+    -webkit-transform: scale(1.16, 0.84);
+    -moz-transform: scale(1.16, 0.84);
+    -ms-transform: scale(1.16, 0.84);
+    transform: scale(1.16, 0.84);
+  }
+  3% {
+    -webkit-transform: scale(1.13, 0.87);
+    -moz-transform: scale(1.13, 0.87);
+    -ms-transform: scale(1.13, 0.87);
+    transform: scale(1.13, 0.87);
+  }
+  4% {
+    -webkit-transform: scale(1.1, 0.9);
+    -moz-transform: scale(1.1, 0.9);
+    -ms-transform: scale(1.1, 0.9);
+    transform: scale(1.1, 0.9);
+  }
+  5% {
+    -webkit-transform: scale(1.07, 0.93);
+    -moz-transform: scale(1.07, 0.93);
+    -ms-transform: scale(1.07, 0.93);
+    transform: scale(1.07, 0.93);
+  }
+  6% {
+    -webkit-transform: scale(1.04, 0.96);
+    -moz-transform: scale(1.04, 0.96);
+    -ms-transform: scale(1.04, 0.96);
+    transform: scale(1.04, 0.96);
+  }
+  7% {
+    -webkit-transform: scale(1.01, 0.99);
+    -moz-transform: scale(1.01, 0.99);
+    -ms-transform: scale(1.01, 0.99);
+    transform: scale(1.01, 0.99);
+  }
+  8% {
+    -webkit-transform: scale(0.99, 1.01);
+    -moz-transform: scale(0.99, 1.01);
+    -ms-transform: scale(0.99, 1.01);
+    transform: scale(0.99, 1.01);
+  }
+  9% {
+    -webkit-transform: scale(0.97, 1.03);
+    -moz-transform: scale(0.97, 1.03);
+    -ms-transform: scale(0.97, 1.03);
+    transform: scale(0.97, 1.03);
+  }
+  10% {
+    -webkit-transform: scale(0.95, 1.05);
+    -moz-transform: scale(0.95, 1.05);
+    -ms-transform: scale(0.95, 1.05);
+    transform: scale(0.95, 1.05);
+  }
+  11% {
+    -webkit-transform: scale(0.94, 1.06);
+    -moz-transform: scale(0.94, 1.06);
+    -ms-transform: scale(0.94, 1.06);
+    transform: scale(0.94, 1.06);
+  }
+  12% {
+    -webkit-transform: scale(0.93, 1.07);
+    -moz-transform: scale(0.93, 1.07);
+    -ms-transform: scale(0.93, 1.07);
+    transform: scale(0.93, 1.07);
+  }
+  13% {
+    -webkit-transform: scale(0.93, 1.07);
+    -moz-transform: scale(0.93, 1.07);
+    -ms-transform: scale(0.93, 1.07);
+    transform: scale(0.93, 1.07);
+  }
+  14% {
+    -webkit-transform: scale(0.93, 1.07);
+    -moz-transform: scale(0.93, 1.07);
+    -ms-transform: scale(0.93, 1.07);
+    transform: scale(0.93, 1.07);
+  }
+  15% {
+    -webkit-transform: scale(0.93, 1.07);
+    -moz-transform: scale(0.93, 1.07);
+    -ms-transform: scale(0.93, 1.07);
+    transform: scale(0.93, 1.07);
+  }
+  16% {
+    -webkit-transform: scale(0.94, 1.06);
+    -moz-transform: scale(0.94, 1.06);
+    -ms-transform: scale(0.94, 1.06);
+    transform: scale(0.94, 1.06);
+  }
+  17% {
+    -webkit-transform: scale(0.94, 1.06);
+    -moz-transform: scale(0.94, 1.06);
+    -ms-transform: scale(0.94, 1.06);
+    transform: scale(0.94, 1.06);
+  }
+  18% {
+    -webkit-transform: scale(0.95, 1.05);
+    -moz-transform: scale(0.95, 1.05);
+    -ms-transform: scale(0.95, 1.05);
+    transform: scale(0.95, 1.05);
+  }
+  19% {
+    -webkit-transform: scale(0.96, 1.04);
+    -moz-transform: scale(0.96, 1.04);
+    -ms-transform: scale(0.96, 1.04);
+    transform: scale(0.96, 1.04);
+  }
+  20% {
+    -webkit-transform: scale(0.98, 1.02);
+    -moz-transform: scale(0.98, 1.02);
+    -ms-transform: scale(0.98, 1.02);
+    transform: scale(0.98, 1.02);
+  }
+  21% {
+    -webkit-transform: scale(0.99, 1.01);
+    -moz-transform: scale(0.99, 1.01);
+    -ms-transform: scale(0.99, 1.01);
+    transform: scale(0.99, 1.01);
+  }
+  22% {
+    -webkit-transform: scale(1, 1);
+    -moz-transform: scale(1, 1);
+    -ms-transform: scale(1, 1);
+    transform: scale(1, 1);
+  }
+  23% {
+    -webkit-transform: scale(1, 1);
+    -moz-transform: scale(1, 1);
+    -ms-transform: scale(1, 1);
+    transform: scale(1, 1);
+  }
+  24% {
+    -webkit-transform: scale(1.01, 0.99);
+    -moz-transform: scale(1.01, 0.99);
+    -ms-transform: scale(1.01, 0.99);
+    transform: scale(1.01, 0.99);
+  }
+  25% {
+    -webkit-transform: scale(1.02, 0.98);
+    -moz-transform: scale(1.02, 0.98);
+    -ms-transform: scale(1.02, 0.98);
+    transform: scale(1.02, 0.98);
+  }
+  26% {
+    -webkit-transform: scale(1.02, 0.98);
+    -moz-transform: scale(1.02, 0.98);
+    -ms-transform: scale(1.02, 0.98);
+    transform: scale(1.02, 0.98);
+  }
+  27% {
+    -webkit-transform: scale(1.02, 0.98);
+    -moz-transform: scale(1.02, 0.98);
+    -ms-transform: scale(1.02, 0.98);
+    transform: scale(1.02, 0.98);
+  }
+  28% {
+    -webkit-transform: scale(1.03, 0.97);
+    -moz-transform: scale(1.03, 0.97);
+    -ms-transform: scale(1.03, 0.97);
+    transform: scale(1.03, 0.97);
+  }
+  29% {
+    -webkit-transform: scale(1.03, 0.97);
+    -moz-transform: scale(1.03, 0.97);
+    -ms-transform: scale(1.03, 0.97);
+    transform: scale(1.03, 0.97);
+  }
+  30% {
+    -webkit-transform: scale(1.02, 0.98);
+    -moz-transform: scale(1.02, 0.98);
+    -ms-transform: scale(1.02, 0.98);
+    transform: scale(1.02, 0.98);
+  }
+  31% {
+    -webkit-transform: scale(1.02, 0.98);
+    -moz-transform: scale(1.02, 0.98);
+    -ms-transform: scale(1.02, 0.98);
+    transform: scale(1.02, 0.98);
+  }
+  32% {
+    -webkit-transform: scale(1.02, 0.98);
+    -moz-transform: scale(1.02, 0.98);
+    -ms-transform: scale(1.02, 0.98);
+    transform: scale(1.02, 0.98);
+  }
+  33% {
+    -webkit-transform: scale(1.02, 0.98);
+    -moz-transform: scale(1.02, 0.98);
+    -ms-transform: scale(1.02, 0.98);
+    transform: scale(1.02, 0.98);
+  }
+  34% {
+    -webkit-transform: scale(1.01, 0.99);
+    -moz-transform: scale(1.01, 0.99);
+    -ms-transform: scale(1.01, 0.99);
+    transform: scale(1.01, 0.99);
+  }
+  35% {
+    -webkit-transform: scale(1.01, 0.99);
+    -moz-transform: scale(1.01, 0.99);
+    -ms-transform: scale(1.01, 0.99);
+    transform: scale(1.01, 0.99);
+  }
+  36% {
+    -webkit-transform: scale(1.01, 0.99);
+    -moz-transform: scale(1.01, 0.99);
+    -ms-transform: scale(1.01, 0.99);
+    transform: scale(1.01, 0.99);
+  }
+  37% {
+    -webkit-transform: scale(1, 1);
+    -moz-transform: scale(1, 1);
+    -ms-transform: scale(1, 1);
+    transform: scale(1, 1);
+  }
+  38% {
+    -webkit-transform: scale(1, 1);
+    -moz-transform: scale(1, 1);
+    -ms-transform: scale(1, 1);
+    transform: scale(1, 1);
+  }
+  39% {
+    -webkit-transform: scale(1, 1);
+    -moz-transform: scale(1, 1);
+    -ms-transform: scale(1, 1);
+    transform: scale(1, 1);
+  }
+  40% {
+    -webkit-transform: scale(0.99, 1.01);
+    -moz-transform: scale(0.99, 1.01);
+    -ms-transform: scale(0.99, 1.01);
+    transform: scale(0.99, 1.01);
+  }
+  41% {
+    -webkit-transform: scale(0.99, 1.01);
+    -moz-transform: scale(0.99, 1.01);
+    -ms-transform: scale(0.99, 1.01);
+    transform: scale(0.99, 1.01);
+  }
+  42% {
+    -webkit-transform: scale(0.99, 1.01);
+    -moz-transform: scale(0.99, 1.01);
+    -ms-transform: scale(0.99, 1.01);
+    transform: scale(0.99, 1.01);
+  }
+  43% {
+    -webkit-transform: scale(0.99, 1.01);
+    -moz-transform: scale(0.99, 1.01);
+    -ms-transform: scale(0.99, 1.01);
+    transform: scale(0.99, 1.01);
+  }
+  44% {
+    -webkit-transform: scale(0.99, 1.01);
+    -moz-transform: scale(0.99, 1.01);
+    -ms-transform: scale(0.99, 1.01);
+    transform: scale(0.99, 1.01);
+  }
+  45% {
+    -webkit-transform: scale(0.99, 1.01);
+    -moz-transform: scale(0.99, 1.01);
+    -ms-transform: scale(0.99, 1.01);
+    transform: scale(0.99, 1.01);
+  }
+  46% {
+    -webkit-transform: scale(0.99, 1.01);
+    -moz-transform: scale(0.99, 1.01);
+    -ms-transform: scale(0.99, 1.01);
+    transform: scale(0.99, 1.01);
+  }
+  47% {
+    -webkit-transform: scale(0.99, 1.01);
+    -moz-transform: scale(0.99, 1.01);
+    -ms-transform: scale(0.99, 1.01);
+    transform: scale(0.99, 1.01);
+  }
+  48% {
+    -webkit-transform: scale(0.99, 1.01);
+    -moz-transform: scale(0.99, 1.01);
+    -ms-transform: scale(0.99, 1.01);
+    transform: scale(0.99, 1.01);
+  }
+  49% {
+    -webkit-transform: scale(1, 1);
+    -moz-transform: scale(1, 1);
+    -ms-transform: scale(1, 1);
+    transform: scale(1, 1);
+  }
+}
+@-o-keyframes btnGroups {
+  0% {
+    -webkit-transform: scale(1.2, 0.8);
+    -moz-transform: scale(1.2, 0.8);
+    -ms-transform: scale(1.2, 0.8);
+    transform: scale(1.2, 0.8);
+  }
+  1% {
+    -webkit-transform: scale(1.18, 0.82);
+    -moz-transform: scale(1.18, 0.82);
+    -ms-transform: scale(1.18, 0.82);
+    transform: scale(1.18, 0.82);
+  }
+  2% {
+    -webkit-transform: scale(1.16, 0.84);
+    -moz-transform: scale(1.16, 0.84);
+    -ms-transform: scale(1.16, 0.84);
+    transform: scale(1.16, 0.84);
+  }
+  3% {
+    -webkit-transform: scale(1.13, 0.87);
+    -moz-transform: scale(1.13, 0.87);
+    -ms-transform: scale(1.13, 0.87);
+    transform: scale(1.13, 0.87);
+  }
+  4% {
+    -webkit-transform: scale(1.1, 0.9);
+    -moz-transform: scale(1.1, 0.9);
+    -ms-transform: scale(1.1, 0.9);
+    transform: scale(1.1, 0.9);
+  }
+  5% {
+    -webkit-transform: scale(1.07, 0.93);
+    -moz-transform: scale(1.07, 0.93);
+    -ms-transform: scale(1.07, 0.93);
+    transform: scale(1.07, 0.93);
+  }
+  6% {
+    -webkit-transform: scale(1.04, 0.96);
+    -moz-transform: scale(1.04, 0.96);
+    -ms-transform: scale(1.04, 0.96);
+    transform: scale(1.04, 0.96);
+  }
+  7% {
+    -webkit-transform: scale(1.01, 0.99);
+    -moz-transform: scale(1.01, 0.99);
+    -ms-transform: scale(1.01, 0.99);
+    transform: scale(1.01, 0.99);
+  }
+  8% {
+    -webkit-transform: scale(0.99, 1.01);
+    -moz-transform: scale(0.99, 1.01);
+    -ms-transform: scale(0.99, 1.01);
+    transform: scale(0.99, 1.01);
+  }
+  9% {
+    -webkit-transform: scale(0.97, 1.03);
+    -moz-transform: scale(0.97, 1.03);
+    -ms-transform: scale(0.97, 1.03);
+    transform: scale(0.97, 1.03);
+  }
+  10% {
+    -webkit-transform: scale(0.95, 1.05);
+    -moz-transform: scale(0.95, 1.05);
+    -ms-transform: scale(0.95, 1.05);
+    transform: scale(0.95, 1.05);
+  }
+  11% {
+    -webkit-transform: scale(0.94, 1.06);
+    -moz-transform: scale(0.94, 1.06);
+    -ms-transform: scale(0.94, 1.06);
+    transform: scale(0.94, 1.06);
+  }
+  12% {
+    -webkit-transform: scale(0.93, 1.07);
+    -moz-transform: scale(0.93, 1.07);
+    -ms-transform: scale(0.93, 1.07);
+    transform: scale(0.93, 1.07);
+  }
+  13% {
+    -webkit-transform: scale(0.93, 1.07);
+    -moz-transform: scale(0.93, 1.07);
+    -ms-transform: scale(0.93, 1.07);
+    transform: scale(0.93, 1.07);
+  }
+  14% {
+    -webkit-transform: scale(0.93, 1.07);
+    -moz-transform: scale(0.93, 1.07);
+    -ms-transform: scale(0.93, 1.07);
+    transform: scale(0.93, 1.07);
+  }
+  15% {
+    -webkit-transform: scale(0.93, 1.07);
+    -moz-transform: scale(0.93, 1.07);
+    -ms-transform: scale(0.93, 1.07);
+    transform: scale(0.93, 1.07);
+  }
+  16% {
+    -webkit-transform: scale(0.94, 1.06);
+    -moz-transform: scale(0.94, 1.06);
+    -ms-transform: scale(0.94, 1.06);
+    transform: scale(0.94, 1.06);
+  }
+  17% {
+    -webkit-transform: scale(0.94, 1.06);
+    -moz-transform: scale(0.94, 1.06);
+    -ms-transform: scale(0.94, 1.06);
+    transform: scale(0.94, 1.06);
+  }
+  18% {
+    -webkit-transform: scale(0.95, 1.05);
+    -moz-transform: scale(0.95, 1.05);
+    -ms-transform: scale(0.95, 1.05);
+    transform: scale(0.95, 1.05);
+  }
+  19% {
+    -webkit-transform: scale(0.96, 1.04);
+    -moz-transform: scale(0.96, 1.04);
+    -ms-transform: scale(0.96, 1.04);
+    transform: scale(0.96, 1.04);
+  }
+  20% {
+    -webkit-transform: scale(0.98, 1.02);
+    -moz-transform: scale(0.98, 1.02);
+    -ms-transform: scale(0.98, 1.02);
+    transform: scale(0.98, 1.02);
+  }
+  21% {
+    -webkit-transform: scale(0.99, 1.01);
+    -moz-transform: scale(0.99, 1.01);
+    -ms-transform: scale(0.99, 1.01);
+    transform: scale(0.99, 1.01);
+  }
+  22% {
+    -webkit-transform: scale(1, 1);
+    -moz-transform: scale(1, 1);
+    -ms-transform: scale(1, 1);
+    transform: scale(1, 1);
+  }
+  23% {
+    -webkit-transform: scale(1, 1);
+    -moz-transform: scale(1, 1);
+    -ms-transform: scale(1, 1);
+    transform: scale(1, 1);
+  }
+  24% {
+    -webkit-transform: scale(1.01, 0.99);
+    -moz-transform: scale(1.01, 0.99);
+    -ms-transform: scale(1.01, 0.99);
+    transform: scale(1.01, 0.99);
+  }
+  25% {
+    -webkit-transform: scale(1.02, 0.98);
+    -moz-transform: scale(1.02, 0.98);
+    -ms-transform: scale(1.02, 0.98);
+    transform: scale(1.02, 0.98);
+  }
+  26% {
+    -webkit-transform: scale(1.02, 0.98);
+    -moz-transform: scale(1.02, 0.98);
+    -ms-transform: scale(1.02, 0.98);
+    transform: scale(1.02, 0.98);
+  }
+  27% {
+    -webkit-transform: scale(1.02, 0.98);
+    -moz-transform: scale(1.02, 0.98);
+    -ms-transform: scale(1.02, 0.98);
+    transform: scale(1.02, 0.98);
+  }
+  28% {
+    -webkit-transform: scale(1.03, 0.97);
+    -moz-transform: scale(1.03, 0.97);
+    -ms-transform: scale(1.03, 0.97);
+    transform: scale(1.03, 0.97);
+  }
+  29% {
+    -webkit-transform: scale(1.03, 0.97);
+    -moz-transform: scale(1.03, 0.97);
+    -ms-transform: scale(1.03, 0.97);
+    transform: scale(1.03, 0.97);
+  }
+  30% {
+    -webkit-transform: scale(1.02, 0.98);
+    -moz-transform: scale(1.02, 0.98);
+    -ms-transform: scale(1.02, 0.98);
+    transform: scale(1.02, 0.98);
+  }
+  31% {
+    -webkit-transform: scale(1.02, 0.98);
+    -moz-transform: scale(1.02, 0.98);
+    -ms-transform: scale(1.02, 0.98);
+    transform: scale(1.02, 0.98);
+  }
+  32% {
+    -webkit-transform: scale(1.02, 0.98);
+    -moz-transform: scale(1.02, 0.98);
+    -ms-transform: scale(1.02, 0.98);
+    transform: scale(1.02, 0.98);
+  }
+  33% {
+    -webkit-transform: scale(1.02, 0.98);
+    -moz-transform: scale(1.02, 0.98);
+    -ms-transform: scale(1.02, 0.98);
+    transform: scale(1.02, 0.98);
+  }
+  34% {
+    -webkit-transform: scale(1.01, 0.99);
+    -moz-transform: scale(1.01, 0.99);
+    -ms-transform: scale(1.01, 0.99);
+    transform: scale(1.01, 0.99);
+  }
+  35% {
+    -webkit-transform: scale(1.01, 0.99);
+    -moz-transform: scale(1.01, 0.99);
+    -ms-transform: scale(1.01, 0.99);
+    transform: scale(1.01, 0.99);
+  }
+  36% {
+    -webkit-transform: scale(1.01, 0.99);
+    -moz-transform: scale(1.01, 0.99);
+    -ms-transform: scale(1.01, 0.99);
+    transform: scale(1.01, 0.99);
+  }
+  37% {
+    -webkit-transform: scale(1, 1);
+    -moz-transform: scale(1, 1);
+    -ms-transform: scale(1, 1);
+    transform: scale(1, 1);
+  }
+  38% {
+    -webkit-transform: scale(1, 1);
+    -moz-transform: scale(1, 1);
+    -ms-transform: scale(1, 1);
+    transform: scale(1, 1);
+  }
+  39% {
+    -webkit-transform: scale(1, 1);
+    -moz-transform: scale(1, 1);
+    -ms-transform: scale(1, 1);
+    transform: scale(1, 1);
+  }
+  40% {
+    -webkit-transform: scale(0.99, 1.01);
+    -moz-transform: scale(0.99, 1.01);
+    -ms-transform: scale(0.99, 1.01);
+    transform: scale(0.99, 1.01);
+  }
+  41% {
+    -webkit-transform: scale(0.99, 1.01);
+    -moz-transform: scale(0.99, 1.01);
+    -ms-transform: scale(0.99, 1.01);
+    transform: scale(0.99, 1.01);
+  }
+  42% {
+    -webkit-transform: scale(0.99, 1.01);
+    -moz-transform: scale(0.99, 1.01);
+    -ms-transform: scale(0.99, 1.01);
+    transform: scale(0.99, 1.01);
+  }
+  43% {
+    -webkit-transform: scale(0.99, 1.01);
+    -moz-transform: scale(0.99, 1.01);
+    -ms-transform: scale(0.99, 1.01);
+    transform: scale(0.99, 1.01);
+  }
+  44% {
+    -webkit-transform: scale(0.99, 1.01);
+    -moz-transform: scale(0.99, 1.01);
+    -ms-transform: scale(0.99, 1.01);
+    transform: scale(0.99, 1.01);
+  }
+  45% {
+    -webkit-transform: scale(0.99, 1.01);
+    -moz-transform: scale(0.99, 1.01);
+    -ms-transform: scale(0.99, 1.01);
+    transform: scale(0.99, 1.01);
+  }
+  46% {
+    -webkit-transform: scale(0.99, 1.01);
+    -moz-transform: scale(0.99, 1.01);
+    -ms-transform: scale(0.99, 1.01);
+    transform: scale(0.99, 1.01);
+  }
+  47% {
+    -webkit-transform: scale(0.99, 1.01);
+    -moz-transform: scale(0.99, 1.01);
+    -ms-transform: scale(0.99, 1.01);
+    transform: scale(0.99, 1.01);
+  }
+  48% {
+    -webkit-transform: scale(0.99, 1.01);
+    -moz-transform: scale(0.99, 1.01);
+    -ms-transform: scale(0.99, 1.01);
+    transform: scale(0.99, 1.01);
+  }
+  49% {
+    -webkit-transform: scale(1, 1);
+    -moz-transform: scale(1, 1);
+    -ms-transform: scale(1, 1);
+    transform: scale(1, 1);
+  }
+}
+@keyframes btnGroups {
+  0% {
+    -webkit-transform: scale(1.2, 0.8);
+    -moz-transform: scale(1.2, 0.8);
+    -ms-transform: scale(1.2, 0.8);
+    transform: scale(1.2, 0.8);
+  }
+  1% {
+    -webkit-transform: scale(1.18, 0.82);
+    -moz-transform: scale(1.18, 0.82);
+    -ms-transform: scale(1.18, 0.82);
+    transform: scale(1.18, 0.82);
+  }
+  2% {
+    -webkit-transform: scale(1.16, 0.84);
+    -moz-transform: scale(1.16, 0.84);
+    -ms-transform: scale(1.16, 0.84);
+    transform: scale(1.16, 0.84);
+  }
+  3% {
+    -webkit-transform: scale(1.13, 0.87);
+    -moz-transform: scale(1.13, 0.87);
+    -ms-transform: scale(1.13, 0.87);
+    transform: scale(1.13, 0.87);
+  }
+  4% {
+    -webkit-transform: scale(1.1, 0.9);
+    -moz-transform: scale(1.1, 0.9);
+    -ms-transform: scale(1.1, 0.9);
+    transform: scale(1.1, 0.9);
+  }
+  5% {
+    -webkit-transform: scale(1.07, 0.93);
+    -moz-transform: scale(1.07, 0.93);
+    -ms-transform: scale(1.07, 0.93);
+    transform: scale(1.07, 0.93);
+  }
+  6% {
+    -webkit-transform: scale(1.04, 0.96);
+    -moz-transform: scale(1.04, 0.96);
+    -ms-transform: scale(1.04, 0.96);
+    transform: scale(1.04, 0.96);
+  }
+  7% {
+    -webkit-transform: scale(1.01, 0.99);
+    -moz-transform: scale(1.01, 0.99);
+    -ms-transform: scale(1.01, 0.99);
+    transform: scale(1.01, 0.99);
+  }
+  8% {
+    -webkit-transform: scale(0.99, 1.01);
+    -moz-transform: scale(0.99, 1.01);
+    -ms-transform: scale(0.99, 1.01);
+    transform: scale(0.99, 1.01);
+  }
+  9% {
+    -webkit-transform: scale(0.97, 1.03);
+    -moz-transform: scale(0.97, 1.03);
+    -ms-transform: scale(0.97, 1.03);
+    transform: scale(0.97, 1.03);
+  }
+  10% {
+    -webkit-transform: scale(0.95, 1.05);
+    -moz-transform: scale(0.95, 1.05);
+    -ms-transform: scale(0.95, 1.05);
+    transform: scale(0.95, 1.05);
+  }
+  11% {
+    -webkit-transform: scale(0.94, 1.06);
+    -moz-transform: scale(0.94, 1.06);
+    -ms-transform: scale(0.94, 1.06);
+    transform: scale(0.94, 1.06);
+  }
+  12% {
+    -webkit-transform: scale(0.93, 1.07);
+    -moz-transform: scale(0.93, 1.07);
+    -ms-transform: scale(0.93, 1.07);
+    transform: scale(0.93, 1.07);
+  }
+  13% {
+    -webkit-transform: scale(0.93, 1.07);
+    -moz-transform: scale(0.93, 1.07);
+    -ms-transform: scale(0.93, 1.07);
+    transform: scale(0.93, 1.07);
+  }
+  14% {
+    -webkit-transform: scale(0.93, 1.07);
+    -moz-transform: scale(0.93, 1.07);
+    -ms-transform: scale(0.93, 1.07);
+    transform: scale(0.93, 1.07);
+  }
+  15% {
+    -webkit-transform: scale(0.93, 1.07);
+    -moz-transform: scale(0.93, 1.07);
+    -ms-transform: scale(0.93, 1.07);
+    transform: scale(0.93, 1.07);
+  }
+  16% {
+    -webkit-transform: scale(0.94, 1.06);
+    -moz-transform: scale(0.94, 1.06);
+    -ms-transform: scale(0.94, 1.06);
+    transform: scale(0.94, 1.06);
+  }
+  17% {
+    -webkit-transform: scale(0.94, 1.06);
+    -moz-transform: scale(0.94, 1.06);
+    -ms-transform: scale(0.94, 1.06);
+    transform: scale(0.94, 1.06);
+  }
+  18% {
+    -webkit-transform: scale(0.95, 1.05);
+    -moz-transform: scale(0.95, 1.05);
+    -ms-transform: scale(0.95, 1.05);
+    transform: scale(0.95, 1.05);
+  }
+  19% {
+    -webkit-transform: scale(0.96, 1.04);
+    -moz-transform: scale(0.96, 1.04);
+    -ms-transform: scale(0.96, 1.04);
+    transform: scale(0.96, 1.04);
+  }
+  20% {
+    -webkit-transform: scale(0.98, 1.02);
+    -moz-transform: scale(0.98, 1.02);
+    -ms-transform: scale(0.98, 1.02);
+    transform: scale(0.98, 1.02);
+  }
+  21% {
+    -webkit-transform: scale(0.99, 1.01);
+    -moz-transform: scale(0.99, 1.01);
+    -ms-transform: scale(0.99, 1.01);
+    transform: scale(0.99, 1.01);
+  }
+  22% {
+    -webkit-transform: scale(1, 1);
+    -moz-transform: scale(1, 1);
+    -ms-transform: scale(1, 1);
+    transform: scale(1, 1);
+  }
+  23% {
+    -webkit-transform: scale(1, 1);
+    -moz-transform: scale(1, 1);
+    -ms-transform: scale(1, 1);
+    transform: scale(1, 1);
+  }
+  24% {
+    -webkit-transform: scale(1.01, 0.99);
+    -moz-transform: scale(1.01, 0.99);
+    -ms-transform: scale(1.01, 0.99);
+    transform: scale(1.01, 0.99);
+  }
+  25% {
+    -webkit-transform: scale(1.02, 0.98);
+    -moz-transform: scale(1.02, 0.98);
+    -ms-transform: scale(1.02, 0.98);
+    transform: scale(1.02, 0.98);
+  }
+  26% {
+    -webkit-transform: scale(1.02, 0.98);
+    -moz-transform: scale(1.02, 0.98);
+    -ms-transform: scale(1.02, 0.98);
+    transform: scale(1.02, 0.98);
+  }
+  27% {
+    -webkit-transform: scale(1.02, 0.98);
+    -moz-transform: scale(1.02, 0.98);
+    -ms-transform: scale(1.02, 0.98);
+    transform: scale(1.02, 0.98);
+  }
+  28% {
+    -webkit-transform: scale(1.03, 0.97);
+    -moz-transform: scale(1.03, 0.97);
+    -ms-transform: scale(1.03, 0.97);
+    transform: scale(1.03, 0.97);
+  }
+  29% {
+    -webkit-transform: scale(1.03, 0.97);
+    -moz-transform: scale(1.03, 0.97);
+    -ms-transform: scale(1.03, 0.97);
+    transform: scale(1.03, 0.97);
+  }
+  30% {
+    -webkit-transform: scale(1.02, 0.98);
+    -moz-transform: scale(1.02, 0.98);
+    -ms-transform: scale(1.02, 0.98);
+    transform: scale(1.02, 0.98);
+  }
+  31% {
+    -webkit-transform: scale(1.02, 0.98);
+    -moz-transform: scale(1.02, 0.98);
+    -ms-transform: scale(1.02, 0.98);
+    transform: scale(1.02, 0.98);
+  }
+  32% {
+    -webkit-transform: scale(1.02, 0.98);
+    -moz-transform: scale(1.02, 0.98);
+    -ms-transform: scale(1.02, 0.98);
+    transform: scale(1.02, 0.98);
+  }
+  33% {
+    -webkit-transform: scale(1.02, 0.98);
+    -moz-transform: scale(1.02, 0.98);
+    -ms-transform: scale(1.02, 0.98);
+    transform: scale(1.02, 0.98);
+  }
+  34% {
+    -webkit-transform: scale(1.01, 0.99);
+    -moz-transform: scale(1.01, 0.99);
+    -ms-transform: scale(1.01, 0.99);
+    transform: scale(1.01, 0.99);
+  }
+  35% {
+    -webkit-transform: scale(1.01, 0.99);
+    -moz-transform: scale(1.01, 0.99);
+    -ms-transform: scale(1.01, 0.99);
+    transform: scale(1.01, 0.99);
+  }
+  36% {
+    -webkit-transform: scale(1.01, 0.99);
+    -moz-transform: scale(1.01, 0.99);
+    -ms-transform: scale(1.01, 0.99);
+    transform: scale(1.01, 0.99);
+  }
+  37% {
+    -webkit-transform: scale(1, 1);
+    -moz-transform: scale(1, 1);
+    -ms-transform: scale(1, 1);
+    transform: scale(1, 1);
+  }
+  38% {
+    -webkit-transform: scale(1, 1);
+    -moz-transform: scale(1, 1);
+    -ms-transform: scale(1, 1);
+    transform: scale(1, 1);
+  }
+  39% {
+    -webkit-transform: scale(1, 1);
+    -moz-transform: scale(1, 1);
+    -ms-transform: scale(1, 1);
+    transform: scale(1, 1);
+  }
+  40% {
+    -webkit-transform: scale(0.99, 1.01);
+    -moz-transform: scale(0.99, 1.01);
+    -ms-transform: scale(0.99, 1.01);
+    transform: scale(0.99, 1.01);
+  }
+  41% {
+    -webkit-transform: scale(0.99, 1.01);
+    -moz-transform: scale(0.99, 1.01);
+    -ms-transform: scale(0.99, 1.01);
+    transform: scale(0.99, 1.01);
+  }
+  42% {
+    -webkit-transform: scale(0.99, 1.01);
+    -moz-transform: scale(0.99, 1.01);
+    -ms-transform: scale(0.99, 1.01);
+    transform: scale(0.99, 1.01);
+  }
+  43% {
+    -webkit-transform: scale(0.99, 1.01);
+    -moz-transform: scale(0.99, 1.01);
+    -ms-transform: scale(0.99, 1.01);
+    transform: scale(0.99, 1.01);
+  }
+  44% {
+    -webkit-transform: scale(0.99, 1.01);
+    -moz-transform: scale(0.99, 1.01);
+    -ms-transform: scale(0.99, 1.01);
+    transform: scale(0.99, 1.01);
+  }
+  45% {
+    -webkit-transform: scale(0.99, 1.01);
+    -moz-transform: scale(0.99, 1.01);
+    -ms-transform: scale(0.99, 1.01);
+    transform: scale(0.99, 1.01);
+  }
+  46% {
+    -webkit-transform: scale(0.99, 1.01);
+    -moz-transform: scale(0.99, 1.01);
+    -ms-transform: scale(0.99, 1.01);
+    transform: scale(0.99, 1.01);
+  }
+  47% {
+    -webkit-transform: scale(0.99, 1.01);
+    -moz-transform: scale(0.99, 1.01);
+    -ms-transform: scale(0.99, 1.01);
+    transform: scale(0.99, 1.01);
+  }
+  48% {
+    -webkit-transform: scale(0.99, 1.01);
+    -moz-transform: scale(0.99, 1.01);
+    -ms-transform: scale(0.99, 1.01);
+    transform: scale(0.99, 1.01);
+  }
+  49% {
+    -webkit-transform: scale(1, 1);
+    -moz-transform: scale(1, 1);
+    -ms-transform: scale(1, 1);
+    transform: scale(1, 1);
+  }
+}
+	</style>	  
+	<div class="intrude-less">
+		<header id="header" class="inner">
+			<div class="profilepic">
+				<img src="https://tawen.github.io/img/photo.jpg" class="js-avatar">
+			</div>
+			<hgroup>
+			  <h1 class="header-author">影子爱乘凉</h1>
+			</hgroup>
+			
+			<p class="header-subtitle">路走了28年，方向始终不变。</p>
+			
+			<nav class="header-menu">
+				<ul>
+				
+					<li><a href="/">首页</a></li>
+		        
+					<li><a href="/archives">存档</a></li>
+		        
+					<li><a href="/about">关于</a></li>
+		        
+		        
+		        	<li><a href="/archives/">所有文章</a></li>
+		        
+				</ul>
+			</nav>
+			<nav class="header-nav">
+				<div class="social">
+					
+						<a class="github" target="_blank" href="https://github.com/tawen" title="github"><i class="icon-github"></i></a>
+			        
+						<a class="weibo" target="_blank" href="http://weibo.com/3168014535/profile?topnav=1&wvr=6&is_all=1" title="weibo"><i class="icon-weibo"></i></a>
+			        
+						<a class="rss" target="_blank" href="/atom.xml" title="rss"><i class="icon-rss"></i></a>
+			        
+						<a class="zhihu" target="_blank" href="https://www.zhihu.com/people/liu-zhen-hua-74-57" title="zhihu"><i class="icon-zhihu"></i></a>
+			        
+				</div>
+			</nav>
+		</header>				
+	</div>
+</nav>
+
+      <div id="wrapper" class="body-wrap">
+        <div class="menu-l">
+          <div class="canvas-wrap">
+            <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
+          </div>
+          <div id="js-content" class="content-ll">
+            <article id="post-blog20171222" class="article article-type-post " itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      Immutable 详解及 React 中实践
+    </h1>
+  
+
+        <a href="/2017/12/22/blog20171222/" class="archive-article-date">
+  	<time datetime="2017-12-22T01:44:05.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-12-22</time>
+</a>
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <blockquote>
+<p>Shared mutable state is the root of all evil（共享的可变状态是万恶之源）– Pete Hunt<br>有人说 Immutable 可以给 React 应用带来数十倍的提升，也有人说 Immutable 的引入是近期 JavaScript 中伟大的发明，因为同期 React 太火，它的光芒被掩盖了。这些至少说明 Immutable 是很有价值的，下面我们来一探究竟。</p>
+</blockquote>
+<p>JavaScript 中的对象一般是可变的（Mutable），因为使用了引用赋值，新的对象简单的引用了原始对象，改变新的对象将影响到原始对象。如 foo={a: 1}; bar=foo; bar.a=2 你会发现此时 foo.a 也被改成了 2。虽然这样做可以节约内存，但当应用复杂后，这就造成了非常大的隐患，Mutable 带来的优点变得得不偿失。为了解决这个问题，一般的做法是使用 shallowCopy（浅拷贝）或 deepCopy（深拷贝）来避免被修改，但这样做造成了 CPU 和内存的浪费。</p>
+<p>Immutable 可以很好地解决这些问题。</p>
+<h2 id="什么是-Immutable-Data"><a href="#什么是-Immutable-Data" class="headerlink" title="什么是 Immutable Data"></a>什么是 Immutable Data</h2><p>Immutable Data 就是一旦创建，就不能再被更改的数据。对 Immutable 对象的任何修改或添加删除操作都会返回一个新的 Immutable 对象。Immutable 实现的原理是 Persistent Data Structure（持久化数据结构），也就是使用旧数据创建新数据时，要保证旧数据同时可用且不变。同时为了避免 deepCopy 把所有节点都复制一遍带来的性能损耗，Immutable 使用了 Structural Sharing（结构共享），即如果对象树中一个节点发生变化，只修改这个节点和受它影响的父节点，其它节点则进行共享。请看下面动画：</p>
+<p><img src="https://tawen.github.io/res/20171222immutable.gif" alt="immutable"></p>
+<p>目前流行的 Immutable 库有两个：</p>
+<h3 id="immutable-js"><a href="#immutable-js" class="headerlink" title="immutable.js"></a>immutable.js</h3><p>Facebook 工程师 Lee Byron 花费 3 年时间打造，与 React 同期出现，但没有被默认放到 React 工具集里（React 提供了简化的 Helper）。它内部实现了一套完整的 Persistent Data Structure，还有很多易用的数据类型。像 Collection、List、Map、Set、Record、Seq。有非常全面的map、filter、groupBy、reduce<code></code>find函数式操作方法。同时 API 也尽量与 Object 或 Array 类似。</p>
+<p>其中有 3 种最重要的数据结构说明一下：（Java 程序员应该最熟悉了）</p>
+<p>Map：键值对集合，对应于 Object，ES6 也有专门的 Map 对象<br>List：有序可重复的列表，对应于 Array<br>Set：无序且不可重复的列表</p>
+<h3 id="seamless-immutable"><a href="#seamless-immutable" class="headerlink" title="seamless-immutable"></a>seamless-immutable</h3><p>与 Immutable.js 学院派的风格不同，seamless-immutable 并没有实现完整的 Persistent Data Structure，而是使用 Object.defineProperty（因此只能在 IE9 及以上使用）扩展了 JavaScript 的 Array 和 Object 对象来实现，只支持 Array 和 Object 两种数据类型，API 基于与 Array 和 Object 操持不变。代码库非常小，压缩后下载只有 2K。而 Immutable.js 压缩后下载有 16K。</p>
+<p>下面上代码来感受一下两者的不同：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line">// 原来的写法</span><br><span class="line">let foo = &#123;a: &#123;b: 1&#125;&#125;;</span><br><span class="line">let bar = foo;</span><br><span class="line">bar.a.b = 2;</span><br><span class="line">console.log(foo.a.b);  // 打印 2</span><br><span class="line">console.log(foo === bar);  //  打印 true</span><br><span class="line"></span><br><span class="line">// 使用 immutable.js 后</span><br><span class="line">import Immutable from &apos;immutable&apos;;</span><br><span class="line">foo = Immutable.fromJS(&#123;a: &#123;b: 1&#125;&#125;);</span><br><span class="line">bar = foo.setIn([&apos;a&apos;, &apos;b&apos;], 2);   // 使用 setIn 赋值</span><br><span class="line">console.log(foo.getIn([&apos;a&apos;, &apos;b&apos;]));  // 使用 getIn 取值，打印 1</span><br><span class="line">console.log(foo === bar);  //  打印 false</span><br><span class="line"></span><br><span class="line">// 使用  seamless-immutable.js 后</span><br><span class="line">import SImmutable from &apos;seamless-immutable&apos;;</span><br><span class="line">foo = SImmutable(&#123;a: &#123;b: 1&#125;&#125;)</span><br><span class="line">bar = foo.merge(&#123;a: &#123; b: 2&#125;&#125;)   // 使用 merge 赋值</span><br><span class="line">console.log(foo.a.b);  // 像原生 Object 一样取值，打印 1</span><br><span class="line">console.log(foo === bar);  //  打印 false</span><br></pre></td></tr></table></figure>
+<h2 id="Immutable-优点"><a href="#Immutable-优点" class="headerlink" title="Immutable 优点"></a>Immutable 优点</h2><ol>
+<li>Immutable 降低了 Mutable 带来的复杂度</li>
+</ol>
+<p>可变（Mutable）数据耦合了 Time 和 Value 的概念，造成了数据很难被回溯。</p>
+<p>比如下面一段代码：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">function touchAndLog(touchFn) &#123;</span><br><span class="line">  let data = &#123; key: &apos;value&apos; &#125;;</span><br><span class="line">  touchFn(data);</span><br><span class="line">  console.log(data.key); // 猜猜会打印什么？</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>在不查看 touchFn 的代码的情况下，因为不确定它对 data 做了什么，你是不可能知道会打印什么（这不是废话吗）。但如果 data 是 Immutable 的呢，你可以很肯定的知道打印的是 value。</p>
+<ol start="2">
+<li>节省内存</li>
+</ol>
+<p>Immutable.js 使用了 Structure Sharing 会尽量复用内存，甚至以前使用的对象也可以再次被复用。没有被引用的对象会被垃圾回收。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">import &#123; Map&#125; from &apos;immutable&apos;;</span><br><span class="line">let a = Map(&#123;</span><br><span class="line">  select: &apos;users&apos;,</span><br><span class="line">  filter: Map(&#123; name: &apos;Cam&apos; &#125;)</span><br><span class="line">&#125;)</span><br><span class="line">let b = a.set(&apos;select&apos;, &apos;people&apos;);</span><br><span class="line"></span><br><span class="line">a === b; // false</span><br><span class="line">a.get(&apos;filter&apos;) === b.get(&apos;filter&apos;); // true</span><br></pre></td></tr></table></figure></p>
+<p>上面 a 和 b 共享了没有变化的 filter 节点。</p>
+<ol start="3">
+<li>Undo/Redo，Copy/Paste，甚至时间旅行这些功能做起来小菜一碟</li>
+</ol>
+<p>因为每次数据都是不一样的，只要把这些数据放到一个数组里储存起来，想回退到哪里就拿出对应数据即可，很容易开发出撤销重做这种功能。</p>
+<p>后面我会提供 Flux 做 Undo 的示例。</p>
+<ol start="4">
+<li>并发安全</li>
+</ol>
+<p>传统的并发非常难做，因为要处理各种数据不一致问题，因此『聪明人』发明了各种锁来解决。但使用了 Immutable 之后，数据天生是不可变的，并发锁就不需要了。</p>
+<p>然而现在并没什么卵用，因为 JavaScript 还是单线程运行的啊。但未来可能会加入，提前解决未来的问题不也挺好吗？</p>
+<ol start="5">
+<li>拥抱函数式编程</li>
+</ol>
+<p>Immutable 本身就是函数式编程中的概念，纯函数式编程比面向对象更适用于前端开发。因为只要输入一致，输出必然一致，这样开发的组件更易于调试和组装。</p>
+<p>像 ClojureScript，Elm 等函数式编程语言中的数据类型天生都是 Immutable 的，这也是为什么 ClojureScript 基于 React 的框架 — Om 性能比 React 还要好的原因。</p>
+<h2 id="Immutable-缺点"><a href="#Immutable-缺点" class="headerlink" title="Immutable 缺点"></a>Immutable 缺点</h2><ol>
+<li>需要学习新的 API</li>
+</ol>
+<p>No Comments</p>
+<ol start="2">
+<li>增加了资源文件大小</li>
+</ol>
+<p>No Comments</p>
+<ol start="3">
+<li>容易与原生对象混淆</li>
+</ol>
+<p>这点是我们使用 Immutable.js 过程中遇到最大的问题。写代码要做思维上的转变。</p>
+<p>虽然 Immutable.js 尽量尝试把 API 设计的原生对象类似，有的时候还是很难区别到底是 Immutable 对象还是原生对象，容易混淆操作。</p>
+<p>Immutable 中的 Map 和 List 虽对应原生 Object 和 Array，但操作非常不同，比如你要用 map.get(‘key’) 而不是 map.key，array.get(0) 而不是 array[0]。另外 Immutable 每次修改都会返回新对象，也很容易忘记赋值。</p>
+<p>当使用外部库的时候，一般需要使用原生对象，也很容易忘记转换。</p>
+<p>下面给出一些办法来避免类似问题发生：</p>
+<p>使用 Flow 或 TypeScript 这类有静态类型检查的工具<br>约定变量命名规则：如所有 Immutable 类型对象以 $$ 开头。<br>使用 Immutable.fromJS 而不是 Immutable.Map 或 Immutable.List 来创建对象，这样可以避免 Immutable 和原生对象间的混用。</p>
+<h2 id="更多认识"><a href="#更多认识" class="headerlink" title="更多认识"></a>更多认识</h2><p>Immutable.is</p>
+<p>两个 immutable 对象可以使用 === 来比较，这样是直接比较内存地址，性能最好。但即使两个对象的值是一样的，也会返回 false：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">let map1 = Immutable.Map(&#123;a:1, b:1, c:1&#125;);</span><br><span class="line">let map2 = Immutable.Map(&#123;a:1, b:1, c:1&#125;);</span><br><span class="line">map1 === map2;             // false</span><br></pre></td></tr></table></figure></p>
+<p>为了直接比较对象的值，immutable.js 提供了 Immutable.is 来做『值比较』，结果如下：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Immutable.is(map1, map2);  // true</span><br></pre></td></tr></table></figure></p>
+<p>Immutable.is 比较的是两个对象的 hashCode 或 valueOf（对于 JavaScript 对象）。由于 immutable 内部使用了 Trie 数据结构来存储，只要两个对象的 hashCode 相等，值就是一样的。这样的算法避免了深度遍历比较，性能非常好。</p>
+<p>后面会使用 Immutable.is 来减少 React 重复渲染，提高性能。</p>
+<p>另外，还有 mori、cortex 等，因为类似就不再介绍。</p>
+<h2 id="与-Object-freeze、const-区别"><a href="#与-Object-freeze、const-区别" class="headerlink" title="与 Object.freeze、const 区别"></a>与 Object.freeze、const 区别</h2><p>ES6 中新加入的 Object.freeze 和 const 都可以达到防止对象被篡改的功能，但它们是 shallowCopy 的。对象层级一深就要特殊处理了。</p>
+<h2 id="Cursor-的概念"><a href="#Cursor-的概念" class="headerlink" title="Cursor 的概念"></a>Cursor 的概念</h2><p>这个 Cursor 和数据库中的游标是完全不同的概念。</p>
+<p>由于 Immutable 数据一般嵌套非常深，为了便于访问深层数据，Cursor 提供了可以直接访问这个深层数据的引用。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">import Immutable from &apos;immutable&apos;;</span><br><span class="line">import Cursor from &apos;immutable/contrib/cursor&apos;;</span><br><span class="line"></span><br><span class="line">let data = Immutable.fromJS(&#123; a: &#123; b: &#123; c: 1 &#125; &#125; &#125;);</span><br><span class="line">// 让 cursor 指向 &#123; c: 1 &#125;</span><br><span class="line">let cursor = Cursor.from(data, [&apos;a&apos;, &apos;b&apos;], newData =&gt; &#123;</span><br><span class="line">  // 当 cursor 或其子 cursor 执行 update 时调用</span><br><span class="line">  console.log(newData);</span><br><span class="line">&#125;);</span><br><span class="line"></span><br><span class="line">cursor.get(&apos;c&apos;); // 1</span><br><span class="line">cursor = cursor.update(&apos;c&apos;, x =&gt; x + 1);</span><br><span class="line">cursor.get(&apos;c&apos;); // 2</span><br></pre></td></tr></table></figure></p>
+<h2 id="实践"><a href="#实践" class="headerlink" title="实践"></a>实践</h2><p>与 React 搭配使用，Pure Render</p>
+<p>熟悉 React 的都知道，React 做性能优化时有一个避免重复渲染的大招，就是使用 shouldComponentUpdate()，但它默认返回 true，即始终会执行 render() 方法，然后做 Virtual DOM 比较，并得出是否需要做真实 DOM 更新，这里往往会带来很多无必要的渲染并成为性能瓶颈。</p>
+<p>当然我们也可以在 shouldComponentUpdate() 中使用使用 deepCopy 和 deepCompare 来避免无必要的 render()，但 deepCopy 和 deepCompare 一般都是非常耗性能的。</p>
+<p>Immutable 则提供了简洁高效的判断数据是否变化的方法，只需 === 和 is 比较就能知道是否需要执行 render()，而这个操作几乎 0 成本，所以可以极大提高性能。修改后的 shouldComponentUpdate 是这样的：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">import &#123; is &#125; from &apos;immutable&apos;;</span><br><span class="line">shouldComponentUpdate: (nextProps, nextState) =&gt; &#123;</span><br><span class="line">  return !(this.props === nextProps || is(this.props, nextProps)) ||</span><br><span class="line">         !(this.state === nextState || is(this.state, nextState));</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>使用 Immutable 后，如下图，当红色节点的 state 变化后，不会再渲染树中的所有节点，而是只渲染图中绿色的部分：<br><img src="https://tawen.github.io/res/20171222immutable2.png" alt="immutable"></p>
+<p>你也可以借助 React.addons.PureRenderMixin 或支持 class 语法的 pure-render-decorator 来实现。</p>
+<p>setState 的一个技巧</p>
+<p>React 建议把 this.state 当作 Immutable 的，因此修改前需要做一个 deepCopy，显得麻烦：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">import &apos;_&apos; from &apos;lodash&apos;;</span><br><span class="line"></span><br><span class="line">const Component = React.createClass(&#123;</span><br><span class="line">  getInitialState() &#123;</span><br><span class="line">    return &#123;</span><br><span class="line">      data: &#123; times: 0 &#125;</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;,</span><br><span class="line">  handleAdd() &#123;</span><br><span class="line">    let data = _.cloneDeep(this.state.data);</span><br><span class="line">    data.times = data.times + 1;</span><br><span class="line">    this.setState(&#123; data: data &#125;);</span><br><span class="line">    // 如果上面不做 cloneDeep，下面打印的结果会是已经加 1 后的值。</span><br><span class="line">    console.log(this.state.data.times);</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>使用 Immutable 后：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">getInitialState() &#123;</span><br><span class="line">  return &#123;</span><br><span class="line">    data: Map(&#123; times: 0 &#125;)</span><br><span class="line">  &#125;</span><br><span class="line">&#125;,</span><br><span class="line">handleAdd() &#123;</span><br><span class="line">  this.setState(&#123; data: this.state.data.update(&apos;times&apos;, v =&gt; v + 1) &#125;);</span><br><span class="line">  // 这时的 times 并不会改变</span><br><span class="line">  console.log(this.state.data.get(&apos;times&apos;));</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>上面的 handleAdd 可以简写成：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">handleAdd() &#123;</span><br><span class="line">  this.setState((&#123;data&#125;) =&gt; (&#123;</span><br><span class="line">    data: data.update(&apos;times&apos;, v =&gt; v + 1) &#125;)</span><br><span class="line">  &#125;);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<h2 id="与-Flux-搭配使用"><a href="#与-Flux-搭配使用" class="headerlink" title="与 Flux 搭配使用"></a>与 Flux 搭配使用</h2><p>由于 Flux 并没有限定 Store 中数据的类型，使用 Immutable 非常简单。</p>
+<p>现在是实现一个类似带有添加和撤销功能的 Store：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line">import &#123; Map, OrderedMap &#125; from &apos;immutable&apos;;</span><br><span class="line">let todos = OrderedMap();</span><br><span class="line">let history = [];  // 普通数组，存放每次操作后产生的数据</span><br><span class="line"></span><br><span class="line">let TodoStore = createStore(&#123;</span><br><span class="line">  getAll() &#123; return todos; &#125;</span><br><span class="line">&#125;);</span><br><span class="line"></span><br><span class="line">Dispatcher.register(action =&gt; &#123;</span><br><span class="line">  if (action.actionType === &apos;create&apos;) &#123;</span><br><span class="line">    let id = createGUID();</span><br><span class="line">    history.push(todos);  // 记录当前操作前的数据，便于撤销</span><br><span class="line">    todos = todos.set(id, Map(&#123;</span><br><span class="line">      id: id,</span><br><span class="line">      complete: false,</span><br><span class="line">      text: action.text.trim()</span><br><span class="line">    &#125;));</span><br><span class="line">    TodoStore.emitChange();</span><br><span class="line">  &#125; else if (action.actionType === &apos;undo&apos;) &#123;</span><br><span class="line">    // 这里是撤销功能实现，</span><br><span class="line">    // 只需从 history 数组中取前一次 todos 即可</span><br><span class="line">    if (history.length &gt; 0) &#123;</span><br><span class="line">      todos = history.pop();</span><br><span class="line">    &#125;</span><br><span class="line">    TodoStore.emitChange();</span><br><span class="line">  &#125;</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure></p>
+<h2 id="与-Redux-搭配使用"><a href="#与-Redux-搭配使用" class="headerlink" title="与 Redux 搭配使用"></a>与 Redux 搭配使用</h2><p>Redux 是目前流行的 Flux 衍生库。它简化了 Flux 中多个 Store 的概念，只有一个 Store，数据操作通过 Reducer 中实现；同时它提供更简洁和清晰的单向数据流（View -&gt; Action -&gt; Middleware -&gt; Reducer），也更易于开发同构应用。目前已经在我们项目中大规模使用。</p>
+<p>由于 Redux 中内置的 combineReducers 和 reducer 中的 initialState 都为原生的 Object 对象，所以不能和 Immutable 原生搭配使用。</p>
+<p>幸运的是，Redux 并不排斥使用 Immutable，可以自己重写 combineReducers 或使用 redux-immutablejs 来提供支持。</p>
+<p>上面我们提到 Cursor 可以方便检索和 update 层级比较深的数据，但因为 Redux 中已经有了 select 来做检索，Action 来更新数据，因此 Cursor 在这里就没有用武之地了。</p>
+<h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h2><p>Immutable 可以给应用带来极大的性能提升，但是否使用还要看项目情况。由于侵入性较强，新项目引入比较容易，老项目迁移需要评估迁移。对于一些提供给外部使用的公共组件，最好不要把 Immutable 对象直接暴露在对外接口中。</p>
+<p>如果 JS 原生 Immutable 类型会不会太美，被称为 React API 终结者的 Sebastian Markbåge 有一个这样的提案，能否通过现在还不确定。不过可以肯定的是 Immutable 会被越来越多的项目使用。</p>
+<p>资源</p>
+<p><a href="https://www.youtube.com/watch?v=I7IdS-PbEgI" target="_blank" rel="noopener">Lee Byron - Immutable Data and React</a><br><a href="http://jlongster.com/Using-Immutable-Data-Structures-in-JavaScript" target="_blank" rel="noopener">Immutable Data Structures and JavaScript</a></p>
+
+      
+
+      
+        <div class="page-reward">
+          <a href="javascript:;" class="page-reward-btn tooltip-top">
+            <div class="tooltip tooltip-east">
+            <span class="tooltip-item">
+              赏
+            </span>
+            <span class="tooltip-content">
+              <span class="tooltip-text">
+                <span class="tooltip-inner">
+                  <p class="reward-p"><i class="icon icon-quo-left"></i>谢谢打赏<i class="icon icon-quo-right"></i></p>
+                  <div class="reward-box">
+                    
+                    <div class="reward-box-item">
+                      <img class="reward-img" src="https://tawen.github.io/img/alipay.jpg">
+                      <span class="reward-type">支付宝</span>
+                    </div>
+                    
+                    
+                    <div class="reward-box-item">
+                      <img class="reward-img" src="https://tawen.github.io/img/weixin.jpg">
+                      <span class="reward-type">微信</span>
+                    </div>
+                    
+                  </div>
+                </span>
+              </span>
+            </span>
+          </div>
+          </a>
+        </div>
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags"></i>
+		<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Immutable/">Immutable</a></li></ul>
+	</div>
+
+      
+	<div class="article-category tagcloud">
+	<i class="icon-book icon"></i>
+	<a class="article-category-link" href="/categories/React/">React</a>
+	</div>
+
+
+      
+
+      
+        
+<div class="share-btn share-icons tooltip-left">
+  <div class="tooltip tooltip-east">
+    <span class="tooltip-item">
+      <a href="javascript:;" class="share-sns share-outer">
+        <i class="icon icon-share"></i>
+      </a>
+    </span>
+    <span class="tooltip-content">
+      <div class="share-wrap">
+        <div class="share-icons">
+          <a class="weibo share-sns" href="javascript:;" data-type="weibo">
+            <i class="icon icon-weibo"></i>
+          </a>
+          <a class="weixin share-sns wxFab" href="javascript:;" data-type="weixin">
+            <i class="icon icon-weixin"></i>
+          </a>
+          <a class="qq share-sns" href="javascript:;" data-type="qq">
+            <i class="icon icon-qq"></i>
+          </a>
+          <a class="douban share-sns" href="javascript:;" data-type="douban">
+            <i class="icon icon-douban"></i>
+          </a>
+          <a class="qzone share-sns" href="javascript:;" data-type="qzone">
+            <i class="icon icon-qzone"></i>
+          </a>
+          <a class="facebook share-sns" href="javascript:;" data-type="facebook">
+            <i class="icon icon-facebook"></i>
+          </a>
+          <a class="twitter share-sns" href="javascript:;" data-type="twitter">
+            <i class="icon icon-twitter"></i>
+          </a>
+          <a class="google share-sns" href="javascript:;" data-type="google">
+            <i class="icon icon-google"></i>
+          </a>
+        </div>
+      </div>
+    </span>
+  </div>
+</div>
+
+<div class="page-modal wx-share js-wx-box">
+    <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <div class="wx-qrcode">
+      <img src="http://s.jiathis.com/qrcode.php?url=http://tawen.github.io/2017/12/22/blog20171222/" alt="微信分享二维码">
+    </div>
+</div>
+
+<div class="mask js-mask"></div>
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+  
+<nav id="article-nav">
+  
+    <a href="/2017/12/28/blog20171228/" id="article-nav-newer" class="article-nav-link-wrap">
+      <i class="icon-circle-left"></i>
+      <div class="article-nav-title">
+        
+          第一行 Android 代码阅读笔记
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2017/12/18/blog20171218/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">Android 开发学习</div>
+      <i class="icon-circle-right"></i>
+    </a>
+  
+</nav>
+
+
+
+
+
+
+
+
+
+          </div>
+        </div>
+      </div>
+      <footer id="footer">
+  <div class="outer">
+    <div id="footer-info">
+    	<div class="footer-left">
+    		&copy; 2018 影子爱乘凉
+    	</div>
+      	<div class="footer-right">
+      		<a href="http://hexo.io/" target="_blank">Hexo</a>  Theme <a href="https://github.com/litten/hexo-theme-yilia" target="_blank">Yilia</a> by Litten
+      	</div>
+    </div>
+  </div>
+</footer>
+    </div>
+    <script>
+	var yiliaConfig = {
+		mathjax: false,
+		isHome: false,
+		isPost: true,
+		isArchive: false,
+		isTag: false,
+		isCategory: false,
+		open_in_new: false,
+		root: "/",
+		innerArchive: true
+	}
+</script>
+
+<script src="/./main.js?v=4.0.0"></script>
+
+
+    
+<div class="tools-col" q-class="show:isShow,hide:isShow|isFalse" q-on="click:stop(e)">
+  <div class="tools-wrap">
+    
+    	<section class="tools-section tools-section-all" q-show="innerArchive">
+        <div class="search-wrap">
+          <input class="search-ipt" q-model="search" type="text" placeholder="find something…">
+          <i class="icon-search icon" q-show="search|isEmptyStr"></i>
+          <i class="icon-close icon" q-show="search|isNotEmptyStr" q-on="click:clearChose(e)"></i>
+        </div>
+        <div class="widget tagcloud search-tag">
+          <p class="search-tag-wording">tag:</p>
+          <label class="search-switch">
+            <input type="checkbox" q-on="click:toggleTag(e)" q-attr="checked:showTags">
+          </label>
+          <ul class="article-tag-list" q-show="showTags">
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)">git</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)">iScroll</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)">java学习记录</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)">js</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)">jquery</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)">stop</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)">markdown</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)">npm</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)">Servlet</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)">生活</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)">--disable-web-security</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)">Bootstrap</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)">jsp</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)">位运算符NOT(~)</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)">过滤器filter</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)">ready()</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)">匿名函数自执行</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)">$.Callbacks()</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)">Listener</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)">支付宝集五福</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)">defer</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)">async</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)">$.Deferred()</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)">data()</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)">JFinal 3.0</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)">js中this</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)">js执行模型</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)">Javascript深浅拷贝</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)">dropload</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)">queue()</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)">jQuery.Validate.js</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)">ANT DESIGN</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)">迭代器</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)">for-of循环</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)">Generators</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)">setTimeout</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)">WebStorage</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)">localStorage</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)">css技巧</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)">Vue-cli proxyTable</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)">前端优化</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)">Javascript的jsonp原理</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)">ajax cache</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)">Vue.js中ajax请求</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)">tippyjs</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)">CSRF（Cross-site request forgery）</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)">英语语法</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)">插件接口extend</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)">html5 video</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)">Webpack</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)">prop-types</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)">npmrc文件中设置淘宝镜像</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)">工作总结</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)">CMD常用命令大全</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)">atom开发常用插件</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)">web开发快速提高工作效率的网址及工具</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)">常用的200个动词</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)">英语中相似单词</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)">GifCam</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)">video视频标签</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)">Immutable</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)">Will be married</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)">inner join, left join, right join, full outer join</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)">第一行 Android 代码</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)">aaencode</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)">SASS</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)">天津市津南区图书馆</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)">yarn与npm的命令行小结</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)">揭秘react生态体系</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)">排序算法</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)">大前端工具集</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)">.bat</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)">HEXO</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)">cookie</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)">session</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)">如何在 Vue.js 中使用第三方库 </a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)">activity</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)">国际音标</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)">vue 响应式原理</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)">刘姓姓名收集</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)">sublime</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)">Emmet</a>
+              </li>
+            
+            <div class="clearfix"></div>
+          </ul>
+        </div>
+        <ul class="search-ul">
+          <p q-show="jsonFail" style="padding: 20px; font-size: 12px;">
+            缺失模块。<br/>1、在博客根目录（注意不是yilia根目录）执行以下命令：<br/> npm i hexo-generator-json-content --save<br/><br/>
+            2、在根目录_config.yml里添加配置：
+<pre style="font-size: 12px;" q-show="jsonFail">
+  jsonContent:
+    meta: false
+    pages: false
+    posts:
+      title: true
+      date: true
+      path: true
+      text: true
+      raw: false
+      content: false
+      slug: false
+      updated: false
+      comments: false
+      link: false
+      permalink: false
+      excerpt: false
+      categories: false
+      tags: true
+</pre>
+          </p>
+          <li class="search-li" q-repeat="items" q-show="isShow">
+            <a q-attr="href:path|urlformat" class="search-title"><i class="icon-quo-left icon"></i><span q-text="title"></span></a>
+            <p class="search-time">
+              <i class="icon-calendar icon"></i>
+              <span q-text="date|dateformat"></span>
+            </p>
+            <p class="search-tag">
+              <i class="icon-price-tags icon"></i>
+              <span q-repeat="tags" q-on="click:choseTag(e, name)" q-text="name|tagformat"></span>
+            </p>
+          </li>
+        </ul>
+    	</section>
+    
+
+    
+
+    
+  </div>
+  
+</div>
+    <!-- Root element of PhotoSwipe. Must have class pswp. -->
+<div class="pswp" tabindex="-1" role="dialog" aria-hidden="true">
+
+    <!-- Background of PhotoSwipe. 
+         It's a separate element as animating opacity is faster than rgba(). -->
+    <div class="pswp__bg"></div>
+
+    <!-- Slides wrapper with overflow:hidden. -->
+    <div class="pswp__scroll-wrap">
+
+        <!-- Container that holds slides. 
+            PhotoSwipe keeps only 3 of them in the DOM to save memory.
+            Don't modify these 3 pswp__item elements, data is added later on. -->
+        <div class="pswp__container">
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+        </div>
+
+        <!-- Default (PhotoSwipeUI_Default) interface on top of sliding area. Can be changed. -->
+        <div class="pswp__ui pswp__ui--hidden">
+
+            <div class="pswp__top-bar">
+
+                <!--  Controls are self-explanatory. Order can be changed. -->
+
+                <div class="pswp__counter"></div>
+
+                <button class="pswp__button pswp__button--close" title="Close (Esc)"></button>
+
+                <button class="pswp__button pswp__button--share" style="display:none" title="Share"></button>
+
+                <button class="pswp__button pswp__button--fs" title="Toggle fullscreen"></button>
+
+                <button class="pswp__button pswp__button--zoom" title="Zoom in/out"></button>
+
+                <!-- Preloader demo http://codepen.io/dimsemenov/pen/yyBWoR -->
+                <!-- element will get class pswp__preloader--active when preloader is running -->
+                <div class="pswp__preloader">
+                    <div class="pswp__preloader__icn">
+                      <div class="pswp__preloader__cut">
+                        <div class="pswp__preloader__donut"></div>
+                      </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="pswp__share-modal pswp__share-modal--hidden pswp__single-tap">
+                <div class="pswp__share-tooltip"></div> 
+            </div>
+
+            <button class="pswp__button pswp__button--arrow--left" title="Previous (arrow left)">
+            </button>
+
+            <button class="pswp__button pswp__button--arrow--right" title="Next (arrow right)">
+            </button>
+
+            <div class="pswp__caption">
+                <div class="pswp__caption__center"></div>
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+  </div>
+</body>
+</html>

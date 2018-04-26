@@ -1,0 +1,4241 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="renderer" content="webkit">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" >
+  <link rel="dns-prefetch" href="http://tawen.github.io">
+  <title>影子爱乘凉</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="影子爱乘凉个人博客">
+<meta property="og:type" content="website">
+<meta property="og:title" content="影子爱乘凉">
+<meta property="og:url" content="http://tawen.github.io/page/2/index.html">
+<meta property="og:site_name" content="影子爱乘凉">
+<meta property="og:description" content="影子爱乘凉个人博客">
+<meta property="og:locale" content="zh-Hans">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="影子爱乘凉">
+<meta name="twitter:description" content="影子爱乘凉个人博客">
+  
+    <link rel="alternative" href="/atom.xml" title="影子爱乘凉" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+  <link rel="stylesheet" href="/main.css?v=4.0.0">
+  
+
+  
+
+</head>
+
+<body>
+  <div id="container" q-class="show:isCtnShow">
+    <canvas id="anm-canvas" class="anm-canvas"></canvas>
+    <div class="left-col" q-class="show:isShow">
+      <div class="overlay">
+	<svg style="position:absolute;left:0;bottom:0" class="editorial" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 24 150 28" preserveAspectRatio="none">
+		<defs><path id="gentle-wave" d="M-160 44c30 0
+		  58-18 88-18s
+		  58 18 88 18
+		  58-18 88-18
+		  58 18 88 18
+		  v44h-352z"></path>
+		  </defs>
+		  <g class="parallax">
+			<use xlink:href="#gentle-wave" x="50" y="0" fill="rgba(128,128,128,.5)"></use>
+			<use xlink:href="#gentle-wave" x="50" y="3" fill="rgba(128,128,128,.5)"></use>
+			<use xlink:href="#gentle-wave" x="50" y="6" fill="rgba(128,128,128,.5)"></use>
+			</g>
+		</svg>
+		
+</div>
+<style>
+	.parallax>use {
+    animation: move-forever 12s linear infinite
+  }
+  .parallax>use:nth-child(1) {
+    animation-delay: -2s
+  }
+  .parallax>use:nth-child(2) {
+    animation-delay: -2s;
+    animation-duration: 5s
+  }
+  .parallax>use:nth-child(3) {
+    animation-delay: -4s;
+    animation-duration: 3s
+  }
+  @keyframes move-forever {
+    0% {
+      transform: translate(-90px, 0)
+    }
+    100% {
+      transform: translate(85px, 0)
+    }
+	}
+	#header .profilepic:hover {
+  -webkit-animation: btnGroups 1s linear;
+  -webkit-animation: btnGroups 1s linear;
+  -moz-animation: btnGroups 1s linear;
+  -ms-animation: btnGroups 1s linear;
+  animation: btnGroups 1s linear;
+}
+@-webkit-keyframes btnGroups {
+  0% {
+    -webkit-transform: scale(1.2, 0.8);
+  }
+  1% {
+    -webkit-transform: scale(1.18, 0.82);
+  }
+  2% {
+    -webkit-transform: scale(1.16, 0.84);
+  }
+  3% {
+    -webkit-transform: scale(1.13, 0.87);
+  }
+  4% {
+    -webkit-transform: scale(1.1, 0.9);
+  }
+  5% {
+    -webkit-transform: scale(1.07, 0.93);
+  }
+  6% {
+    -webkit-transform: scale(1.04, 0.96);
+  }
+  7% {
+    -webkit-transform: scale(1.01, 0.99);
+  }
+  8% {
+    -webkit-transform: scale(0.99, 1.01);
+  }
+  9% {
+    -webkit-transform: scale(0.97, 1.03);
+  }
+  10% {
+    -webkit-transform: scale(0.95, 1.05);
+  }
+  11% {
+    -webkit-transform: scale(0.94, 1.06);
+  }
+  12% {
+    -webkit-transform: scale(0.93, 1.07);
+  }
+  13% {
+    -webkit-transform: scale(0.93, 1.07);
+  }
+  14% {
+    -webkit-transform: scale(0.93, 1.07);
+  }
+  15% {
+    -webkit-transform: scale(0.93, 1.07);
+  }
+  16% {
+    -webkit-transform: scale(0.94, 1.06);
+  }
+  17% {
+    -webkit-transform: scale(0.94, 1.06);
+  }
+  18% {
+    -webkit-transform: scale(0.95, 1.05);
+  }
+  19% {
+    -webkit-transform: scale(0.96, 1.04);
+  }
+  20% {
+    -webkit-transform: scale(0.98, 1.02);
+  }
+  21% {
+    -webkit-transform: scale(0.99, 1.01);
+  }
+  22% {
+    -webkit-transform: scale(1, 1);
+  }
+  23% {
+    -webkit-transform: scale(1, 1);
+  }
+  24% {
+    -webkit-transform: scale(1.01, 0.99);
+  }
+  25% {
+    -webkit-transform: scale(1.02, 0.98);
+  }
+  26% {
+    -webkit-transform: scale(1.02, 0.98);
+  }
+  27% {
+    -webkit-transform: scale(1.02, 0.98);
+  }
+  28% {
+    -webkit-transform: scale(1.03, 0.97);
+  }
+  29% {
+    -webkit-transform: scale(1.03, 0.97);
+  }
+  30% {
+    -webkit-transform: scale(1.02, 0.98);
+  }
+  31% {
+    -webkit-transform: scale(1.02, 0.98);
+  }
+  32% {
+    -webkit-transform: scale(1.02, 0.98);
+  }
+  33% {
+    -webkit-transform: scale(1.02, 0.98);
+  }
+  34% {
+    -webkit-transform: scale(1.01, 0.99);
+  }
+  35% {
+    -webkit-transform: scale(1.01, 0.99);
+  }
+  36% {
+    -webkit-transform: scale(1.01, 0.99);
+  }
+  37% {
+    -webkit-transform: scale(1, 1);
+  }
+  38% {
+    -webkit-transform: scale(1, 1);
+  }
+  39% {
+    -webkit-transform: scale(1, 1);
+  }
+  40% {
+    -webkit-transform: scale(0.99, 1.01);
+  }
+  41% {
+    -webkit-transform: scale(0.99, 1.01);
+  }
+  42% {
+    -webkit-transform: scale(0.99, 1.01);
+  }
+  43% {
+    -webkit-transform: scale(0.99, 1.01);
+  }
+  44% {
+    -webkit-transform: scale(0.99, 1.01);
+  }
+  45% {
+    -webkit-transform: scale(0.99, 1.01);
+  }
+  46% {
+    -webkit-transform: scale(0.99, 1.01);
+  }
+  47% {
+    -webkit-transform: scale(0.99, 1.01);
+  }
+  48% {
+    -webkit-transform: scale(0.99, 1.01);
+  }
+  49% {
+    -webkit-transform: scale(1, 1);
+  }
+}
+@-moz-keyframes btnGroups {
+  0% {
+    -webkit-transform: scale(1.2, 0.8);
+    -moz-transform: scale(1.2, 0.8);
+    -ms-transform: scale(1.2, 0.8);
+    transform: scale(1.2, 0.8);
+  }
+  1% {
+    -webkit-transform: scale(1.18, 0.82);
+    -moz-transform: scale(1.18, 0.82);
+    -ms-transform: scale(1.18, 0.82);
+    transform: scale(1.18, 0.82);
+  }
+  2% {
+    -webkit-transform: scale(1.16, 0.84);
+    -moz-transform: scale(1.16, 0.84);
+    -ms-transform: scale(1.16, 0.84);
+    transform: scale(1.16, 0.84);
+  }
+  3% {
+    -webkit-transform: scale(1.13, 0.87);
+    -moz-transform: scale(1.13, 0.87);
+    -ms-transform: scale(1.13, 0.87);
+    transform: scale(1.13, 0.87);
+  }
+  4% {
+    -webkit-transform: scale(1.1, 0.9);
+    -moz-transform: scale(1.1, 0.9);
+    -ms-transform: scale(1.1, 0.9);
+    transform: scale(1.1, 0.9);
+  }
+  5% {
+    -webkit-transform: scale(1.07, 0.93);
+    -moz-transform: scale(1.07, 0.93);
+    -ms-transform: scale(1.07, 0.93);
+    transform: scale(1.07, 0.93);
+  }
+  6% {
+    -webkit-transform: scale(1.04, 0.96);
+    -moz-transform: scale(1.04, 0.96);
+    -ms-transform: scale(1.04, 0.96);
+    transform: scale(1.04, 0.96);
+  }
+  7% {
+    -webkit-transform: scale(1.01, 0.99);
+    -moz-transform: scale(1.01, 0.99);
+    -ms-transform: scale(1.01, 0.99);
+    transform: scale(1.01, 0.99);
+  }
+  8% {
+    -webkit-transform: scale(0.99, 1.01);
+    -moz-transform: scale(0.99, 1.01);
+    -ms-transform: scale(0.99, 1.01);
+    transform: scale(0.99, 1.01);
+  }
+  9% {
+    -webkit-transform: scale(0.97, 1.03);
+    -moz-transform: scale(0.97, 1.03);
+    -ms-transform: scale(0.97, 1.03);
+    transform: scale(0.97, 1.03);
+  }
+  10% {
+    -webkit-transform: scale(0.95, 1.05);
+    -moz-transform: scale(0.95, 1.05);
+    -ms-transform: scale(0.95, 1.05);
+    transform: scale(0.95, 1.05);
+  }
+  11% {
+    -webkit-transform: scale(0.94, 1.06);
+    -moz-transform: scale(0.94, 1.06);
+    -ms-transform: scale(0.94, 1.06);
+    transform: scale(0.94, 1.06);
+  }
+  12% {
+    -webkit-transform: scale(0.93, 1.07);
+    -moz-transform: scale(0.93, 1.07);
+    -ms-transform: scale(0.93, 1.07);
+    transform: scale(0.93, 1.07);
+  }
+  13% {
+    -webkit-transform: scale(0.93, 1.07);
+    -moz-transform: scale(0.93, 1.07);
+    -ms-transform: scale(0.93, 1.07);
+    transform: scale(0.93, 1.07);
+  }
+  14% {
+    -webkit-transform: scale(0.93, 1.07);
+    -moz-transform: scale(0.93, 1.07);
+    -ms-transform: scale(0.93, 1.07);
+    transform: scale(0.93, 1.07);
+  }
+  15% {
+    -webkit-transform: scale(0.93, 1.07);
+    -moz-transform: scale(0.93, 1.07);
+    -ms-transform: scale(0.93, 1.07);
+    transform: scale(0.93, 1.07);
+  }
+  16% {
+    -webkit-transform: scale(0.94, 1.06);
+    -moz-transform: scale(0.94, 1.06);
+    -ms-transform: scale(0.94, 1.06);
+    transform: scale(0.94, 1.06);
+  }
+  17% {
+    -webkit-transform: scale(0.94, 1.06);
+    -moz-transform: scale(0.94, 1.06);
+    -ms-transform: scale(0.94, 1.06);
+    transform: scale(0.94, 1.06);
+  }
+  18% {
+    -webkit-transform: scale(0.95, 1.05);
+    -moz-transform: scale(0.95, 1.05);
+    -ms-transform: scale(0.95, 1.05);
+    transform: scale(0.95, 1.05);
+  }
+  19% {
+    -webkit-transform: scale(0.96, 1.04);
+    -moz-transform: scale(0.96, 1.04);
+    -ms-transform: scale(0.96, 1.04);
+    transform: scale(0.96, 1.04);
+  }
+  20% {
+    -webkit-transform: scale(0.98, 1.02);
+    -moz-transform: scale(0.98, 1.02);
+    -ms-transform: scale(0.98, 1.02);
+    transform: scale(0.98, 1.02);
+  }
+  21% {
+    -webkit-transform: scale(0.99, 1.01);
+    -moz-transform: scale(0.99, 1.01);
+    -ms-transform: scale(0.99, 1.01);
+    transform: scale(0.99, 1.01);
+  }
+  22% {
+    -webkit-transform: scale(1, 1);
+    -moz-transform: scale(1, 1);
+    -ms-transform: scale(1, 1);
+    transform: scale(1, 1);
+  }
+  23% {
+    -webkit-transform: scale(1, 1);
+    -moz-transform: scale(1, 1);
+    -ms-transform: scale(1, 1);
+    transform: scale(1, 1);
+  }
+  24% {
+    -webkit-transform: scale(1.01, 0.99);
+    -moz-transform: scale(1.01, 0.99);
+    -ms-transform: scale(1.01, 0.99);
+    transform: scale(1.01, 0.99);
+  }
+  25% {
+    -webkit-transform: scale(1.02, 0.98);
+    -moz-transform: scale(1.02, 0.98);
+    -ms-transform: scale(1.02, 0.98);
+    transform: scale(1.02, 0.98);
+  }
+  26% {
+    -webkit-transform: scale(1.02, 0.98);
+    -moz-transform: scale(1.02, 0.98);
+    -ms-transform: scale(1.02, 0.98);
+    transform: scale(1.02, 0.98);
+  }
+  27% {
+    -webkit-transform: scale(1.02, 0.98);
+    -moz-transform: scale(1.02, 0.98);
+    -ms-transform: scale(1.02, 0.98);
+    transform: scale(1.02, 0.98);
+  }
+  28% {
+    -webkit-transform: scale(1.03, 0.97);
+    -moz-transform: scale(1.03, 0.97);
+    -ms-transform: scale(1.03, 0.97);
+    transform: scale(1.03, 0.97);
+  }
+  29% {
+    -webkit-transform: scale(1.03, 0.97);
+    -moz-transform: scale(1.03, 0.97);
+    -ms-transform: scale(1.03, 0.97);
+    transform: scale(1.03, 0.97);
+  }
+  30% {
+    -webkit-transform: scale(1.02, 0.98);
+    -moz-transform: scale(1.02, 0.98);
+    -ms-transform: scale(1.02, 0.98);
+    transform: scale(1.02, 0.98);
+  }
+  31% {
+    -webkit-transform: scale(1.02, 0.98);
+    -moz-transform: scale(1.02, 0.98);
+    -ms-transform: scale(1.02, 0.98);
+    transform: scale(1.02, 0.98);
+  }
+  32% {
+    -webkit-transform: scale(1.02, 0.98);
+    -moz-transform: scale(1.02, 0.98);
+    -ms-transform: scale(1.02, 0.98);
+    transform: scale(1.02, 0.98);
+  }
+  33% {
+    -webkit-transform: scale(1.02, 0.98);
+    -moz-transform: scale(1.02, 0.98);
+    -ms-transform: scale(1.02, 0.98);
+    transform: scale(1.02, 0.98);
+  }
+  34% {
+    -webkit-transform: scale(1.01, 0.99);
+    -moz-transform: scale(1.01, 0.99);
+    -ms-transform: scale(1.01, 0.99);
+    transform: scale(1.01, 0.99);
+  }
+  35% {
+    -webkit-transform: scale(1.01, 0.99);
+    -moz-transform: scale(1.01, 0.99);
+    -ms-transform: scale(1.01, 0.99);
+    transform: scale(1.01, 0.99);
+  }
+  36% {
+    -webkit-transform: scale(1.01, 0.99);
+    -moz-transform: scale(1.01, 0.99);
+    -ms-transform: scale(1.01, 0.99);
+    transform: scale(1.01, 0.99);
+  }
+  37% {
+    -webkit-transform: scale(1, 1);
+    -moz-transform: scale(1, 1);
+    -ms-transform: scale(1, 1);
+    transform: scale(1, 1);
+  }
+  38% {
+    -webkit-transform: scale(1, 1);
+    -moz-transform: scale(1, 1);
+    -ms-transform: scale(1, 1);
+    transform: scale(1, 1);
+  }
+  39% {
+    -webkit-transform: scale(1, 1);
+    -moz-transform: scale(1, 1);
+    -ms-transform: scale(1, 1);
+    transform: scale(1, 1);
+  }
+  40% {
+    -webkit-transform: scale(0.99, 1.01);
+    -moz-transform: scale(0.99, 1.01);
+    -ms-transform: scale(0.99, 1.01);
+    transform: scale(0.99, 1.01);
+  }
+  41% {
+    -webkit-transform: scale(0.99, 1.01);
+    -moz-transform: scale(0.99, 1.01);
+    -ms-transform: scale(0.99, 1.01);
+    transform: scale(0.99, 1.01);
+  }
+  42% {
+    -webkit-transform: scale(0.99, 1.01);
+    -moz-transform: scale(0.99, 1.01);
+    -ms-transform: scale(0.99, 1.01);
+    transform: scale(0.99, 1.01);
+  }
+  43% {
+    -webkit-transform: scale(0.99, 1.01);
+    -moz-transform: scale(0.99, 1.01);
+    -ms-transform: scale(0.99, 1.01);
+    transform: scale(0.99, 1.01);
+  }
+  44% {
+    -webkit-transform: scale(0.99, 1.01);
+    -moz-transform: scale(0.99, 1.01);
+    -ms-transform: scale(0.99, 1.01);
+    transform: scale(0.99, 1.01);
+  }
+  45% {
+    -webkit-transform: scale(0.99, 1.01);
+    -moz-transform: scale(0.99, 1.01);
+    -ms-transform: scale(0.99, 1.01);
+    transform: scale(0.99, 1.01);
+  }
+  46% {
+    -webkit-transform: scale(0.99, 1.01);
+    -moz-transform: scale(0.99, 1.01);
+    -ms-transform: scale(0.99, 1.01);
+    transform: scale(0.99, 1.01);
+  }
+  47% {
+    -webkit-transform: scale(0.99, 1.01);
+    -moz-transform: scale(0.99, 1.01);
+    -ms-transform: scale(0.99, 1.01);
+    transform: scale(0.99, 1.01);
+  }
+  48% {
+    -webkit-transform: scale(0.99, 1.01);
+    -moz-transform: scale(0.99, 1.01);
+    -ms-transform: scale(0.99, 1.01);
+    transform: scale(0.99, 1.01);
+  }
+  49% {
+    -webkit-transform: scale(1, 1);
+    -moz-transform: scale(1, 1);
+    -ms-transform: scale(1, 1);
+    transform: scale(1, 1);
+  }
+}
+@-webkit-keyframes btnGroups {
+  0% {
+    -webkit-transform: scale(1.2, 0.8);
+    -moz-transform: scale(1.2, 0.8);
+    -ms-transform: scale(1.2, 0.8);
+    transform: scale(1.2, 0.8);
+  }
+  1% {
+    -webkit-transform: scale(1.18, 0.82);
+    -moz-transform: scale(1.18, 0.82);
+    -ms-transform: scale(1.18, 0.82);
+    transform: scale(1.18, 0.82);
+  }
+  2% {
+    -webkit-transform: scale(1.16, 0.84);
+    -moz-transform: scale(1.16, 0.84);
+    -ms-transform: scale(1.16, 0.84);
+    transform: scale(1.16, 0.84);
+  }
+  3% {
+    -webkit-transform: scale(1.13, 0.87);
+    -moz-transform: scale(1.13, 0.87);
+    -ms-transform: scale(1.13, 0.87);
+    transform: scale(1.13, 0.87);
+  }
+  4% {
+    -webkit-transform: scale(1.1, 0.9);
+    -moz-transform: scale(1.1, 0.9);
+    -ms-transform: scale(1.1, 0.9);
+    transform: scale(1.1, 0.9);
+  }
+  5% {
+    -webkit-transform: scale(1.07, 0.93);
+    -moz-transform: scale(1.07, 0.93);
+    -ms-transform: scale(1.07, 0.93);
+    transform: scale(1.07, 0.93);
+  }
+  6% {
+    -webkit-transform: scale(1.04, 0.96);
+    -moz-transform: scale(1.04, 0.96);
+    -ms-transform: scale(1.04, 0.96);
+    transform: scale(1.04, 0.96);
+  }
+  7% {
+    -webkit-transform: scale(1.01, 0.99);
+    -moz-transform: scale(1.01, 0.99);
+    -ms-transform: scale(1.01, 0.99);
+    transform: scale(1.01, 0.99);
+  }
+  8% {
+    -webkit-transform: scale(0.99, 1.01);
+    -moz-transform: scale(0.99, 1.01);
+    -ms-transform: scale(0.99, 1.01);
+    transform: scale(0.99, 1.01);
+  }
+  9% {
+    -webkit-transform: scale(0.97, 1.03);
+    -moz-transform: scale(0.97, 1.03);
+    -ms-transform: scale(0.97, 1.03);
+    transform: scale(0.97, 1.03);
+  }
+  10% {
+    -webkit-transform: scale(0.95, 1.05);
+    -moz-transform: scale(0.95, 1.05);
+    -ms-transform: scale(0.95, 1.05);
+    transform: scale(0.95, 1.05);
+  }
+  11% {
+    -webkit-transform: scale(0.94, 1.06);
+    -moz-transform: scale(0.94, 1.06);
+    -ms-transform: scale(0.94, 1.06);
+    transform: scale(0.94, 1.06);
+  }
+  12% {
+    -webkit-transform: scale(0.93, 1.07);
+    -moz-transform: scale(0.93, 1.07);
+    -ms-transform: scale(0.93, 1.07);
+    transform: scale(0.93, 1.07);
+  }
+  13% {
+    -webkit-transform: scale(0.93, 1.07);
+    -moz-transform: scale(0.93, 1.07);
+    -ms-transform: scale(0.93, 1.07);
+    transform: scale(0.93, 1.07);
+  }
+  14% {
+    -webkit-transform: scale(0.93, 1.07);
+    -moz-transform: scale(0.93, 1.07);
+    -ms-transform: scale(0.93, 1.07);
+    transform: scale(0.93, 1.07);
+  }
+  15% {
+    -webkit-transform: scale(0.93, 1.07);
+    -moz-transform: scale(0.93, 1.07);
+    -ms-transform: scale(0.93, 1.07);
+    transform: scale(0.93, 1.07);
+  }
+  16% {
+    -webkit-transform: scale(0.94, 1.06);
+    -moz-transform: scale(0.94, 1.06);
+    -ms-transform: scale(0.94, 1.06);
+    transform: scale(0.94, 1.06);
+  }
+  17% {
+    -webkit-transform: scale(0.94, 1.06);
+    -moz-transform: scale(0.94, 1.06);
+    -ms-transform: scale(0.94, 1.06);
+    transform: scale(0.94, 1.06);
+  }
+  18% {
+    -webkit-transform: scale(0.95, 1.05);
+    -moz-transform: scale(0.95, 1.05);
+    -ms-transform: scale(0.95, 1.05);
+    transform: scale(0.95, 1.05);
+  }
+  19% {
+    -webkit-transform: scale(0.96, 1.04);
+    -moz-transform: scale(0.96, 1.04);
+    -ms-transform: scale(0.96, 1.04);
+    transform: scale(0.96, 1.04);
+  }
+  20% {
+    -webkit-transform: scale(0.98, 1.02);
+    -moz-transform: scale(0.98, 1.02);
+    -ms-transform: scale(0.98, 1.02);
+    transform: scale(0.98, 1.02);
+  }
+  21% {
+    -webkit-transform: scale(0.99, 1.01);
+    -moz-transform: scale(0.99, 1.01);
+    -ms-transform: scale(0.99, 1.01);
+    transform: scale(0.99, 1.01);
+  }
+  22% {
+    -webkit-transform: scale(1, 1);
+    -moz-transform: scale(1, 1);
+    -ms-transform: scale(1, 1);
+    transform: scale(1, 1);
+  }
+  23% {
+    -webkit-transform: scale(1, 1);
+    -moz-transform: scale(1, 1);
+    -ms-transform: scale(1, 1);
+    transform: scale(1, 1);
+  }
+  24% {
+    -webkit-transform: scale(1.01, 0.99);
+    -moz-transform: scale(1.01, 0.99);
+    -ms-transform: scale(1.01, 0.99);
+    transform: scale(1.01, 0.99);
+  }
+  25% {
+    -webkit-transform: scale(1.02, 0.98);
+    -moz-transform: scale(1.02, 0.98);
+    -ms-transform: scale(1.02, 0.98);
+    transform: scale(1.02, 0.98);
+  }
+  26% {
+    -webkit-transform: scale(1.02, 0.98);
+    -moz-transform: scale(1.02, 0.98);
+    -ms-transform: scale(1.02, 0.98);
+    transform: scale(1.02, 0.98);
+  }
+  27% {
+    -webkit-transform: scale(1.02, 0.98);
+    -moz-transform: scale(1.02, 0.98);
+    -ms-transform: scale(1.02, 0.98);
+    transform: scale(1.02, 0.98);
+  }
+  28% {
+    -webkit-transform: scale(1.03, 0.97);
+    -moz-transform: scale(1.03, 0.97);
+    -ms-transform: scale(1.03, 0.97);
+    transform: scale(1.03, 0.97);
+  }
+  29% {
+    -webkit-transform: scale(1.03, 0.97);
+    -moz-transform: scale(1.03, 0.97);
+    -ms-transform: scale(1.03, 0.97);
+    transform: scale(1.03, 0.97);
+  }
+  30% {
+    -webkit-transform: scale(1.02, 0.98);
+    -moz-transform: scale(1.02, 0.98);
+    -ms-transform: scale(1.02, 0.98);
+    transform: scale(1.02, 0.98);
+  }
+  31% {
+    -webkit-transform: scale(1.02, 0.98);
+    -moz-transform: scale(1.02, 0.98);
+    -ms-transform: scale(1.02, 0.98);
+    transform: scale(1.02, 0.98);
+  }
+  32% {
+    -webkit-transform: scale(1.02, 0.98);
+    -moz-transform: scale(1.02, 0.98);
+    -ms-transform: scale(1.02, 0.98);
+    transform: scale(1.02, 0.98);
+  }
+  33% {
+    -webkit-transform: scale(1.02, 0.98);
+    -moz-transform: scale(1.02, 0.98);
+    -ms-transform: scale(1.02, 0.98);
+    transform: scale(1.02, 0.98);
+  }
+  34% {
+    -webkit-transform: scale(1.01, 0.99);
+    -moz-transform: scale(1.01, 0.99);
+    -ms-transform: scale(1.01, 0.99);
+    transform: scale(1.01, 0.99);
+  }
+  35% {
+    -webkit-transform: scale(1.01, 0.99);
+    -moz-transform: scale(1.01, 0.99);
+    -ms-transform: scale(1.01, 0.99);
+    transform: scale(1.01, 0.99);
+  }
+  36% {
+    -webkit-transform: scale(1.01, 0.99);
+    -moz-transform: scale(1.01, 0.99);
+    -ms-transform: scale(1.01, 0.99);
+    transform: scale(1.01, 0.99);
+  }
+  37% {
+    -webkit-transform: scale(1, 1);
+    -moz-transform: scale(1, 1);
+    -ms-transform: scale(1, 1);
+    transform: scale(1, 1);
+  }
+  38% {
+    -webkit-transform: scale(1, 1);
+    -moz-transform: scale(1, 1);
+    -ms-transform: scale(1, 1);
+    transform: scale(1, 1);
+  }
+  39% {
+    -webkit-transform: scale(1, 1);
+    -moz-transform: scale(1, 1);
+    -ms-transform: scale(1, 1);
+    transform: scale(1, 1);
+  }
+  40% {
+    -webkit-transform: scale(0.99, 1.01);
+    -moz-transform: scale(0.99, 1.01);
+    -ms-transform: scale(0.99, 1.01);
+    transform: scale(0.99, 1.01);
+  }
+  41% {
+    -webkit-transform: scale(0.99, 1.01);
+    -moz-transform: scale(0.99, 1.01);
+    -ms-transform: scale(0.99, 1.01);
+    transform: scale(0.99, 1.01);
+  }
+  42% {
+    -webkit-transform: scale(0.99, 1.01);
+    -moz-transform: scale(0.99, 1.01);
+    -ms-transform: scale(0.99, 1.01);
+    transform: scale(0.99, 1.01);
+  }
+  43% {
+    -webkit-transform: scale(0.99, 1.01);
+    -moz-transform: scale(0.99, 1.01);
+    -ms-transform: scale(0.99, 1.01);
+    transform: scale(0.99, 1.01);
+  }
+  44% {
+    -webkit-transform: scale(0.99, 1.01);
+    -moz-transform: scale(0.99, 1.01);
+    -ms-transform: scale(0.99, 1.01);
+    transform: scale(0.99, 1.01);
+  }
+  45% {
+    -webkit-transform: scale(0.99, 1.01);
+    -moz-transform: scale(0.99, 1.01);
+    -ms-transform: scale(0.99, 1.01);
+    transform: scale(0.99, 1.01);
+  }
+  46% {
+    -webkit-transform: scale(0.99, 1.01);
+    -moz-transform: scale(0.99, 1.01);
+    -ms-transform: scale(0.99, 1.01);
+    transform: scale(0.99, 1.01);
+  }
+  47% {
+    -webkit-transform: scale(0.99, 1.01);
+    -moz-transform: scale(0.99, 1.01);
+    -ms-transform: scale(0.99, 1.01);
+    transform: scale(0.99, 1.01);
+  }
+  48% {
+    -webkit-transform: scale(0.99, 1.01);
+    -moz-transform: scale(0.99, 1.01);
+    -ms-transform: scale(0.99, 1.01);
+    transform: scale(0.99, 1.01);
+  }
+  49% {
+    -webkit-transform: scale(1, 1);
+    -moz-transform: scale(1, 1);
+    -ms-transform: scale(1, 1);
+    transform: scale(1, 1);
+  }
+}
+@-o-keyframes btnGroups {
+  0% {
+    -webkit-transform: scale(1.2, 0.8);
+    -moz-transform: scale(1.2, 0.8);
+    -ms-transform: scale(1.2, 0.8);
+    transform: scale(1.2, 0.8);
+  }
+  1% {
+    -webkit-transform: scale(1.18, 0.82);
+    -moz-transform: scale(1.18, 0.82);
+    -ms-transform: scale(1.18, 0.82);
+    transform: scale(1.18, 0.82);
+  }
+  2% {
+    -webkit-transform: scale(1.16, 0.84);
+    -moz-transform: scale(1.16, 0.84);
+    -ms-transform: scale(1.16, 0.84);
+    transform: scale(1.16, 0.84);
+  }
+  3% {
+    -webkit-transform: scale(1.13, 0.87);
+    -moz-transform: scale(1.13, 0.87);
+    -ms-transform: scale(1.13, 0.87);
+    transform: scale(1.13, 0.87);
+  }
+  4% {
+    -webkit-transform: scale(1.1, 0.9);
+    -moz-transform: scale(1.1, 0.9);
+    -ms-transform: scale(1.1, 0.9);
+    transform: scale(1.1, 0.9);
+  }
+  5% {
+    -webkit-transform: scale(1.07, 0.93);
+    -moz-transform: scale(1.07, 0.93);
+    -ms-transform: scale(1.07, 0.93);
+    transform: scale(1.07, 0.93);
+  }
+  6% {
+    -webkit-transform: scale(1.04, 0.96);
+    -moz-transform: scale(1.04, 0.96);
+    -ms-transform: scale(1.04, 0.96);
+    transform: scale(1.04, 0.96);
+  }
+  7% {
+    -webkit-transform: scale(1.01, 0.99);
+    -moz-transform: scale(1.01, 0.99);
+    -ms-transform: scale(1.01, 0.99);
+    transform: scale(1.01, 0.99);
+  }
+  8% {
+    -webkit-transform: scale(0.99, 1.01);
+    -moz-transform: scale(0.99, 1.01);
+    -ms-transform: scale(0.99, 1.01);
+    transform: scale(0.99, 1.01);
+  }
+  9% {
+    -webkit-transform: scale(0.97, 1.03);
+    -moz-transform: scale(0.97, 1.03);
+    -ms-transform: scale(0.97, 1.03);
+    transform: scale(0.97, 1.03);
+  }
+  10% {
+    -webkit-transform: scale(0.95, 1.05);
+    -moz-transform: scale(0.95, 1.05);
+    -ms-transform: scale(0.95, 1.05);
+    transform: scale(0.95, 1.05);
+  }
+  11% {
+    -webkit-transform: scale(0.94, 1.06);
+    -moz-transform: scale(0.94, 1.06);
+    -ms-transform: scale(0.94, 1.06);
+    transform: scale(0.94, 1.06);
+  }
+  12% {
+    -webkit-transform: scale(0.93, 1.07);
+    -moz-transform: scale(0.93, 1.07);
+    -ms-transform: scale(0.93, 1.07);
+    transform: scale(0.93, 1.07);
+  }
+  13% {
+    -webkit-transform: scale(0.93, 1.07);
+    -moz-transform: scale(0.93, 1.07);
+    -ms-transform: scale(0.93, 1.07);
+    transform: scale(0.93, 1.07);
+  }
+  14% {
+    -webkit-transform: scale(0.93, 1.07);
+    -moz-transform: scale(0.93, 1.07);
+    -ms-transform: scale(0.93, 1.07);
+    transform: scale(0.93, 1.07);
+  }
+  15% {
+    -webkit-transform: scale(0.93, 1.07);
+    -moz-transform: scale(0.93, 1.07);
+    -ms-transform: scale(0.93, 1.07);
+    transform: scale(0.93, 1.07);
+  }
+  16% {
+    -webkit-transform: scale(0.94, 1.06);
+    -moz-transform: scale(0.94, 1.06);
+    -ms-transform: scale(0.94, 1.06);
+    transform: scale(0.94, 1.06);
+  }
+  17% {
+    -webkit-transform: scale(0.94, 1.06);
+    -moz-transform: scale(0.94, 1.06);
+    -ms-transform: scale(0.94, 1.06);
+    transform: scale(0.94, 1.06);
+  }
+  18% {
+    -webkit-transform: scale(0.95, 1.05);
+    -moz-transform: scale(0.95, 1.05);
+    -ms-transform: scale(0.95, 1.05);
+    transform: scale(0.95, 1.05);
+  }
+  19% {
+    -webkit-transform: scale(0.96, 1.04);
+    -moz-transform: scale(0.96, 1.04);
+    -ms-transform: scale(0.96, 1.04);
+    transform: scale(0.96, 1.04);
+  }
+  20% {
+    -webkit-transform: scale(0.98, 1.02);
+    -moz-transform: scale(0.98, 1.02);
+    -ms-transform: scale(0.98, 1.02);
+    transform: scale(0.98, 1.02);
+  }
+  21% {
+    -webkit-transform: scale(0.99, 1.01);
+    -moz-transform: scale(0.99, 1.01);
+    -ms-transform: scale(0.99, 1.01);
+    transform: scale(0.99, 1.01);
+  }
+  22% {
+    -webkit-transform: scale(1, 1);
+    -moz-transform: scale(1, 1);
+    -ms-transform: scale(1, 1);
+    transform: scale(1, 1);
+  }
+  23% {
+    -webkit-transform: scale(1, 1);
+    -moz-transform: scale(1, 1);
+    -ms-transform: scale(1, 1);
+    transform: scale(1, 1);
+  }
+  24% {
+    -webkit-transform: scale(1.01, 0.99);
+    -moz-transform: scale(1.01, 0.99);
+    -ms-transform: scale(1.01, 0.99);
+    transform: scale(1.01, 0.99);
+  }
+  25% {
+    -webkit-transform: scale(1.02, 0.98);
+    -moz-transform: scale(1.02, 0.98);
+    -ms-transform: scale(1.02, 0.98);
+    transform: scale(1.02, 0.98);
+  }
+  26% {
+    -webkit-transform: scale(1.02, 0.98);
+    -moz-transform: scale(1.02, 0.98);
+    -ms-transform: scale(1.02, 0.98);
+    transform: scale(1.02, 0.98);
+  }
+  27% {
+    -webkit-transform: scale(1.02, 0.98);
+    -moz-transform: scale(1.02, 0.98);
+    -ms-transform: scale(1.02, 0.98);
+    transform: scale(1.02, 0.98);
+  }
+  28% {
+    -webkit-transform: scale(1.03, 0.97);
+    -moz-transform: scale(1.03, 0.97);
+    -ms-transform: scale(1.03, 0.97);
+    transform: scale(1.03, 0.97);
+  }
+  29% {
+    -webkit-transform: scale(1.03, 0.97);
+    -moz-transform: scale(1.03, 0.97);
+    -ms-transform: scale(1.03, 0.97);
+    transform: scale(1.03, 0.97);
+  }
+  30% {
+    -webkit-transform: scale(1.02, 0.98);
+    -moz-transform: scale(1.02, 0.98);
+    -ms-transform: scale(1.02, 0.98);
+    transform: scale(1.02, 0.98);
+  }
+  31% {
+    -webkit-transform: scale(1.02, 0.98);
+    -moz-transform: scale(1.02, 0.98);
+    -ms-transform: scale(1.02, 0.98);
+    transform: scale(1.02, 0.98);
+  }
+  32% {
+    -webkit-transform: scale(1.02, 0.98);
+    -moz-transform: scale(1.02, 0.98);
+    -ms-transform: scale(1.02, 0.98);
+    transform: scale(1.02, 0.98);
+  }
+  33% {
+    -webkit-transform: scale(1.02, 0.98);
+    -moz-transform: scale(1.02, 0.98);
+    -ms-transform: scale(1.02, 0.98);
+    transform: scale(1.02, 0.98);
+  }
+  34% {
+    -webkit-transform: scale(1.01, 0.99);
+    -moz-transform: scale(1.01, 0.99);
+    -ms-transform: scale(1.01, 0.99);
+    transform: scale(1.01, 0.99);
+  }
+  35% {
+    -webkit-transform: scale(1.01, 0.99);
+    -moz-transform: scale(1.01, 0.99);
+    -ms-transform: scale(1.01, 0.99);
+    transform: scale(1.01, 0.99);
+  }
+  36% {
+    -webkit-transform: scale(1.01, 0.99);
+    -moz-transform: scale(1.01, 0.99);
+    -ms-transform: scale(1.01, 0.99);
+    transform: scale(1.01, 0.99);
+  }
+  37% {
+    -webkit-transform: scale(1, 1);
+    -moz-transform: scale(1, 1);
+    -ms-transform: scale(1, 1);
+    transform: scale(1, 1);
+  }
+  38% {
+    -webkit-transform: scale(1, 1);
+    -moz-transform: scale(1, 1);
+    -ms-transform: scale(1, 1);
+    transform: scale(1, 1);
+  }
+  39% {
+    -webkit-transform: scale(1, 1);
+    -moz-transform: scale(1, 1);
+    -ms-transform: scale(1, 1);
+    transform: scale(1, 1);
+  }
+  40% {
+    -webkit-transform: scale(0.99, 1.01);
+    -moz-transform: scale(0.99, 1.01);
+    -ms-transform: scale(0.99, 1.01);
+    transform: scale(0.99, 1.01);
+  }
+  41% {
+    -webkit-transform: scale(0.99, 1.01);
+    -moz-transform: scale(0.99, 1.01);
+    -ms-transform: scale(0.99, 1.01);
+    transform: scale(0.99, 1.01);
+  }
+  42% {
+    -webkit-transform: scale(0.99, 1.01);
+    -moz-transform: scale(0.99, 1.01);
+    -ms-transform: scale(0.99, 1.01);
+    transform: scale(0.99, 1.01);
+  }
+  43% {
+    -webkit-transform: scale(0.99, 1.01);
+    -moz-transform: scale(0.99, 1.01);
+    -ms-transform: scale(0.99, 1.01);
+    transform: scale(0.99, 1.01);
+  }
+  44% {
+    -webkit-transform: scale(0.99, 1.01);
+    -moz-transform: scale(0.99, 1.01);
+    -ms-transform: scale(0.99, 1.01);
+    transform: scale(0.99, 1.01);
+  }
+  45% {
+    -webkit-transform: scale(0.99, 1.01);
+    -moz-transform: scale(0.99, 1.01);
+    -ms-transform: scale(0.99, 1.01);
+    transform: scale(0.99, 1.01);
+  }
+  46% {
+    -webkit-transform: scale(0.99, 1.01);
+    -moz-transform: scale(0.99, 1.01);
+    -ms-transform: scale(0.99, 1.01);
+    transform: scale(0.99, 1.01);
+  }
+  47% {
+    -webkit-transform: scale(0.99, 1.01);
+    -moz-transform: scale(0.99, 1.01);
+    -ms-transform: scale(0.99, 1.01);
+    transform: scale(0.99, 1.01);
+  }
+  48% {
+    -webkit-transform: scale(0.99, 1.01);
+    -moz-transform: scale(0.99, 1.01);
+    -ms-transform: scale(0.99, 1.01);
+    transform: scale(0.99, 1.01);
+  }
+  49% {
+    -webkit-transform: scale(1, 1);
+    -moz-transform: scale(1, 1);
+    -ms-transform: scale(1, 1);
+    transform: scale(1, 1);
+  }
+}
+@keyframes btnGroups {
+  0% {
+    -webkit-transform: scale(1.2, 0.8);
+    -moz-transform: scale(1.2, 0.8);
+    -ms-transform: scale(1.2, 0.8);
+    transform: scale(1.2, 0.8);
+  }
+  1% {
+    -webkit-transform: scale(1.18, 0.82);
+    -moz-transform: scale(1.18, 0.82);
+    -ms-transform: scale(1.18, 0.82);
+    transform: scale(1.18, 0.82);
+  }
+  2% {
+    -webkit-transform: scale(1.16, 0.84);
+    -moz-transform: scale(1.16, 0.84);
+    -ms-transform: scale(1.16, 0.84);
+    transform: scale(1.16, 0.84);
+  }
+  3% {
+    -webkit-transform: scale(1.13, 0.87);
+    -moz-transform: scale(1.13, 0.87);
+    -ms-transform: scale(1.13, 0.87);
+    transform: scale(1.13, 0.87);
+  }
+  4% {
+    -webkit-transform: scale(1.1, 0.9);
+    -moz-transform: scale(1.1, 0.9);
+    -ms-transform: scale(1.1, 0.9);
+    transform: scale(1.1, 0.9);
+  }
+  5% {
+    -webkit-transform: scale(1.07, 0.93);
+    -moz-transform: scale(1.07, 0.93);
+    -ms-transform: scale(1.07, 0.93);
+    transform: scale(1.07, 0.93);
+  }
+  6% {
+    -webkit-transform: scale(1.04, 0.96);
+    -moz-transform: scale(1.04, 0.96);
+    -ms-transform: scale(1.04, 0.96);
+    transform: scale(1.04, 0.96);
+  }
+  7% {
+    -webkit-transform: scale(1.01, 0.99);
+    -moz-transform: scale(1.01, 0.99);
+    -ms-transform: scale(1.01, 0.99);
+    transform: scale(1.01, 0.99);
+  }
+  8% {
+    -webkit-transform: scale(0.99, 1.01);
+    -moz-transform: scale(0.99, 1.01);
+    -ms-transform: scale(0.99, 1.01);
+    transform: scale(0.99, 1.01);
+  }
+  9% {
+    -webkit-transform: scale(0.97, 1.03);
+    -moz-transform: scale(0.97, 1.03);
+    -ms-transform: scale(0.97, 1.03);
+    transform: scale(0.97, 1.03);
+  }
+  10% {
+    -webkit-transform: scale(0.95, 1.05);
+    -moz-transform: scale(0.95, 1.05);
+    -ms-transform: scale(0.95, 1.05);
+    transform: scale(0.95, 1.05);
+  }
+  11% {
+    -webkit-transform: scale(0.94, 1.06);
+    -moz-transform: scale(0.94, 1.06);
+    -ms-transform: scale(0.94, 1.06);
+    transform: scale(0.94, 1.06);
+  }
+  12% {
+    -webkit-transform: scale(0.93, 1.07);
+    -moz-transform: scale(0.93, 1.07);
+    -ms-transform: scale(0.93, 1.07);
+    transform: scale(0.93, 1.07);
+  }
+  13% {
+    -webkit-transform: scale(0.93, 1.07);
+    -moz-transform: scale(0.93, 1.07);
+    -ms-transform: scale(0.93, 1.07);
+    transform: scale(0.93, 1.07);
+  }
+  14% {
+    -webkit-transform: scale(0.93, 1.07);
+    -moz-transform: scale(0.93, 1.07);
+    -ms-transform: scale(0.93, 1.07);
+    transform: scale(0.93, 1.07);
+  }
+  15% {
+    -webkit-transform: scale(0.93, 1.07);
+    -moz-transform: scale(0.93, 1.07);
+    -ms-transform: scale(0.93, 1.07);
+    transform: scale(0.93, 1.07);
+  }
+  16% {
+    -webkit-transform: scale(0.94, 1.06);
+    -moz-transform: scale(0.94, 1.06);
+    -ms-transform: scale(0.94, 1.06);
+    transform: scale(0.94, 1.06);
+  }
+  17% {
+    -webkit-transform: scale(0.94, 1.06);
+    -moz-transform: scale(0.94, 1.06);
+    -ms-transform: scale(0.94, 1.06);
+    transform: scale(0.94, 1.06);
+  }
+  18% {
+    -webkit-transform: scale(0.95, 1.05);
+    -moz-transform: scale(0.95, 1.05);
+    -ms-transform: scale(0.95, 1.05);
+    transform: scale(0.95, 1.05);
+  }
+  19% {
+    -webkit-transform: scale(0.96, 1.04);
+    -moz-transform: scale(0.96, 1.04);
+    -ms-transform: scale(0.96, 1.04);
+    transform: scale(0.96, 1.04);
+  }
+  20% {
+    -webkit-transform: scale(0.98, 1.02);
+    -moz-transform: scale(0.98, 1.02);
+    -ms-transform: scale(0.98, 1.02);
+    transform: scale(0.98, 1.02);
+  }
+  21% {
+    -webkit-transform: scale(0.99, 1.01);
+    -moz-transform: scale(0.99, 1.01);
+    -ms-transform: scale(0.99, 1.01);
+    transform: scale(0.99, 1.01);
+  }
+  22% {
+    -webkit-transform: scale(1, 1);
+    -moz-transform: scale(1, 1);
+    -ms-transform: scale(1, 1);
+    transform: scale(1, 1);
+  }
+  23% {
+    -webkit-transform: scale(1, 1);
+    -moz-transform: scale(1, 1);
+    -ms-transform: scale(1, 1);
+    transform: scale(1, 1);
+  }
+  24% {
+    -webkit-transform: scale(1.01, 0.99);
+    -moz-transform: scale(1.01, 0.99);
+    -ms-transform: scale(1.01, 0.99);
+    transform: scale(1.01, 0.99);
+  }
+  25% {
+    -webkit-transform: scale(1.02, 0.98);
+    -moz-transform: scale(1.02, 0.98);
+    -ms-transform: scale(1.02, 0.98);
+    transform: scale(1.02, 0.98);
+  }
+  26% {
+    -webkit-transform: scale(1.02, 0.98);
+    -moz-transform: scale(1.02, 0.98);
+    -ms-transform: scale(1.02, 0.98);
+    transform: scale(1.02, 0.98);
+  }
+  27% {
+    -webkit-transform: scale(1.02, 0.98);
+    -moz-transform: scale(1.02, 0.98);
+    -ms-transform: scale(1.02, 0.98);
+    transform: scale(1.02, 0.98);
+  }
+  28% {
+    -webkit-transform: scale(1.03, 0.97);
+    -moz-transform: scale(1.03, 0.97);
+    -ms-transform: scale(1.03, 0.97);
+    transform: scale(1.03, 0.97);
+  }
+  29% {
+    -webkit-transform: scale(1.03, 0.97);
+    -moz-transform: scale(1.03, 0.97);
+    -ms-transform: scale(1.03, 0.97);
+    transform: scale(1.03, 0.97);
+  }
+  30% {
+    -webkit-transform: scale(1.02, 0.98);
+    -moz-transform: scale(1.02, 0.98);
+    -ms-transform: scale(1.02, 0.98);
+    transform: scale(1.02, 0.98);
+  }
+  31% {
+    -webkit-transform: scale(1.02, 0.98);
+    -moz-transform: scale(1.02, 0.98);
+    -ms-transform: scale(1.02, 0.98);
+    transform: scale(1.02, 0.98);
+  }
+  32% {
+    -webkit-transform: scale(1.02, 0.98);
+    -moz-transform: scale(1.02, 0.98);
+    -ms-transform: scale(1.02, 0.98);
+    transform: scale(1.02, 0.98);
+  }
+  33% {
+    -webkit-transform: scale(1.02, 0.98);
+    -moz-transform: scale(1.02, 0.98);
+    -ms-transform: scale(1.02, 0.98);
+    transform: scale(1.02, 0.98);
+  }
+  34% {
+    -webkit-transform: scale(1.01, 0.99);
+    -moz-transform: scale(1.01, 0.99);
+    -ms-transform: scale(1.01, 0.99);
+    transform: scale(1.01, 0.99);
+  }
+  35% {
+    -webkit-transform: scale(1.01, 0.99);
+    -moz-transform: scale(1.01, 0.99);
+    -ms-transform: scale(1.01, 0.99);
+    transform: scale(1.01, 0.99);
+  }
+  36% {
+    -webkit-transform: scale(1.01, 0.99);
+    -moz-transform: scale(1.01, 0.99);
+    -ms-transform: scale(1.01, 0.99);
+    transform: scale(1.01, 0.99);
+  }
+  37% {
+    -webkit-transform: scale(1, 1);
+    -moz-transform: scale(1, 1);
+    -ms-transform: scale(1, 1);
+    transform: scale(1, 1);
+  }
+  38% {
+    -webkit-transform: scale(1, 1);
+    -moz-transform: scale(1, 1);
+    -ms-transform: scale(1, 1);
+    transform: scale(1, 1);
+  }
+  39% {
+    -webkit-transform: scale(1, 1);
+    -moz-transform: scale(1, 1);
+    -ms-transform: scale(1, 1);
+    transform: scale(1, 1);
+  }
+  40% {
+    -webkit-transform: scale(0.99, 1.01);
+    -moz-transform: scale(0.99, 1.01);
+    -ms-transform: scale(0.99, 1.01);
+    transform: scale(0.99, 1.01);
+  }
+  41% {
+    -webkit-transform: scale(0.99, 1.01);
+    -moz-transform: scale(0.99, 1.01);
+    -ms-transform: scale(0.99, 1.01);
+    transform: scale(0.99, 1.01);
+  }
+  42% {
+    -webkit-transform: scale(0.99, 1.01);
+    -moz-transform: scale(0.99, 1.01);
+    -ms-transform: scale(0.99, 1.01);
+    transform: scale(0.99, 1.01);
+  }
+  43% {
+    -webkit-transform: scale(0.99, 1.01);
+    -moz-transform: scale(0.99, 1.01);
+    -ms-transform: scale(0.99, 1.01);
+    transform: scale(0.99, 1.01);
+  }
+  44% {
+    -webkit-transform: scale(0.99, 1.01);
+    -moz-transform: scale(0.99, 1.01);
+    -ms-transform: scale(0.99, 1.01);
+    transform: scale(0.99, 1.01);
+  }
+  45% {
+    -webkit-transform: scale(0.99, 1.01);
+    -moz-transform: scale(0.99, 1.01);
+    -ms-transform: scale(0.99, 1.01);
+    transform: scale(0.99, 1.01);
+  }
+  46% {
+    -webkit-transform: scale(0.99, 1.01);
+    -moz-transform: scale(0.99, 1.01);
+    -ms-transform: scale(0.99, 1.01);
+    transform: scale(0.99, 1.01);
+  }
+  47% {
+    -webkit-transform: scale(0.99, 1.01);
+    -moz-transform: scale(0.99, 1.01);
+    -ms-transform: scale(0.99, 1.01);
+    transform: scale(0.99, 1.01);
+  }
+  48% {
+    -webkit-transform: scale(0.99, 1.01);
+    -moz-transform: scale(0.99, 1.01);
+    -ms-transform: scale(0.99, 1.01);
+    transform: scale(0.99, 1.01);
+  }
+  49% {
+    -webkit-transform: scale(1, 1);
+    -moz-transform: scale(1, 1);
+    -ms-transform: scale(1, 1);
+    transform: scale(1, 1);
+  }
+}
+</style>
+<div class="intrude-less">
+	<header id="header" class="inner">
+		<a href="/" class="profilepic">
+			<img src="https://tawen.github.io/img/photo.jpg" class="js-avatar">
+		</a>
+
+		<hgroup>
+		  <h1 class="header-author"><a href="/">影子爱乘凉</a></h1>
+		</hgroup>
+
+		
+		<p class="header-subtitle">路走了28年，方向始终不变。</p>
+		
+
+		<nav class="header-menu">
+			<ul>
+			
+				<li><a href="/">首页</a></li>
+	        
+				<li><a href="/archives">存档</a></li>
+	        
+				<li><a href="/about">关于</a></li>
+	        
+			</ul>
+		</nav>
+		<nav class="header-smart-menu">
+	        
+    		
+    			
+    			<a data-idx="0" q-on="click: openSlider(e, 'innerArchive')" href="javascript:void(0)">所有文章</a>
+    			
+    			
+            
+		</nav>
+		<nav class="header-nav">
+			<div class="social">
+				
+					<a class="github" target="_blank" href="https://github.com/tawen" title="github"><i class="icon-github"></i></a>
+		        
+					<a class="weibo" target="_blank" href="http://weibo.com/3168014535/profile?topnav=1&wvr=6&is_all=1" title="weibo"><i class="icon-weibo"></i></a>
+		        
+					<a class="rss" target="_blank" href="/atom.xml" title="rss"><i class="icon-rss"></i></a>
+		        
+					<a class="zhihu" target="_blank" href="https://www.zhihu.com/people/liu-zhen-hua-74-57" title="zhihu"><i class="icon-zhihu"></i></a>
+		        
+			</div>
+		</nav>
+	</header>		
+</div>
+
+    </div>
+    <div class="mid-col" q-class="show:isShow,hide:isShow|isFalse">
+      <nav id="mobile-nav">
+  	<div class="overlay">
+  		<div class="slider-trigger"><i class="icon-sort"></i></div>
+		  <h1 class="header-author js-mobile-header hide">影子爱乘凉</h1>
+		  <svg style="position:absolute;left:0;bottom:0" class="editorial" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 24 150 28" preserveAspectRatio="none">
+			<defs><path id="gentle-wave" d="M-160 44c30 0
+			  58-18 88-18s
+			  58 18 88 18
+			  58-18 88-18
+			  58 18 88 18
+			  v44h-352z"></path>
+			  </defs>
+			  <g class="parallax">
+				<use xlink:href="#gentle-wave" x="50" y="0" fill="rgba(128,128,128,.5)"></use>
+				<use xlink:href="#gentle-wave" x="50" y="3" fill="rgba(128,128,128,.5)"></use>
+				<use xlink:href="#gentle-wave" x="50" y="6" fill="rgba(128,128,128,.5)"></use>
+				</g>
+			</svg>
+	  </div>
+	  
+	  <style>
+		.parallax>use {
+		animation: move-forever 12s linear infinite
+	  }
+	  .parallax>use:nth-child(1) {
+		animation-delay: -2s
+	  }
+	  .parallax>use:nth-child(2) {
+		animation-delay: -2s;
+		animation-duration: 5s
+	  }
+	  .parallax>use:nth-child(3) {
+		animation-delay: -4s;
+		animation-duration: 3s
+	  }
+	  @keyframes move-forever {
+		0% {
+		  transform: translate(-90px, 0)
+		}
+		100% {
+		  transform: translate(85px, 0)
+		}
+		}
+		#header .profilepic:hover {
+  -webkit-animation: btnGroups 1s linear;
+  -webkit-animation: btnGroups 1s linear;
+  -moz-animation: btnGroups 1s linear;
+  -ms-animation: btnGroups 1s linear;
+  animation: btnGroups 1s linear;
+}
+@-webkit-keyframes btnGroups {
+  0% {
+    -webkit-transform: scale(1.2, 0.8);
+  }
+  1% {
+    -webkit-transform: scale(1.18, 0.82);
+  }
+  2% {
+    -webkit-transform: scale(1.16, 0.84);
+  }
+  3% {
+    -webkit-transform: scale(1.13, 0.87);
+  }
+  4% {
+    -webkit-transform: scale(1.1, 0.9);
+  }
+  5% {
+    -webkit-transform: scale(1.07, 0.93);
+  }
+  6% {
+    -webkit-transform: scale(1.04, 0.96);
+  }
+  7% {
+    -webkit-transform: scale(1.01, 0.99);
+  }
+  8% {
+    -webkit-transform: scale(0.99, 1.01);
+  }
+  9% {
+    -webkit-transform: scale(0.97, 1.03);
+  }
+  10% {
+    -webkit-transform: scale(0.95, 1.05);
+  }
+  11% {
+    -webkit-transform: scale(0.94, 1.06);
+  }
+  12% {
+    -webkit-transform: scale(0.93, 1.07);
+  }
+  13% {
+    -webkit-transform: scale(0.93, 1.07);
+  }
+  14% {
+    -webkit-transform: scale(0.93, 1.07);
+  }
+  15% {
+    -webkit-transform: scale(0.93, 1.07);
+  }
+  16% {
+    -webkit-transform: scale(0.94, 1.06);
+  }
+  17% {
+    -webkit-transform: scale(0.94, 1.06);
+  }
+  18% {
+    -webkit-transform: scale(0.95, 1.05);
+  }
+  19% {
+    -webkit-transform: scale(0.96, 1.04);
+  }
+  20% {
+    -webkit-transform: scale(0.98, 1.02);
+  }
+  21% {
+    -webkit-transform: scale(0.99, 1.01);
+  }
+  22% {
+    -webkit-transform: scale(1, 1);
+  }
+  23% {
+    -webkit-transform: scale(1, 1);
+  }
+  24% {
+    -webkit-transform: scale(1.01, 0.99);
+  }
+  25% {
+    -webkit-transform: scale(1.02, 0.98);
+  }
+  26% {
+    -webkit-transform: scale(1.02, 0.98);
+  }
+  27% {
+    -webkit-transform: scale(1.02, 0.98);
+  }
+  28% {
+    -webkit-transform: scale(1.03, 0.97);
+  }
+  29% {
+    -webkit-transform: scale(1.03, 0.97);
+  }
+  30% {
+    -webkit-transform: scale(1.02, 0.98);
+  }
+  31% {
+    -webkit-transform: scale(1.02, 0.98);
+  }
+  32% {
+    -webkit-transform: scale(1.02, 0.98);
+  }
+  33% {
+    -webkit-transform: scale(1.02, 0.98);
+  }
+  34% {
+    -webkit-transform: scale(1.01, 0.99);
+  }
+  35% {
+    -webkit-transform: scale(1.01, 0.99);
+  }
+  36% {
+    -webkit-transform: scale(1.01, 0.99);
+  }
+  37% {
+    -webkit-transform: scale(1, 1);
+  }
+  38% {
+    -webkit-transform: scale(1, 1);
+  }
+  39% {
+    -webkit-transform: scale(1, 1);
+  }
+  40% {
+    -webkit-transform: scale(0.99, 1.01);
+  }
+  41% {
+    -webkit-transform: scale(0.99, 1.01);
+  }
+  42% {
+    -webkit-transform: scale(0.99, 1.01);
+  }
+  43% {
+    -webkit-transform: scale(0.99, 1.01);
+  }
+  44% {
+    -webkit-transform: scale(0.99, 1.01);
+  }
+  45% {
+    -webkit-transform: scale(0.99, 1.01);
+  }
+  46% {
+    -webkit-transform: scale(0.99, 1.01);
+  }
+  47% {
+    -webkit-transform: scale(0.99, 1.01);
+  }
+  48% {
+    -webkit-transform: scale(0.99, 1.01);
+  }
+  49% {
+    -webkit-transform: scale(1, 1);
+  }
+}
+@-moz-keyframes btnGroups {
+  0% {
+    -webkit-transform: scale(1.2, 0.8);
+    -moz-transform: scale(1.2, 0.8);
+    -ms-transform: scale(1.2, 0.8);
+    transform: scale(1.2, 0.8);
+  }
+  1% {
+    -webkit-transform: scale(1.18, 0.82);
+    -moz-transform: scale(1.18, 0.82);
+    -ms-transform: scale(1.18, 0.82);
+    transform: scale(1.18, 0.82);
+  }
+  2% {
+    -webkit-transform: scale(1.16, 0.84);
+    -moz-transform: scale(1.16, 0.84);
+    -ms-transform: scale(1.16, 0.84);
+    transform: scale(1.16, 0.84);
+  }
+  3% {
+    -webkit-transform: scale(1.13, 0.87);
+    -moz-transform: scale(1.13, 0.87);
+    -ms-transform: scale(1.13, 0.87);
+    transform: scale(1.13, 0.87);
+  }
+  4% {
+    -webkit-transform: scale(1.1, 0.9);
+    -moz-transform: scale(1.1, 0.9);
+    -ms-transform: scale(1.1, 0.9);
+    transform: scale(1.1, 0.9);
+  }
+  5% {
+    -webkit-transform: scale(1.07, 0.93);
+    -moz-transform: scale(1.07, 0.93);
+    -ms-transform: scale(1.07, 0.93);
+    transform: scale(1.07, 0.93);
+  }
+  6% {
+    -webkit-transform: scale(1.04, 0.96);
+    -moz-transform: scale(1.04, 0.96);
+    -ms-transform: scale(1.04, 0.96);
+    transform: scale(1.04, 0.96);
+  }
+  7% {
+    -webkit-transform: scale(1.01, 0.99);
+    -moz-transform: scale(1.01, 0.99);
+    -ms-transform: scale(1.01, 0.99);
+    transform: scale(1.01, 0.99);
+  }
+  8% {
+    -webkit-transform: scale(0.99, 1.01);
+    -moz-transform: scale(0.99, 1.01);
+    -ms-transform: scale(0.99, 1.01);
+    transform: scale(0.99, 1.01);
+  }
+  9% {
+    -webkit-transform: scale(0.97, 1.03);
+    -moz-transform: scale(0.97, 1.03);
+    -ms-transform: scale(0.97, 1.03);
+    transform: scale(0.97, 1.03);
+  }
+  10% {
+    -webkit-transform: scale(0.95, 1.05);
+    -moz-transform: scale(0.95, 1.05);
+    -ms-transform: scale(0.95, 1.05);
+    transform: scale(0.95, 1.05);
+  }
+  11% {
+    -webkit-transform: scale(0.94, 1.06);
+    -moz-transform: scale(0.94, 1.06);
+    -ms-transform: scale(0.94, 1.06);
+    transform: scale(0.94, 1.06);
+  }
+  12% {
+    -webkit-transform: scale(0.93, 1.07);
+    -moz-transform: scale(0.93, 1.07);
+    -ms-transform: scale(0.93, 1.07);
+    transform: scale(0.93, 1.07);
+  }
+  13% {
+    -webkit-transform: scale(0.93, 1.07);
+    -moz-transform: scale(0.93, 1.07);
+    -ms-transform: scale(0.93, 1.07);
+    transform: scale(0.93, 1.07);
+  }
+  14% {
+    -webkit-transform: scale(0.93, 1.07);
+    -moz-transform: scale(0.93, 1.07);
+    -ms-transform: scale(0.93, 1.07);
+    transform: scale(0.93, 1.07);
+  }
+  15% {
+    -webkit-transform: scale(0.93, 1.07);
+    -moz-transform: scale(0.93, 1.07);
+    -ms-transform: scale(0.93, 1.07);
+    transform: scale(0.93, 1.07);
+  }
+  16% {
+    -webkit-transform: scale(0.94, 1.06);
+    -moz-transform: scale(0.94, 1.06);
+    -ms-transform: scale(0.94, 1.06);
+    transform: scale(0.94, 1.06);
+  }
+  17% {
+    -webkit-transform: scale(0.94, 1.06);
+    -moz-transform: scale(0.94, 1.06);
+    -ms-transform: scale(0.94, 1.06);
+    transform: scale(0.94, 1.06);
+  }
+  18% {
+    -webkit-transform: scale(0.95, 1.05);
+    -moz-transform: scale(0.95, 1.05);
+    -ms-transform: scale(0.95, 1.05);
+    transform: scale(0.95, 1.05);
+  }
+  19% {
+    -webkit-transform: scale(0.96, 1.04);
+    -moz-transform: scale(0.96, 1.04);
+    -ms-transform: scale(0.96, 1.04);
+    transform: scale(0.96, 1.04);
+  }
+  20% {
+    -webkit-transform: scale(0.98, 1.02);
+    -moz-transform: scale(0.98, 1.02);
+    -ms-transform: scale(0.98, 1.02);
+    transform: scale(0.98, 1.02);
+  }
+  21% {
+    -webkit-transform: scale(0.99, 1.01);
+    -moz-transform: scale(0.99, 1.01);
+    -ms-transform: scale(0.99, 1.01);
+    transform: scale(0.99, 1.01);
+  }
+  22% {
+    -webkit-transform: scale(1, 1);
+    -moz-transform: scale(1, 1);
+    -ms-transform: scale(1, 1);
+    transform: scale(1, 1);
+  }
+  23% {
+    -webkit-transform: scale(1, 1);
+    -moz-transform: scale(1, 1);
+    -ms-transform: scale(1, 1);
+    transform: scale(1, 1);
+  }
+  24% {
+    -webkit-transform: scale(1.01, 0.99);
+    -moz-transform: scale(1.01, 0.99);
+    -ms-transform: scale(1.01, 0.99);
+    transform: scale(1.01, 0.99);
+  }
+  25% {
+    -webkit-transform: scale(1.02, 0.98);
+    -moz-transform: scale(1.02, 0.98);
+    -ms-transform: scale(1.02, 0.98);
+    transform: scale(1.02, 0.98);
+  }
+  26% {
+    -webkit-transform: scale(1.02, 0.98);
+    -moz-transform: scale(1.02, 0.98);
+    -ms-transform: scale(1.02, 0.98);
+    transform: scale(1.02, 0.98);
+  }
+  27% {
+    -webkit-transform: scale(1.02, 0.98);
+    -moz-transform: scale(1.02, 0.98);
+    -ms-transform: scale(1.02, 0.98);
+    transform: scale(1.02, 0.98);
+  }
+  28% {
+    -webkit-transform: scale(1.03, 0.97);
+    -moz-transform: scale(1.03, 0.97);
+    -ms-transform: scale(1.03, 0.97);
+    transform: scale(1.03, 0.97);
+  }
+  29% {
+    -webkit-transform: scale(1.03, 0.97);
+    -moz-transform: scale(1.03, 0.97);
+    -ms-transform: scale(1.03, 0.97);
+    transform: scale(1.03, 0.97);
+  }
+  30% {
+    -webkit-transform: scale(1.02, 0.98);
+    -moz-transform: scale(1.02, 0.98);
+    -ms-transform: scale(1.02, 0.98);
+    transform: scale(1.02, 0.98);
+  }
+  31% {
+    -webkit-transform: scale(1.02, 0.98);
+    -moz-transform: scale(1.02, 0.98);
+    -ms-transform: scale(1.02, 0.98);
+    transform: scale(1.02, 0.98);
+  }
+  32% {
+    -webkit-transform: scale(1.02, 0.98);
+    -moz-transform: scale(1.02, 0.98);
+    -ms-transform: scale(1.02, 0.98);
+    transform: scale(1.02, 0.98);
+  }
+  33% {
+    -webkit-transform: scale(1.02, 0.98);
+    -moz-transform: scale(1.02, 0.98);
+    -ms-transform: scale(1.02, 0.98);
+    transform: scale(1.02, 0.98);
+  }
+  34% {
+    -webkit-transform: scale(1.01, 0.99);
+    -moz-transform: scale(1.01, 0.99);
+    -ms-transform: scale(1.01, 0.99);
+    transform: scale(1.01, 0.99);
+  }
+  35% {
+    -webkit-transform: scale(1.01, 0.99);
+    -moz-transform: scale(1.01, 0.99);
+    -ms-transform: scale(1.01, 0.99);
+    transform: scale(1.01, 0.99);
+  }
+  36% {
+    -webkit-transform: scale(1.01, 0.99);
+    -moz-transform: scale(1.01, 0.99);
+    -ms-transform: scale(1.01, 0.99);
+    transform: scale(1.01, 0.99);
+  }
+  37% {
+    -webkit-transform: scale(1, 1);
+    -moz-transform: scale(1, 1);
+    -ms-transform: scale(1, 1);
+    transform: scale(1, 1);
+  }
+  38% {
+    -webkit-transform: scale(1, 1);
+    -moz-transform: scale(1, 1);
+    -ms-transform: scale(1, 1);
+    transform: scale(1, 1);
+  }
+  39% {
+    -webkit-transform: scale(1, 1);
+    -moz-transform: scale(1, 1);
+    -ms-transform: scale(1, 1);
+    transform: scale(1, 1);
+  }
+  40% {
+    -webkit-transform: scale(0.99, 1.01);
+    -moz-transform: scale(0.99, 1.01);
+    -ms-transform: scale(0.99, 1.01);
+    transform: scale(0.99, 1.01);
+  }
+  41% {
+    -webkit-transform: scale(0.99, 1.01);
+    -moz-transform: scale(0.99, 1.01);
+    -ms-transform: scale(0.99, 1.01);
+    transform: scale(0.99, 1.01);
+  }
+  42% {
+    -webkit-transform: scale(0.99, 1.01);
+    -moz-transform: scale(0.99, 1.01);
+    -ms-transform: scale(0.99, 1.01);
+    transform: scale(0.99, 1.01);
+  }
+  43% {
+    -webkit-transform: scale(0.99, 1.01);
+    -moz-transform: scale(0.99, 1.01);
+    -ms-transform: scale(0.99, 1.01);
+    transform: scale(0.99, 1.01);
+  }
+  44% {
+    -webkit-transform: scale(0.99, 1.01);
+    -moz-transform: scale(0.99, 1.01);
+    -ms-transform: scale(0.99, 1.01);
+    transform: scale(0.99, 1.01);
+  }
+  45% {
+    -webkit-transform: scale(0.99, 1.01);
+    -moz-transform: scale(0.99, 1.01);
+    -ms-transform: scale(0.99, 1.01);
+    transform: scale(0.99, 1.01);
+  }
+  46% {
+    -webkit-transform: scale(0.99, 1.01);
+    -moz-transform: scale(0.99, 1.01);
+    -ms-transform: scale(0.99, 1.01);
+    transform: scale(0.99, 1.01);
+  }
+  47% {
+    -webkit-transform: scale(0.99, 1.01);
+    -moz-transform: scale(0.99, 1.01);
+    -ms-transform: scale(0.99, 1.01);
+    transform: scale(0.99, 1.01);
+  }
+  48% {
+    -webkit-transform: scale(0.99, 1.01);
+    -moz-transform: scale(0.99, 1.01);
+    -ms-transform: scale(0.99, 1.01);
+    transform: scale(0.99, 1.01);
+  }
+  49% {
+    -webkit-transform: scale(1, 1);
+    -moz-transform: scale(1, 1);
+    -ms-transform: scale(1, 1);
+    transform: scale(1, 1);
+  }
+}
+@-webkit-keyframes btnGroups {
+  0% {
+    -webkit-transform: scale(1.2, 0.8);
+    -moz-transform: scale(1.2, 0.8);
+    -ms-transform: scale(1.2, 0.8);
+    transform: scale(1.2, 0.8);
+  }
+  1% {
+    -webkit-transform: scale(1.18, 0.82);
+    -moz-transform: scale(1.18, 0.82);
+    -ms-transform: scale(1.18, 0.82);
+    transform: scale(1.18, 0.82);
+  }
+  2% {
+    -webkit-transform: scale(1.16, 0.84);
+    -moz-transform: scale(1.16, 0.84);
+    -ms-transform: scale(1.16, 0.84);
+    transform: scale(1.16, 0.84);
+  }
+  3% {
+    -webkit-transform: scale(1.13, 0.87);
+    -moz-transform: scale(1.13, 0.87);
+    -ms-transform: scale(1.13, 0.87);
+    transform: scale(1.13, 0.87);
+  }
+  4% {
+    -webkit-transform: scale(1.1, 0.9);
+    -moz-transform: scale(1.1, 0.9);
+    -ms-transform: scale(1.1, 0.9);
+    transform: scale(1.1, 0.9);
+  }
+  5% {
+    -webkit-transform: scale(1.07, 0.93);
+    -moz-transform: scale(1.07, 0.93);
+    -ms-transform: scale(1.07, 0.93);
+    transform: scale(1.07, 0.93);
+  }
+  6% {
+    -webkit-transform: scale(1.04, 0.96);
+    -moz-transform: scale(1.04, 0.96);
+    -ms-transform: scale(1.04, 0.96);
+    transform: scale(1.04, 0.96);
+  }
+  7% {
+    -webkit-transform: scale(1.01, 0.99);
+    -moz-transform: scale(1.01, 0.99);
+    -ms-transform: scale(1.01, 0.99);
+    transform: scale(1.01, 0.99);
+  }
+  8% {
+    -webkit-transform: scale(0.99, 1.01);
+    -moz-transform: scale(0.99, 1.01);
+    -ms-transform: scale(0.99, 1.01);
+    transform: scale(0.99, 1.01);
+  }
+  9% {
+    -webkit-transform: scale(0.97, 1.03);
+    -moz-transform: scale(0.97, 1.03);
+    -ms-transform: scale(0.97, 1.03);
+    transform: scale(0.97, 1.03);
+  }
+  10% {
+    -webkit-transform: scale(0.95, 1.05);
+    -moz-transform: scale(0.95, 1.05);
+    -ms-transform: scale(0.95, 1.05);
+    transform: scale(0.95, 1.05);
+  }
+  11% {
+    -webkit-transform: scale(0.94, 1.06);
+    -moz-transform: scale(0.94, 1.06);
+    -ms-transform: scale(0.94, 1.06);
+    transform: scale(0.94, 1.06);
+  }
+  12% {
+    -webkit-transform: scale(0.93, 1.07);
+    -moz-transform: scale(0.93, 1.07);
+    -ms-transform: scale(0.93, 1.07);
+    transform: scale(0.93, 1.07);
+  }
+  13% {
+    -webkit-transform: scale(0.93, 1.07);
+    -moz-transform: scale(0.93, 1.07);
+    -ms-transform: scale(0.93, 1.07);
+    transform: scale(0.93, 1.07);
+  }
+  14% {
+    -webkit-transform: scale(0.93, 1.07);
+    -moz-transform: scale(0.93, 1.07);
+    -ms-transform: scale(0.93, 1.07);
+    transform: scale(0.93, 1.07);
+  }
+  15% {
+    -webkit-transform: scale(0.93, 1.07);
+    -moz-transform: scale(0.93, 1.07);
+    -ms-transform: scale(0.93, 1.07);
+    transform: scale(0.93, 1.07);
+  }
+  16% {
+    -webkit-transform: scale(0.94, 1.06);
+    -moz-transform: scale(0.94, 1.06);
+    -ms-transform: scale(0.94, 1.06);
+    transform: scale(0.94, 1.06);
+  }
+  17% {
+    -webkit-transform: scale(0.94, 1.06);
+    -moz-transform: scale(0.94, 1.06);
+    -ms-transform: scale(0.94, 1.06);
+    transform: scale(0.94, 1.06);
+  }
+  18% {
+    -webkit-transform: scale(0.95, 1.05);
+    -moz-transform: scale(0.95, 1.05);
+    -ms-transform: scale(0.95, 1.05);
+    transform: scale(0.95, 1.05);
+  }
+  19% {
+    -webkit-transform: scale(0.96, 1.04);
+    -moz-transform: scale(0.96, 1.04);
+    -ms-transform: scale(0.96, 1.04);
+    transform: scale(0.96, 1.04);
+  }
+  20% {
+    -webkit-transform: scale(0.98, 1.02);
+    -moz-transform: scale(0.98, 1.02);
+    -ms-transform: scale(0.98, 1.02);
+    transform: scale(0.98, 1.02);
+  }
+  21% {
+    -webkit-transform: scale(0.99, 1.01);
+    -moz-transform: scale(0.99, 1.01);
+    -ms-transform: scale(0.99, 1.01);
+    transform: scale(0.99, 1.01);
+  }
+  22% {
+    -webkit-transform: scale(1, 1);
+    -moz-transform: scale(1, 1);
+    -ms-transform: scale(1, 1);
+    transform: scale(1, 1);
+  }
+  23% {
+    -webkit-transform: scale(1, 1);
+    -moz-transform: scale(1, 1);
+    -ms-transform: scale(1, 1);
+    transform: scale(1, 1);
+  }
+  24% {
+    -webkit-transform: scale(1.01, 0.99);
+    -moz-transform: scale(1.01, 0.99);
+    -ms-transform: scale(1.01, 0.99);
+    transform: scale(1.01, 0.99);
+  }
+  25% {
+    -webkit-transform: scale(1.02, 0.98);
+    -moz-transform: scale(1.02, 0.98);
+    -ms-transform: scale(1.02, 0.98);
+    transform: scale(1.02, 0.98);
+  }
+  26% {
+    -webkit-transform: scale(1.02, 0.98);
+    -moz-transform: scale(1.02, 0.98);
+    -ms-transform: scale(1.02, 0.98);
+    transform: scale(1.02, 0.98);
+  }
+  27% {
+    -webkit-transform: scale(1.02, 0.98);
+    -moz-transform: scale(1.02, 0.98);
+    -ms-transform: scale(1.02, 0.98);
+    transform: scale(1.02, 0.98);
+  }
+  28% {
+    -webkit-transform: scale(1.03, 0.97);
+    -moz-transform: scale(1.03, 0.97);
+    -ms-transform: scale(1.03, 0.97);
+    transform: scale(1.03, 0.97);
+  }
+  29% {
+    -webkit-transform: scale(1.03, 0.97);
+    -moz-transform: scale(1.03, 0.97);
+    -ms-transform: scale(1.03, 0.97);
+    transform: scale(1.03, 0.97);
+  }
+  30% {
+    -webkit-transform: scale(1.02, 0.98);
+    -moz-transform: scale(1.02, 0.98);
+    -ms-transform: scale(1.02, 0.98);
+    transform: scale(1.02, 0.98);
+  }
+  31% {
+    -webkit-transform: scale(1.02, 0.98);
+    -moz-transform: scale(1.02, 0.98);
+    -ms-transform: scale(1.02, 0.98);
+    transform: scale(1.02, 0.98);
+  }
+  32% {
+    -webkit-transform: scale(1.02, 0.98);
+    -moz-transform: scale(1.02, 0.98);
+    -ms-transform: scale(1.02, 0.98);
+    transform: scale(1.02, 0.98);
+  }
+  33% {
+    -webkit-transform: scale(1.02, 0.98);
+    -moz-transform: scale(1.02, 0.98);
+    -ms-transform: scale(1.02, 0.98);
+    transform: scale(1.02, 0.98);
+  }
+  34% {
+    -webkit-transform: scale(1.01, 0.99);
+    -moz-transform: scale(1.01, 0.99);
+    -ms-transform: scale(1.01, 0.99);
+    transform: scale(1.01, 0.99);
+  }
+  35% {
+    -webkit-transform: scale(1.01, 0.99);
+    -moz-transform: scale(1.01, 0.99);
+    -ms-transform: scale(1.01, 0.99);
+    transform: scale(1.01, 0.99);
+  }
+  36% {
+    -webkit-transform: scale(1.01, 0.99);
+    -moz-transform: scale(1.01, 0.99);
+    -ms-transform: scale(1.01, 0.99);
+    transform: scale(1.01, 0.99);
+  }
+  37% {
+    -webkit-transform: scale(1, 1);
+    -moz-transform: scale(1, 1);
+    -ms-transform: scale(1, 1);
+    transform: scale(1, 1);
+  }
+  38% {
+    -webkit-transform: scale(1, 1);
+    -moz-transform: scale(1, 1);
+    -ms-transform: scale(1, 1);
+    transform: scale(1, 1);
+  }
+  39% {
+    -webkit-transform: scale(1, 1);
+    -moz-transform: scale(1, 1);
+    -ms-transform: scale(1, 1);
+    transform: scale(1, 1);
+  }
+  40% {
+    -webkit-transform: scale(0.99, 1.01);
+    -moz-transform: scale(0.99, 1.01);
+    -ms-transform: scale(0.99, 1.01);
+    transform: scale(0.99, 1.01);
+  }
+  41% {
+    -webkit-transform: scale(0.99, 1.01);
+    -moz-transform: scale(0.99, 1.01);
+    -ms-transform: scale(0.99, 1.01);
+    transform: scale(0.99, 1.01);
+  }
+  42% {
+    -webkit-transform: scale(0.99, 1.01);
+    -moz-transform: scale(0.99, 1.01);
+    -ms-transform: scale(0.99, 1.01);
+    transform: scale(0.99, 1.01);
+  }
+  43% {
+    -webkit-transform: scale(0.99, 1.01);
+    -moz-transform: scale(0.99, 1.01);
+    -ms-transform: scale(0.99, 1.01);
+    transform: scale(0.99, 1.01);
+  }
+  44% {
+    -webkit-transform: scale(0.99, 1.01);
+    -moz-transform: scale(0.99, 1.01);
+    -ms-transform: scale(0.99, 1.01);
+    transform: scale(0.99, 1.01);
+  }
+  45% {
+    -webkit-transform: scale(0.99, 1.01);
+    -moz-transform: scale(0.99, 1.01);
+    -ms-transform: scale(0.99, 1.01);
+    transform: scale(0.99, 1.01);
+  }
+  46% {
+    -webkit-transform: scale(0.99, 1.01);
+    -moz-transform: scale(0.99, 1.01);
+    -ms-transform: scale(0.99, 1.01);
+    transform: scale(0.99, 1.01);
+  }
+  47% {
+    -webkit-transform: scale(0.99, 1.01);
+    -moz-transform: scale(0.99, 1.01);
+    -ms-transform: scale(0.99, 1.01);
+    transform: scale(0.99, 1.01);
+  }
+  48% {
+    -webkit-transform: scale(0.99, 1.01);
+    -moz-transform: scale(0.99, 1.01);
+    -ms-transform: scale(0.99, 1.01);
+    transform: scale(0.99, 1.01);
+  }
+  49% {
+    -webkit-transform: scale(1, 1);
+    -moz-transform: scale(1, 1);
+    -ms-transform: scale(1, 1);
+    transform: scale(1, 1);
+  }
+}
+@-o-keyframes btnGroups {
+  0% {
+    -webkit-transform: scale(1.2, 0.8);
+    -moz-transform: scale(1.2, 0.8);
+    -ms-transform: scale(1.2, 0.8);
+    transform: scale(1.2, 0.8);
+  }
+  1% {
+    -webkit-transform: scale(1.18, 0.82);
+    -moz-transform: scale(1.18, 0.82);
+    -ms-transform: scale(1.18, 0.82);
+    transform: scale(1.18, 0.82);
+  }
+  2% {
+    -webkit-transform: scale(1.16, 0.84);
+    -moz-transform: scale(1.16, 0.84);
+    -ms-transform: scale(1.16, 0.84);
+    transform: scale(1.16, 0.84);
+  }
+  3% {
+    -webkit-transform: scale(1.13, 0.87);
+    -moz-transform: scale(1.13, 0.87);
+    -ms-transform: scale(1.13, 0.87);
+    transform: scale(1.13, 0.87);
+  }
+  4% {
+    -webkit-transform: scale(1.1, 0.9);
+    -moz-transform: scale(1.1, 0.9);
+    -ms-transform: scale(1.1, 0.9);
+    transform: scale(1.1, 0.9);
+  }
+  5% {
+    -webkit-transform: scale(1.07, 0.93);
+    -moz-transform: scale(1.07, 0.93);
+    -ms-transform: scale(1.07, 0.93);
+    transform: scale(1.07, 0.93);
+  }
+  6% {
+    -webkit-transform: scale(1.04, 0.96);
+    -moz-transform: scale(1.04, 0.96);
+    -ms-transform: scale(1.04, 0.96);
+    transform: scale(1.04, 0.96);
+  }
+  7% {
+    -webkit-transform: scale(1.01, 0.99);
+    -moz-transform: scale(1.01, 0.99);
+    -ms-transform: scale(1.01, 0.99);
+    transform: scale(1.01, 0.99);
+  }
+  8% {
+    -webkit-transform: scale(0.99, 1.01);
+    -moz-transform: scale(0.99, 1.01);
+    -ms-transform: scale(0.99, 1.01);
+    transform: scale(0.99, 1.01);
+  }
+  9% {
+    -webkit-transform: scale(0.97, 1.03);
+    -moz-transform: scale(0.97, 1.03);
+    -ms-transform: scale(0.97, 1.03);
+    transform: scale(0.97, 1.03);
+  }
+  10% {
+    -webkit-transform: scale(0.95, 1.05);
+    -moz-transform: scale(0.95, 1.05);
+    -ms-transform: scale(0.95, 1.05);
+    transform: scale(0.95, 1.05);
+  }
+  11% {
+    -webkit-transform: scale(0.94, 1.06);
+    -moz-transform: scale(0.94, 1.06);
+    -ms-transform: scale(0.94, 1.06);
+    transform: scale(0.94, 1.06);
+  }
+  12% {
+    -webkit-transform: scale(0.93, 1.07);
+    -moz-transform: scale(0.93, 1.07);
+    -ms-transform: scale(0.93, 1.07);
+    transform: scale(0.93, 1.07);
+  }
+  13% {
+    -webkit-transform: scale(0.93, 1.07);
+    -moz-transform: scale(0.93, 1.07);
+    -ms-transform: scale(0.93, 1.07);
+    transform: scale(0.93, 1.07);
+  }
+  14% {
+    -webkit-transform: scale(0.93, 1.07);
+    -moz-transform: scale(0.93, 1.07);
+    -ms-transform: scale(0.93, 1.07);
+    transform: scale(0.93, 1.07);
+  }
+  15% {
+    -webkit-transform: scale(0.93, 1.07);
+    -moz-transform: scale(0.93, 1.07);
+    -ms-transform: scale(0.93, 1.07);
+    transform: scale(0.93, 1.07);
+  }
+  16% {
+    -webkit-transform: scale(0.94, 1.06);
+    -moz-transform: scale(0.94, 1.06);
+    -ms-transform: scale(0.94, 1.06);
+    transform: scale(0.94, 1.06);
+  }
+  17% {
+    -webkit-transform: scale(0.94, 1.06);
+    -moz-transform: scale(0.94, 1.06);
+    -ms-transform: scale(0.94, 1.06);
+    transform: scale(0.94, 1.06);
+  }
+  18% {
+    -webkit-transform: scale(0.95, 1.05);
+    -moz-transform: scale(0.95, 1.05);
+    -ms-transform: scale(0.95, 1.05);
+    transform: scale(0.95, 1.05);
+  }
+  19% {
+    -webkit-transform: scale(0.96, 1.04);
+    -moz-transform: scale(0.96, 1.04);
+    -ms-transform: scale(0.96, 1.04);
+    transform: scale(0.96, 1.04);
+  }
+  20% {
+    -webkit-transform: scale(0.98, 1.02);
+    -moz-transform: scale(0.98, 1.02);
+    -ms-transform: scale(0.98, 1.02);
+    transform: scale(0.98, 1.02);
+  }
+  21% {
+    -webkit-transform: scale(0.99, 1.01);
+    -moz-transform: scale(0.99, 1.01);
+    -ms-transform: scale(0.99, 1.01);
+    transform: scale(0.99, 1.01);
+  }
+  22% {
+    -webkit-transform: scale(1, 1);
+    -moz-transform: scale(1, 1);
+    -ms-transform: scale(1, 1);
+    transform: scale(1, 1);
+  }
+  23% {
+    -webkit-transform: scale(1, 1);
+    -moz-transform: scale(1, 1);
+    -ms-transform: scale(1, 1);
+    transform: scale(1, 1);
+  }
+  24% {
+    -webkit-transform: scale(1.01, 0.99);
+    -moz-transform: scale(1.01, 0.99);
+    -ms-transform: scale(1.01, 0.99);
+    transform: scale(1.01, 0.99);
+  }
+  25% {
+    -webkit-transform: scale(1.02, 0.98);
+    -moz-transform: scale(1.02, 0.98);
+    -ms-transform: scale(1.02, 0.98);
+    transform: scale(1.02, 0.98);
+  }
+  26% {
+    -webkit-transform: scale(1.02, 0.98);
+    -moz-transform: scale(1.02, 0.98);
+    -ms-transform: scale(1.02, 0.98);
+    transform: scale(1.02, 0.98);
+  }
+  27% {
+    -webkit-transform: scale(1.02, 0.98);
+    -moz-transform: scale(1.02, 0.98);
+    -ms-transform: scale(1.02, 0.98);
+    transform: scale(1.02, 0.98);
+  }
+  28% {
+    -webkit-transform: scale(1.03, 0.97);
+    -moz-transform: scale(1.03, 0.97);
+    -ms-transform: scale(1.03, 0.97);
+    transform: scale(1.03, 0.97);
+  }
+  29% {
+    -webkit-transform: scale(1.03, 0.97);
+    -moz-transform: scale(1.03, 0.97);
+    -ms-transform: scale(1.03, 0.97);
+    transform: scale(1.03, 0.97);
+  }
+  30% {
+    -webkit-transform: scale(1.02, 0.98);
+    -moz-transform: scale(1.02, 0.98);
+    -ms-transform: scale(1.02, 0.98);
+    transform: scale(1.02, 0.98);
+  }
+  31% {
+    -webkit-transform: scale(1.02, 0.98);
+    -moz-transform: scale(1.02, 0.98);
+    -ms-transform: scale(1.02, 0.98);
+    transform: scale(1.02, 0.98);
+  }
+  32% {
+    -webkit-transform: scale(1.02, 0.98);
+    -moz-transform: scale(1.02, 0.98);
+    -ms-transform: scale(1.02, 0.98);
+    transform: scale(1.02, 0.98);
+  }
+  33% {
+    -webkit-transform: scale(1.02, 0.98);
+    -moz-transform: scale(1.02, 0.98);
+    -ms-transform: scale(1.02, 0.98);
+    transform: scale(1.02, 0.98);
+  }
+  34% {
+    -webkit-transform: scale(1.01, 0.99);
+    -moz-transform: scale(1.01, 0.99);
+    -ms-transform: scale(1.01, 0.99);
+    transform: scale(1.01, 0.99);
+  }
+  35% {
+    -webkit-transform: scale(1.01, 0.99);
+    -moz-transform: scale(1.01, 0.99);
+    -ms-transform: scale(1.01, 0.99);
+    transform: scale(1.01, 0.99);
+  }
+  36% {
+    -webkit-transform: scale(1.01, 0.99);
+    -moz-transform: scale(1.01, 0.99);
+    -ms-transform: scale(1.01, 0.99);
+    transform: scale(1.01, 0.99);
+  }
+  37% {
+    -webkit-transform: scale(1, 1);
+    -moz-transform: scale(1, 1);
+    -ms-transform: scale(1, 1);
+    transform: scale(1, 1);
+  }
+  38% {
+    -webkit-transform: scale(1, 1);
+    -moz-transform: scale(1, 1);
+    -ms-transform: scale(1, 1);
+    transform: scale(1, 1);
+  }
+  39% {
+    -webkit-transform: scale(1, 1);
+    -moz-transform: scale(1, 1);
+    -ms-transform: scale(1, 1);
+    transform: scale(1, 1);
+  }
+  40% {
+    -webkit-transform: scale(0.99, 1.01);
+    -moz-transform: scale(0.99, 1.01);
+    -ms-transform: scale(0.99, 1.01);
+    transform: scale(0.99, 1.01);
+  }
+  41% {
+    -webkit-transform: scale(0.99, 1.01);
+    -moz-transform: scale(0.99, 1.01);
+    -ms-transform: scale(0.99, 1.01);
+    transform: scale(0.99, 1.01);
+  }
+  42% {
+    -webkit-transform: scale(0.99, 1.01);
+    -moz-transform: scale(0.99, 1.01);
+    -ms-transform: scale(0.99, 1.01);
+    transform: scale(0.99, 1.01);
+  }
+  43% {
+    -webkit-transform: scale(0.99, 1.01);
+    -moz-transform: scale(0.99, 1.01);
+    -ms-transform: scale(0.99, 1.01);
+    transform: scale(0.99, 1.01);
+  }
+  44% {
+    -webkit-transform: scale(0.99, 1.01);
+    -moz-transform: scale(0.99, 1.01);
+    -ms-transform: scale(0.99, 1.01);
+    transform: scale(0.99, 1.01);
+  }
+  45% {
+    -webkit-transform: scale(0.99, 1.01);
+    -moz-transform: scale(0.99, 1.01);
+    -ms-transform: scale(0.99, 1.01);
+    transform: scale(0.99, 1.01);
+  }
+  46% {
+    -webkit-transform: scale(0.99, 1.01);
+    -moz-transform: scale(0.99, 1.01);
+    -ms-transform: scale(0.99, 1.01);
+    transform: scale(0.99, 1.01);
+  }
+  47% {
+    -webkit-transform: scale(0.99, 1.01);
+    -moz-transform: scale(0.99, 1.01);
+    -ms-transform: scale(0.99, 1.01);
+    transform: scale(0.99, 1.01);
+  }
+  48% {
+    -webkit-transform: scale(0.99, 1.01);
+    -moz-transform: scale(0.99, 1.01);
+    -ms-transform: scale(0.99, 1.01);
+    transform: scale(0.99, 1.01);
+  }
+  49% {
+    -webkit-transform: scale(1, 1);
+    -moz-transform: scale(1, 1);
+    -ms-transform: scale(1, 1);
+    transform: scale(1, 1);
+  }
+}
+@keyframes btnGroups {
+  0% {
+    -webkit-transform: scale(1.2, 0.8);
+    -moz-transform: scale(1.2, 0.8);
+    -ms-transform: scale(1.2, 0.8);
+    transform: scale(1.2, 0.8);
+  }
+  1% {
+    -webkit-transform: scale(1.18, 0.82);
+    -moz-transform: scale(1.18, 0.82);
+    -ms-transform: scale(1.18, 0.82);
+    transform: scale(1.18, 0.82);
+  }
+  2% {
+    -webkit-transform: scale(1.16, 0.84);
+    -moz-transform: scale(1.16, 0.84);
+    -ms-transform: scale(1.16, 0.84);
+    transform: scale(1.16, 0.84);
+  }
+  3% {
+    -webkit-transform: scale(1.13, 0.87);
+    -moz-transform: scale(1.13, 0.87);
+    -ms-transform: scale(1.13, 0.87);
+    transform: scale(1.13, 0.87);
+  }
+  4% {
+    -webkit-transform: scale(1.1, 0.9);
+    -moz-transform: scale(1.1, 0.9);
+    -ms-transform: scale(1.1, 0.9);
+    transform: scale(1.1, 0.9);
+  }
+  5% {
+    -webkit-transform: scale(1.07, 0.93);
+    -moz-transform: scale(1.07, 0.93);
+    -ms-transform: scale(1.07, 0.93);
+    transform: scale(1.07, 0.93);
+  }
+  6% {
+    -webkit-transform: scale(1.04, 0.96);
+    -moz-transform: scale(1.04, 0.96);
+    -ms-transform: scale(1.04, 0.96);
+    transform: scale(1.04, 0.96);
+  }
+  7% {
+    -webkit-transform: scale(1.01, 0.99);
+    -moz-transform: scale(1.01, 0.99);
+    -ms-transform: scale(1.01, 0.99);
+    transform: scale(1.01, 0.99);
+  }
+  8% {
+    -webkit-transform: scale(0.99, 1.01);
+    -moz-transform: scale(0.99, 1.01);
+    -ms-transform: scale(0.99, 1.01);
+    transform: scale(0.99, 1.01);
+  }
+  9% {
+    -webkit-transform: scale(0.97, 1.03);
+    -moz-transform: scale(0.97, 1.03);
+    -ms-transform: scale(0.97, 1.03);
+    transform: scale(0.97, 1.03);
+  }
+  10% {
+    -webkit-transform: scale(0.95, 1.05);
+    -moz-transform: scale(0.95, 1.05);
+    -ms-transform: scale(0.95, 1.05);
+    transform: scale(0.95, 1.05);
+  }
+  11% {
+    -webkit-transform: scale(0.94, 1.06);
+    -moz-transform: scale(0.94, 1.06);
+    -ms-transform: scale(0.94, 1.06);
+    transform: scale(0.94, 1.06);
+  }
+  12% {
+    -webkit-transform: scale(0.93, 1.07);
+    -moz-transform: scale(0.93, 1.07);
+    -ms-transform: scale(0.93, 1.07);
+    transform: scale(0.93, 1.07);
+  }
+  13% {
+    -webkit-transform: scale(0.93, 1.07);
+    -moz-transform: scale(0.93, 1.07);
+    -ms-transform: scale(0.93, 1.07);
+    transform: scale(0.93, 1.07);
+  }
+  14% {
+    -webkit-transform: scale(0.93, 1.07);
+    -moz-transform: scale(0.93, 1.07);
+    -ms-transform: scale(0.93, 1.07);
+    transform: scale(0.93, 1.07);
+  }
+  15% {
+    -webkit-transform: scale(0.93, 1.07);
+    -moz-transform: scale(0.93, 1.07);
+    -ms-transform: scale(0.93, 1.07);
+    transform: scale(0.93, 1.07);
+  }
+  16% {
+    -webkit-transform: scale(0.94, 1.06);
+    -moz-transform: scale(0.94, 1.06);
+    -ms-transform: scale(0.94, 1.06);
+    transform: scale(0.94, 1.06);
+  }
+  17% {
+    -webkit-transform: scale(0.94, 1.06);
+    -moz-transform: scale(0.94, 1.06);
+    -ms-transform: scale(0.94, 1.06);
+    transform: scale(0.94, 1.06);
+  }
+  18% {
+    -webkit-transform: scale(0.95, 1.05);
+    -moz-transform: scale(0.95, 1.05);
+    -ms-transform: scale(0.95, 1.05);
+    transform: scale(0.95, 1.05);
+  }
+  19% {
+    -webkit-transform: scale(0.96, 1.04);
+    -moz-transform: scale(0.96, 1.04);
+    -ms-transform: scale(0.96, 1.04);
+    transform: scale(0.96, 1.04);
+  }
+  20% {
+    -webkit-transform: scale(0.98, 1.02);
+    -moz-transform: scale(0.98, 1.02);
+    -ms-transform: scale(0.98, 1.02);
+    transform: scale(0.98, 1.02);
+  }
+  21% {
+    -webkit-transform: scale(0.99, 1.01);
+    -moz-transform: scale(0.99, 1.01);
+    -ms-transform: scale(0.99, 1.01);
+    transform: scale(0.99, 1.01);
+  }
+  22% {
+    -webkit-transform: scale(1, 1);
+    -moz-transform: scale(1, 1);
+    -ms-transform: scale(1, 1);
+    transform: scale(1, 1);
+  }
+  23% {
+    -webkit-transform: scale(1, 1);
+    -moz-transform: scale(1, 1);
+    -ms-transform: scale(1, 1);
+    transform: scale(1, 1);
+  }
+  24% {
+    -webkit-transform: scale(1.01, 0.99);
+    -moz-transform: scale(1.01, 0.99);
+    -ms-transform: scale(1.01, 0.99);
+    transform: scale(1.01, 0.99);
+  }
+  25% {
+    -webkit-transform: scale(1.02, 0.98);
+    -moz-transform: scale(1.02, 0.98);
+    -ms-transform: scale(1.02, 0.98);
+    transform: scale(1.02, 0.98);
+  }
+  26% {
+    -webkit-transform: scale(1.02, 0.98);
+    -moz-transform: scale(1.02, 0.98);
+    -ms-transform: scale(1.02, 0.98);
+    transform: scale(1.02, 0.98);
+  }
+  27% {
+    -webkit-transform: scale(1.02, 0.98);
+    -moz-transform: scale(1.02, 0.98);
+    -ms-transform: scale(1.02, 0.98);
+    transform: scale(1.02, 0.98);
+  }
+  28% {
+    -webkit-transform: scale(1.03, 0.97);
+    -moz-transform: scale(1.03, 0.97);
+    -ms-transform: scale(1.03, 0.97);
+    transform: scale(1.03, 0.97);
+  }
+  29% {
+    -webkit-transform: scale(1.03, 0.97);
+    -moz-transform: scale(1.03, 0.97);
+    -ms-transform: scale(1.03, 0.97);
+    transform: scale(1.03, 0.97);
+  }
+  30% {
+    -webkit-transform: scale(1.02, 0.98);
+    -moz-transform: scale(1.02, 0.98);
+    -ms-transform: scale(1.02, 0.98);
+    transform: scale(1.02, 0.98);
+  }
+  31% {
+    -webkit-transform: scale(1.02, 0.98);
+    -moz-transform: scale(1.02, 0.98);
+    -ms-transform: scale(1.02, 0.98);
+    transform: scale(1.02, 0.98);
+  }
+  32% {
+    -webkit-transform: scale(1.02, 0.98);
+    -moz-transform: scale(1.02, 0.98);
+    -ms-transform: scale(1.02, 0.98);
+    transform: scale(1.02, 0.98);
+  }
+  33% {
+    -webkit-transform: scale(1.02, 0.98);
+    -moz-transform: scale(1.02, 0.98);
+    -ms-transform: scale(1.02, 0.98);
+    transform: scale(1.02, 0.98);
+  }
+  34% {
+    -webkit-transform: scale(1.01, 0.99);
+    -moz-transform: scale(1.01, 0.99);
+    -ms-transform: scale(1.01, 0.99);
+    transform: scale(1.01, 0.99);
+  }
+  35% {
+    -webkit-transform: scale(1.01, 0.99);
+    -moz-transform: scale(1.01, 0.99);
+    -ms-transform: scale(1.01, 0.99);
+    transform: scale(1.01, 0.99);
+  }
+  36% {
+    -webkit-transform: scale(1.01, 0.99);
+    -moz-transform: scale(1.01, 0.99);
+    -ms-transform: scale(1.01, 0.99);
+    transform: scale(1.01, 0.99);
+  }
+  37% {
+    -webkit-transform: scale(1, 1);
+    -moz-transform: scale(1, 1);
+    -ms-transform: scale(1, 1);
+    transform: scale(1, 1);
+  }
+  38% {
+    -webkit-transform: scale(1, 1);
+    -moz-transform: scale(1, 1);
+    -ms-transform: scale(1, 1);
+    transform: scale(1, 1);
+  }
+  39% {
+    -webkit-transform: scale(1, 1);
+    -moz-transform: scale(1, 1);
+    -ms-transform: scale(1, 1);
+    transform: scale(1, 1);
+  }
+  40% {
+    -webkit-transform: scale(0.99, 1.01);
+    -moz-transform: scale(0.99, 1.01);
+    -ms-transform: scale(0.99, 1.01);
+    transform: scale(0.99, 1.01);
+  }
+  41% {
+    -webkit-transform: scale(0.99, 1.01);
+    -moz-transform: scale(0.99, 1.01);
+    -ms-transform: scale(0.99, 1.01);
+    transform: scale(0.99, 1.01);
+  }
+  42% {
+    -webkit-transform: scale(0.99, 1.01);
+    -moz-transform: scale(0.99, 1.01);
+    -ms-transform: scale(0.99, 1.01);
+    transform: scale(0.99, 1.01);
+  }
+  43% {
+    -webkit-transform: scale(0.99, 1.01);
+    -moz-transform: scale(0.99, 1.01);
+    -ms-transform: scale(0.99, 1.01);
+    transform: scale(0.99, 1.01);
+  }
+  44% {
+    -webkit-transform: scale(0.99, 1.01);
+    -moz-transform: scale(0.99, 1.01);
+    -ms-transform: scale(0.99, 1.01);
+    transform: scale(0.99, 1.01);
+  }
+  45% {
+    -webkit-transform: scale(0.99, 1.01);
+    -moz-transform: scale(0.99, 1.01);
+    -ms-transform: scale(0.99, 1.01);
+    transform: scale(0.99, 1.01);
+  }
+  46% {
+    -webkit-transform: scale(0.99, 1.01);
+    -moz-transform: scale(0.99, 1.01);
+    -ms-transform: scale(0.99, 1.01);
+    transform: scale(0.99, 1.01);
+  }
+  47% {
+    -webkit-transform: scale(0.99, 1.01);
+    -moz-transform: scale(0.99, 1.01);
+    -ms-transform: scale(0.99, 1.01);
+    transform: scale(0.99, 1.01);
+  }
+  48% {
+    -webkit-transform: scale(0.99, 1.01);
+    -moz-transform: scale(0.99, 1.01);
+    -ms-transform: scale(0.99, 1.01);
+    transform: scale(0.99, 1.01);
+  }
+  49% {
+    -webkit-transform: scale(1, 1);
+    -moz-transform: scale(1, 1);
+    -ms-transform: scale(1, 1);
+    transform: scale(1, 1);
+  }
+}
+	</style>	  
+	<div class="intrude-less">
+		<header id="header" class="inner">
+			<div class="profilepic">
+				<img src="https://tawen.github.io/img/photo.jpg" class="js-avatar">
+			</div>
+			<hgroup>
+			  <h1 class="header-author">影子爱乘凉</h1>
+			</hgroup>
+			
+			<p class="header-subtitle">路走了28年，方向始终不变。</p>
+			
+			<nav class="header-menu">
+				<ul>
+				
+					<li><a href="/">首页</a></li>
+		        
+					<li><a href="/archives">存档</a></li>
+		        
+					<li><a href="/about">关于</a></li>
+		        
+		        
+		        	<li><a href="/archives/">所有文章</a></li>
+		        
+				</ul>
+			</nav>
+			<nav class="header-nav">
+				<div class="social">
+					
+						<a class="github" target="_blank" href="https://github.com/tawen" title="github"><i class="icon-github"></i></a>
+			        
+						<a class="weibo" target="_blank" href="http://weibo.com/3168014535/profile?topnav=1&wvr=6&is_all=1" title="weibo"><i class="icon-weibo"></i></a>
+			        
+						<a class="rss" target="_blank" href="/atom.xml" title="rss"><i class="icon-rss"></i></a>
+			        
+						<a class="zhihu" target="_blank" href="https://www.zhihu.com/people/liu-zhen-hua-74-57" title="zhihu"><i class="icon-zhihu"></i></a>
+			        
+				</div>
+			</nav>
+		</header>				
+	</div>
+</nav>
+
+      <div id="wrapper" class="body-wrap">
+        <div class="menu-l">
+          <div class="canvas-wrap">
+            <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
+          </div>
+          <div id="js-content" class="content-ll">
+            
+  
+    <article id="post-blog20171229" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2017/12/29/blog20171229/">yarn与npm的命令行小结</a>
+    </h1>
+  
+
+        <a href="/2017/12/29/blog20171229/" class="archive-article-date">
+  	<time datetime="2017-12-29T01:44:05.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-12-29</time>
+</a>
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h2 id="一、首先需要了解的命令"><a href="#一、首先需要了解的命令" class="headerlink" title="一、首先需要了解的命令"></a>一、首先需要了解的命令</h2><pre><code>npm install === yarn —— install 安装是默认行为。
+npm install taco --save === yarn add taco —— taco 包立即被保存到 package.json 中。
+npm uninstall taco --save === yarn remove taco
+</code></pre><p>在 npm 中，可以使用 npm config set save true 设置 — -save 为默认行为，但这对多数开发者而言并非显而易见的。在 yarn 中，在package.json 中添加（add）和移除（remove）等行为是默认的。<br>     npm install taco –save-dev === yarn add taco –dev<br>     npm update –save === yarn upgrade<br>update（更新） vs upgrade（升级）， 赞！upgrade 才是实际做的事！版本号提升时，发生的正是upgrade！</p>
+<p>注意： npm update –save 在版本 3.11 中似乎有点问题。<br>     npm install taco@latest –save === yarn add taco<br>     npm install taco –global === yarn global add taco —— 一如既往，请谨慎使用 global 标记。</p>
+<h2 id="二、已知悉的命令"><a href="#二、已知悉的命令" class="headerlink" title="二、已知悉的命令"></a>二、已知悉的命令</h2><p>包和 npm registry 上是一样的。大致而言，Yarn 只是一个新的安装工具，npm 结构和 registry 还是一样的。<br>     npm init === yarn init<br>     npm link === yarn link<br>     npm outdated === yarn outdated<br>     npm publish === yarn publish<br>     npm run === yarn run<br>     npm cache clean === yarn cache clean<br>     npm login === yarn login (logout 同理)<br>     npm test === yarn test</p>
+<h2 id="三、Yarn-独有的命令"><a href="#三、Yarn-独有的命令" class="headerlink" title="三、Yarn 独有的命令"></a>三、Yarn 独有的命令</h2><p>我跳过了一些提醒我们不要使用的内容，如 yarn clean。<br>     yarn licenses ls —— 允许你检查依赖的许可信息。<br>     yarn licenses generate —— 自动创建依赖免责声明 license。<br>     yarn why taco —— 检查为什么会安装 taco，详细列出依赖它的其他包（鸣谢 Olivier Combe）。<br>     Emojis<br>     速度<br>     通过 yarn lockfile 自动实现 shrinkwrap 功能<br>     以安全为中心的设计</p>
+<h2 id="四、Npm-独有的命令"><a href="#四、Npm-独有的命令" class="headerlink" title="四、Npm 独有的命令"></a>四、Npm 独有的命令</h2><pre><code>npm xmas === NO EQUIVALENT
+npm visnup === NO EQUIVALENT
+</code></pre><h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h2><p>在写这篇文章的时候发现， yarn的run 命令似乎出了点问题，应该会在0.15.2中修复。在这一点上， npm 好多了。以上就是这篇文章的全部内容了，希望本文的内容对大家的学习或者工作能带来一定的帮助，如果有疑问大家可以留言交流。</p>
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags"></i>
+		<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/yarn与npm的命令行小结/">yarn与npm的命令行小结</a></li></ul>
+	</div>
+
+      
+	<div class="article-category tagcloud">
+	<i class="icon-book icon"></i>
+	<a class="article-category-link" href="/categories/前端技术/">前端技术</a>
+	</div>
+
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2017/12/29/blog20171229/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+
+
+
+
+
+
+
+  
+    <article id="post-blog20171228" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2017/12/28/blog20171228/">第一行 Android 代码阅读笔记</a>
+    </h1>
+  
+
+        <a href="/2017/12/28/blog20171228/" class="archive-article-date">
+  	<time datetime="2017-12-28T01:44:05.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-12-28</time>
+</a>
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <blockquote>
+<p>第一行 Android 代码阅读笔记</p>
+</blockquote>
+<hr>
+<h2 id="四大组件"><a href="#四大组件" class="headerlink" title="四大组件"></a>四大组件</h2><p>Android系统四大组件分别是活动（Activity）、服务（Service）、广播接收器（Broadcast<br>Receiver）和内容提供器（ContentProvider）。其中活动是所有 Android 应用程序的门面，<br>凡是在应用中你看得到的东西，都是放在活动中的。而服务就比较低调了，你无法看到<br>它，但它会一直在后台默默地运行，即使用户退出了应用，服务仍然是可以继续运行的。<br>广播接收器可以允许你的应用接收来自各处的广播消息，比如电话、短信等，当然你的<br>应用同样也可以向外发出广播消息。内容提供器则为应用程序之间共享数据提供了可</p>
+<h2 id="能，比如你想要读取系统电话簿中的联系人，就需要通过内容提供器来实现。"><a href="#能，比如你想要读取系统电话簿中的联系人，就需要通过内容提供器来实现。" class="headerlink" title="能，比如你想要读取系统电话簿中的联系人，就需要通过内容提供器来实现。"></a>能，比如你想要读取系统电话簿中的联系人，就需要通过内容提供器来实现。</h2><h2 id="ADT-全称-Android-Development-Tools"><a href="#ADT-全称-Android-Development-Tools" class="headerlink" title="ADT 全称 Android Development Tools"></a>ADT 全称 Android Development Tools</h2><hr>
+<h2 id="知道了-res-目录下每个文件夹的含义，我们再来看一下如何去使用这些资源吧。比如刚刚在-strings-xml-中找到的-Hello-world-字符串，我们有两种方式可以引用它："><a href="#知道了-res-目录下每个文件夹的含义，我们再来看一下如何去使用这些资源吧。比如刚刚在-strings-xml-中找到的-Hello-world-字符串，我们有两种方式可以引用它：" class="headerlink" title="知道了 res 目录下每个文件夹的含义，我们再来看一下如何去使用这些资源吧。比如刚刚在 strings.xml 中找到的 Hello world!字符串，我们有两种方式可以引用它："></a>知道了 res 目录下每个文件夹的含义，我们再来看一下如何去使用这些资源吧。比如刚刚在 strings.xml 中找到的 Hello world!字符串，我们有两种方式可以引用它：</h2><ol>
+<li>在代码中通过 R.string.hello_world 可以获得该字符串的引用；</li>
+<li>在 XML 中通过@string/hello_world 可以获得该字符串的引用；</li>
+</ol>
+<hr>
+<p>你可能会对@+id/button_1 这种语法感到陌生，但如果把加号去掉，变成@id/button_1，这你就会觉得有<br>些熟悉了吧，这不就是在 XML 中引用资源的语法吗，只不过是把 string 替换成了 id。是的，<br>如果你需要在 XML 中引用一个 id，就使用@id/id_name 这种语法，而如果你需要在 XML 中<br>定义一个 id，则要使用@+id/id_name 这种语法。</p>
+<hr>
+<p>equestWindowFeature(Window.FEATURE_NO_TITLE)的意思就是不在活动中显示<br>标题栏，注意这句代码一定要在 setContentView()之前执行，不然会报错。</p>
+<hr>
+<p>Intent 是 Android 程序中各组件之间进行交互的一种重要方式，它不仅可以指明当前组<br>件想要执行的动作，还可以在不同组件之间传递数据。Intent 一般可被用于启动活动、启动<br>服务、以及发送广播等场景，由于服务、广播等概念你暂时还未涉及，那么本章我们的目光<br>无疑就锁定在了启动活动上面。</p>
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags"></i>
+		<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/第一行-Android-代码/">第一行 Android 代码</a></li></ul>
+	</div>
+
+      
+	<div class="article-category tagcloud">
+	<i class="icon-book icon"></i>
+	<a class="article-category-link" href="/categories/后端代码/">后端代码</a>
+	</div>
+
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2017/12/28/blog20171228/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+
+
+
+
+
+
+
+  
+    <article id="post-blog20171222" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2017/12/22/blog20171222/">Immutable 详解及 React 中实践</a>
+    </h1>
+  
+
+        <a href="/2017/12/22/blog20171222/" class="archive-article-date">
+  	<time datetime="2017-12-22T01:44:05.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-12-22</time>
+</a>
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <blockquote>
+<p>Shared mutable state is the root of all evil（共享的可变状态是万恶之源）– Pete Hunt<br>有人说 Immutable 可以给 React 应用带来数十倍的提升，也有人说 Immutable 的引入是近期 JavaScript 中伟大的发明，因为同期 React 太火，它的光芒被掩盖了。这些至少说明 Immutable 是很有价值的，下面我们来一探究竟。</p>
+</blockquote>
+<p>JavaScript 中的对象一般是可变的（Mutable），因为使用了引用赋值，新的对象简单的引用了原始对象，改变新的对象将影响到原始对象。如 foo={a: 1}; bar=foo; bar.a=2 你会发现此时 foo.a 也被改成了 2。虽然这样做可以节约内存，但当应用复杂后，这就造成了非常大的隐患，Mutable 带来的优点变得得不偿失。为了解决这个问题，一般的做法是使用 shallowCopy（浅拷贝）或 deepCopy（深拷贝）来避免被修改，但这样做造成了 CPU 和内存的浪费。</p>
+<p>Immutable 可以很好地解决这些问题。</p>
+<h2 id="什么是-Immutable-Data"><a href="#什么是-Immutable-Data" class="headerlink" title="什么是 Immutable Data"></a>什么是 Immutable Data</h2><p>Immutable Data 就是一旦创建，就不能再被更改的数据。对 Immutable 对象的任何修改或添加删除操作都会返回一个新的 Immutable 对象。Immutable 实现的原理是 Persistent Data Structure（持久化数据结构），也就是使用旧数据创建新数据时，要保证旧数据同时可用且不变。同时为了避免 deepCopy 把所有节点都复制一遍带来的性能损耗，Immutable 使用了 Structural Sharing（结构共享），即如果对象树中一个节点发生变化，只修改这个节点和受它影响的父节点，其它节点则进行共享。请看下面动画：</p>
+<p><img src="https://tawen.github.io/res/20171222immutable.gif" alt="immutable"></p>
+<p>目前流行的 Immutable 库有两个：</p>
+<h3 id="immutable-js"><a href="#immutable-js" class="headerlink" title="immutable.js"></a>immutable.js</h3><p>Facebook 工程师 Lee Byron 花费 3 年时间打造，与 React 同期出现，但没有被默认放到 React 工具集里（React 提供了简化的 Helper）。它内部实现了一套完整的 Persistent Data Structure，还有很多易用的数据类型。像 Collection、List、Map、Set、Record、Seq。有非常全面的map、filter、groupBy、reduce<code></code>find函数式操作方法。同时 API 也尽量与 Object 或 Array 类似。</p>
+<p>其中有 3 种最重要的数据结构说明一下：（Java 程序员应该最熟悉了）</p>
+<p>Map：键值对集合，对应于 Object，ES6 也有专门的 Map 对象<br>List：有序可重复的列表，对应于 Array<br>Set：无序且不可重复的列表</p>
+<h3 id="seamless-immutable"><a href="#seamless-immutable" class="headerlink" title="seamless-immutable"></a>seamless-immutable</h3><p>与 Immutable.js 学院派的风格不同，seamless-immutable 并没有实现完整的 Persistent Data Structure，而是使用 Object.defineProperty（因此只能在 IE9 及以上使用）扩展了 JavaScript 的 Array 和 Object 对象来实现，只支持 Array 和 Object 两种数据类型，API 基于与 Array 和 Object 操持不变。代码库非常小，压缩后下载只有 2K。而 Immutable.js 压缩后下载有 16K。</p>
+<p>下面上代码来感受一下两者的不同：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line">// 原来的写法</span><br><span class="line">let foo = &#123;a: &#123;b: 1&#125;&#125;;</span><br><span class="line">let bar = foo;</span><br><span class="line">bar.a.b = 2;</span><br><span class="line">console.log(foo.a.b);  // 打印 2</span><br><span class="line">console.log(foo === bar);  //  打印 true</span><br><span class="line"></span><br><span class="line">// 使用 immutable.js 后</span><br><span class="line">import Immutable from &apos;immutable&apos;;</span><br><span class="line">foo = Immutable.fromJS(&#123;a: &#123;b: 1&#125;&#125;);</span><br><span class="line">bar = foo.setIn([&apos;a&apos;, &apos;b&apos;], 2);   // 使用 setIn 赋值</span><br><span class="line">console.log(foo.getIn([&apos;a&apos;, &apos;b&apos;]));  // 使用 getIn 取值，打印 1</span><br><span class="line">console.log(foo === bar);  //  打印 false</span><br><span class="line"></span><br><span class="line">// 使用  seamless-immutable.js 后</span><br><span class="line">import SImmutable from &apos;seamless-immutable&apos;;</span><br><span class="line">foo = SImmutable(&#123;a: &#123;b: 1&#125;&#125;)</span><br><span class="line">bar = foo.merge(&#123;a: &#123; b: 2&#125;&#125;)   // 使用 merge 赋值</span><br><span class="line">console.log(foo.a.b);  // 像原生 Object 一样取值，打印 1</span><br><span class="line">console.log(foo === bar);  //  打印 false</span><br></pre></td></tr></table></figure>
+<h2 id="Immutable-优点"><a href="#Immutable-优点" class="headerlink" title="Immutable 优点"></a>Immutable 优点</h2><ol>
+<li>Immutable 降低了 Mutable 带来的复杂度</li>
+</ol>
+<p>可变（Mutable）数据耦合了 Time 和 Value 的概念，造成了数据很难被回溯。</p>
+<p>比如下面一段代码：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">function touchAndLog(touchFn) &#123;</span><br><span class="line">  let data = &#123; key: &apos;value&apos; &#125;;</span><br><span class="line">  touchFn(data);</span><br><span class="line">  console.log(data.key); // 猜猜会打印什么？</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>在不查看 touchFn 的代码的情况下，因为不确定它对 data 做了什么，你是不可能知道会打印什么（这不是废话吗）。但如果 data 是 Immutable 的呢，你可以很肯定的知道打印的是 value。</p>
+<ol start="2">
+<li>节省内存</li>
+</ol>
+<p>Immutable.js 使用了 Structure Sharing 会尽量复用内存，甚至以前使用的对象也可以再次被复用。没有被引用的对象会被垃圾回收。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">import &#123; Map&#125; from &apos;immutable&apos;;</span><br><span class="line">let a = Map(&#123;</span><br><span class="line">  select: &apos;users&apos;,</span><br><span class="line">  filter: Map(&#123; name: &apos;Cam&apos; &#125;)</span><br><span class="line">&#125;)</span><br><span class="line">let b = a.set(&apos;select&apos;, &apos;people&apos;);</span><br><span class="line"></span><br><span class="line">a === b; // false</span><br><span class="line">a.get(&apos;filter&apos;) === b.get(&apos;filter&apos;); // true</span><br></pre></td></tr></table></figure></p>
+<p>上面 a 和 b 共享了没有变化的 filter 节点。</p>
+<ol start="3">
+<li>Undo/Redo，Copy/Paste，甚至时间旅行这些功能做起来小菜一碟</li>
+</ol>
+<p>因为每次数据都是不一样的，只要把这些数据放到一个数组里储存起来，想回退到哪里就拿出对应数据即可，很容易开发出撤销重做这种功能。</p>
+<p>后面我会提供 Flux 做 Undo 的示例。</p>
+<ol start="4">
+<li>并发安全</li>
+</ol>
+<p>传统的并发非常难做，因为要处理各种数据不一致问题，因此『聪明人』发明了各种锁来解决。但使用了 Immutable 之后，数据天生是不可变的，并发锁就不需要了。</p>
+<p>然而现在并没什么卵用，因为 JavaScript 还是单线程运行的啊。但未来可能会加入，提前解决未来的问题不也挺好吗？</p>
+<ol start="5">
+<li>拥抱函数式编程</li>
+</ol>
+<p>Immutable 本身就是函数式编程中的概念，纯函数式编程比面向对象更适用于前端开发。因为只要输入一致，输出必然一致，这样开发的组件更易于调试和组装。</p>
+<p>像 ClojureScript，Elm 等函数式编程语言中的数据类型天生都是 Immutable 的，这也是为什么 ClojureScript 基于 React 的框架 — Om 性能比 React 还要好的原因。</p>
+<h2 id="Immutable-缺点"><a href="#Immutable-缺点" class="headerlink" title="Immutable 缺点"></a>Immutable 缺点</h2><ol>
+<li>需要学习新的 API</li>
+</ol>
+<p>No Comments</p>
+<ol start="2">
+<li>增加了资源文件大小</li>
+</ol>
+<p>No Comments</p>
+<ol start="3">
+<li>容易与原生对象混淆</li>
+</ol>
+<p>这点是我们使用 Immutable.js 过程中遇到最大的问题。写代码要做思维上的转变。</p>
+<p>虽然 Immutable.js 尽量尝试把 API 设计的原生对象类似，有的时候还是很难区别到底是 Immutable 对象还是原生对象，容易混淆操作。</p>
+<p>Immutable 中的 Map 和 List 虽对应原生 Object 和 Array，但操作非常不同，比如你要用 map.get(‘key’) 而不是 map.key，array.get(0) 而不是 array[0]。另外 Immutable 每次修改都会返回新对象，也很容易忘记赋值。</p>
+<p>当使用外部库的时候，一般需要使用原生对象，也很容易忘记转换。</p>
+<p>下面给出一些办法来避免类似问题发生：</p>
+<p>使用 Flow 或 TypeScript 这类有静态类型检查的工具<br>约定变量命名规则：如所有 Immutable 类型对象以 $$ 开头。<br>使用 Immutable.fromJS 而不是 Immutable.Map 或 Immutable.List 来创建对象，这样可以避免 Immutable 和原生对象间的混用。</p>
+<h2 id="更多认识"><a href="#更多认识" class="headerlink" title="更多认识"></a>更多认识</h2><p>Immutable.is</p>
+<p>两个 immutable 对象可以使用 === 来比较，这样是直接比较内存地址，性能最好。但即使两个对象的值是一样的，也会返回 false：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">let map1 = Immutable.Map(&#123;a:1, b:1, c:1&#125;);</span><br><span class="line">let map2 = Immutable.Map(&#123;a:1, b:1, c:1&#125;);</span><br><span class="line">map1 === map2;             // false</span><br></pre></td></tr></table></figure></p>
+<p>为了直接比较对象的值，immutable.js 提供了 Immutable.is 来做『值比较』，结果如下：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Immutable.is(map1, map2);  // true</span><br></pre></td></tr></table></figure></p>
+<p>Immutable.is 比较的是两个对象的 hashCode 或 valueOf（对于 JavaScript 对象）。由于 immutable 内部使用了 Trie 数据结构来存储，只要两个对象的 hashCode 相等，值就是一样的。这样的算法避免了深度遍历比较，性能非常好。</p>
+<p>后面会使用 Immutable.is 来减少 React 重复渲染，提高性能。</p>
+<p>另外，还有 mori、cortex 等，因为类似就不再介绍。</p>
+<h2 id="与-Object-freeze、const-区别"><a href="#与-Object-freeze、const-区别" class="headerlink" title="与 Object.freeze、const 区别"></a>与 Object.freeze、const 区别</h2><p>ES6 中新加入的 Object.freeze 和 const 都可以达到防止对象被篡改的功能，但它们是 shallowCopy 的。对象层级一深就要特殊处理了。</p>
+<h2 id="Cursor-的概念"><a href="#Cursor-的概念" class="headerlink" title="Cursor 的概念"></a>Cursor 的概念</h2><p>这个 Cursor 和数据库中的游标是完全不同的概念。</p>
+<p>由于 Immutable 数据一般嵌套非常深，为了便于访问深层数据，Cursor 提供了可以直接访问这个深层数据的引用。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">import Immutable from &apos;immutable&apos;;</span><br><span class="line">import Cursor from &apos;immutable/contrib/cursor&apos;;</span><br><span class="line"></span><br><span class="line">let data = Immutable.fromJS(&#123; a: &#123; b: &#123; c: 1 &#125; &#125; &#125;);</span><br><span class="line">// 让 cursor 指向 &#123; c: 1 &#125;</span><br><span class="line">let cursor = Cursor.from(data, [&apos;a&apos;, &apos;b&apos;], newData =&gt; &#123;</span><br><span class="line">  // 当 cursor 或其子 cursor 执行 update 时调用</span><br><span class="line">  console.log(newData);</span><br><span class="line">&#125;);</span><br><span class="line"></span><br><span class="line">cursor.get(&apos;c&apos;); // 1</span><br><span class="line">cursor = cursor.update(&apos;c&apos;, x =&gt; x + 1);</span><br><span class="line">cursor.get(&apos;c&apos;); // 2</span><br></pre></td></tr></table></figure></p>
+<h2 id="实践"><a href="#实践" class="headerlink" title="实践"></a>实践</h2><p>与 React 搭配使用，Pure Render</p>
+<p>熟悉 React 的都知道，React 做性能优化时有一个避免重复渲染的大招，就是使用 shouldComponentUpdate()，但它默认返回 true，即始终会执行 render() 方法，然后做 Virtual DOM 比较，并得出是否需要做真实 DOM 更新，这里往往会带来很多无必要的渲染并成为性能瓶颈。</p>
+<p>当然我们也可以在 shouldComponentUpdate() 中使用使用 deepCopy 和 deepCompare 来避免无必要的 render()，但 deepCopy 和 deepCompare 一般都是非常耗性能的。</p>
+<p>Immutable 则提供了简洁高效的判断数据是否变化的方法，只需 === 和 is 比较就能知道是否需要执行 render()，而这个操作几乎 0 成本，所以可以极大提高性能。修改后的 shouldComponentUpdate 是这样的：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">import &#123; is &#125; from &apos;immutable&apos;;</span><br><span class="line">shouldComponentUpdate: (nextProps, nextState) =&gt; &#123;</span><br><span class="line">  return !(this.props === nextProps || is(this.props, nextProps)) ||</span><br><span class="line">         !(this.state === nextState || is(this.state, nextState));</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>使用 Immutable 后，如下图，当红色节点的 state 变化后，不会再渲染树中的所有节点，而是只渲染图中绿色的部分：<br><img src="https://tawen.github.io/res/20171222immutable2.png" alt="immutable"></p>
+<p>你也可以借助 React.addons.PureRenderMixin 或支持 class 语法的 pure-render-decorator 来实现。</p>
+<p>setState 的一个技巧</p>
+<p>React 建议把 this.state 当作 Immutable 的，因此修改前需要做一个 deepCopy，显得麻烦：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">import &apos;_&apos; from &apos;lodash&apos;;</span><br><span class="line"></span><br><span class="line">const Component = React.createClass(&#123;</span><br><span class="line">  getInitialState() &#123;</span><br><span class="line">    return &#123;</span><br><span class="line">      data: &#123; times: 0 &#125;</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;,</span><br><span class="line">  handleAdd() &#123;</span><br><span class="line">    let data = _.cloneDeep(this.state.data);</span><br><span class="line">    data.times = data.times + 1;</span><br><span class="line">    this.setState(&#123; data: data &#125;);</span><br><span class="line">    // 如果上面不做 cloneDeep，下面打印的结果会是已经加 1 后的值。</span><br><span class="line">    console.log(this.state.data.times);</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>使用 Immutable 后：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">getInitialState() &#123;</span><br><span class="line">  return &#123;</span><br><span class="line">    data: Map(&#123; times: 0 &#125;)</span><br><span class="line">  &#125;</span><br><span class="line">&#125;,</span><br><span class="line">handleAdd() &#123;</span><br><span class="line">  this.setState(&#123; data: this.state.data.update(&apos;times&apos;, v =&gt; v + 1) &#125;);</span><br><span class="line">  // 这时的 times 并不会改变</span><br><span class="line">  console.log(this.state.data.get(&apos;times&apos;));</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>上面的 handleAdd 可以简写成：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">handleAdd() &#123;</span><br><span class="line">  this.setState((&#123;data&#125;) =&gt; (&#123;</span><br><span class="line">    data: data.update(&apos;times&apos;, v =&gt; v + 1) &#125;)</span><br><span class="line">  &#125;);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<h2 id="与-Flux-搭配使用"><a href="#与-Flux-搭配使用" class="headerlink" title="与 Flux 搭配使用"></a>与 Flux 搭配使用</h2><p>由于 Flux 并没有限定 Store 中数据的类型，使用 Immutable 非常简单。</p>
+<p>现在是实现一个类似带有添加和撤销功能的 Store：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line">import &#123; Map, OrderedMap &#125; from &apos;immutable&apos;;</span><br><span class="line">let todos = OrderedMap();</span><br><span class="line">let history = [];  // 普通数组，存放每次操作后产生的数据</span><br><span class="line"></span><br><span class="line">let TodoStore = createStore(&#123;</span><br><span class="line">  getAll() &#123; return todos; &#125;</span><br><span class="line">&#125;);</span><br><span class="line"></span><br><span class="line">Dispatcher.register(action =&gt; &#123;</span><br><span class="line">  if (action.actionType === &apos;create&apos;) &#123;</span><br><span class="line">    let id = createGUID();</span><br><span class="line">    history.push(todos);  // 记录当前操作前的数据，便于撤销</span><br><span class="line">    todos = todos.set(id, Map(&#123;</span><br><span class="line">      id: id,</span><br><span class="line">      complete: false,</span><br><span class="line">      text: action.text.trim()</span><br><span class="line">    &#125;));</span><br><span class="line">    TodoStore.emitChange();</span><br><span class="line">  &#125; else if (action.actionType === &apos;undo&apos;) &#123;</span><br><span class="line">    // 这里是撤销功能实现，</span><br><span class="line">    // 只需从 history 数组中取前一次 todos 即可</span><br><span class="line">    if (history.length &gt; 0) &#123;</span><br><span class="line">      todos = history.pop();</span><br><span class="line">    &#125;</span><br><span class="line">    TodoStore.emitChange();</span><br><span class="line">  &#125;</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure></p>
+<h2 id="与-Redux-搭配使用"><a href="#与-Redux-搭配使用" class="headerlink" title="与 Redux 搭配使用"></a>与 Redux 搭配使用</h2><p>Redux 是目前流行的 Flux 衍生库。它简化了 Flux 中多个 Store 的概念，只有一个 Store，数据操作通过 Reducer 中实现；同时它提供更简洁和清晰的单向数据流（View -&gt; Action -&gt; Middleware -&gt; Reducer），也更易于开发同构应用。目前已经在我们项目中大规模使用。</p>
+<p>由于 Redux 中内置的 combineReducers 和 reducer 中的 initialState 都为原生的 Object 对象，所以不能和 Immutable 原生搭配使用。</p>
+<p>幸运的是，Redux 并不排斥使用 Immutable，可以自己重写 combineReducers 或使用 redux-immutablejs 来提供支持。</p>
+<p>上面我们提到 Cursor 可以方便检索和 update 层级比较深的数据，但因为 Redux 中已经有了 select 来做检索，Action 来更新数据，因此 Cursor 在这里就没有用武之地了。</p>
+<h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h2><p>Immutable 可以给应用带来极大的性能提升，但是否使用还要看项目情况。由于侵入性较强，新项目引入比较容易，老项目迁移需要评估迁移。对于一些提供给外部使用的公共组件，最好不要把 Immutable 对象直接暴露在对外接口中。</p>
+<p>如果 JS 原生 Immutable 类型会不会太美，被称为 React API 终结者的 Sebastian Markbåge 有一个这样的提案，能否通过现在还不确定。不过可以肯定的是 Immutable 会被越来越多的项目使用。</p>
+<p>资源</p>
+<p><a href="https://www.youtube.com/watch?v=I7IdS-PbEgI" target="_blank" rel="noopener">Lee Byron - Immutable Data and React</a><br><a href="http://jlongster.com/Using-Immutable-Data-Structures-in-JavaScript" target="_blank" rel="noopener">Immutable Data Structures and JavaScript</a></p>
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags"></i>
+		<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Immutable/">Immutable</a></li></ul>
+	</div>
+
+      
+	<div class="article-category tagcloud">
+	<i class="icon-book icon"></i>
+	<a class="article-category-link" href="/categories/React/">React</a>
+	</div>
+
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2017/12/22/blog20171222/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+
+
+
+
+
+
+
+  
+    <article id="post-blog20171218" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2017/12/18/blog20171218/">Android 开发学习</a>
+    </h1>
+  
+
+        <a href="/2017/12/18/blog20171218/" class="archive-article-date">
+  	<time datetime="2017-12-18T03:09:05.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-12-18</time>
+</a>
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <blockquote>
+<p>Android开发环境就不记录了，由于有了android studio搭建起来也很容易，网上也有很多，这里就不说了。</p>
+</blockquote>
+<h3 id="创建Activity要点："><a href="#创建Activity要点：" class="headerlink" title="创建Activity要点："></a>创建Activity要点：</h3><p>1、一个Activity就是一个类，并且这个类继承Activity基类；<br>2、需要复写onCreate方法（第一次调用Activity就会调用）；<br>3、每个Activity都需要在AndroidMainFest(清单)文件中进行配置；<br>4、为Activity添加必要组件;<br>5、setContentView()使用;<br>6、findViewById()使用;<br>7、在布局文件中Android:”@+id/idName”和没有+号区别，还有在R.java中文件生成的引用名称的使用区别？（有待以后解答）</p>
+<p>第一个原生应用的显示效果：</p>
+<p><img src="https://tawen.github.io/res/20171218androidactivity.png" alt="activity"></p>
+<h3 id="intent（意图）包含的一组信息："><a href="#intent（意图）包含的一组信息：" class="headerlink" title="intent（意图）包含的一组信息："></a>intent（意图）包含的一组信息：</h3><p>1、Component name（下一个启动activity的名字)<br>2、Action（个人理解对下个activity的指令（例如：ACTION_CALL））<br>3、Data（数据）<br>4、Category<br>5、Extras(键值对)<br>6、Flasgs</p>
+<p><img src="https://tawen.github.io/res/20171218androidintent.gif" alt="intent"></p>
+<h3 id="Activity生命周期"><a href="#Activity生命周期" class="headerlink" title="Activity生命周期"></a>Activity生命周期</h3><p>1、onCreate：Activity第一被创建被调用<br>2、onStart：Activity能被看到被调用<br>3、onResume：Activity能够获取用户焦点时被调用<br>4、onPause：应用程序启用了另外一个acitity（来电话就会调用pause，当前数据保存）<br>5、onStop：当前Activity不可见被调用；（对话框不会调用上一个activity的onStop）<br>6、onDestory：finish(),系统资源不够用；<br>7、onRestart：返回时替换onCreate被调用</p>
+<p><img src="https://tawen.github.io/res/20171218androidactivitylifecycle.png" alt="lifecycle"></p>
+<h3 id="Task"><a href="#Task" class="headerlink" title="Task"></a>Task</h3><p>栈的概念很好理解，已经理解！</p>
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags"></i>
+		<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/activity/">activity</a></li></ul>
+	</div>
+
+      
+	<div class="article-category tagcloud">
+	<i class="icon-book icon"></i>
+	<a class="article-category-link" href="/categories/编程语言/">编程语言</a>
+	</div>
+
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2017/12/18/blog20171218/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+
+
+
+
+
+
+
+  
+    <article id="post-blog20171205" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2017/12/05/blog20171205/">浏览器支持HTML5 video视频标签</a>
+    </h1>
+  
+
+        <a href="/2017/12/05/blog20171205/" class="archive-article-date">
+  	<time datetime="2017-12-05T03:09:05.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-12-05</time>
+</a>
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <blockquote>
+<p>好久没写博客了，今天给大家推荐一款录屏工具！</p>
+</blockquote>
+<h3 id="使用的代码如下："><a href="#使用的代码如下：" class="headerlink" title="使用的代码如下："></a>使用的代码如下：</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">&lt;video width=&quot;352&quot; height=&quot;264&quot; controls autobuffer&gt;</span><br><span class="line">    &lt;source src=&quot;../media/cat.mp4&quot; type=&apos;video/mp4; codecs=&quot;avc1.42E01E, mp4a.40.2&quot;&apos;&gt;&lt;/source&gt;</span><br><span class="line">&lt;/video&gt;</span><br></pre></td></tr></table></figure>
+<p>对于Opera浏览器，您可以参阅这篇上周才发表的文章“Everything you need to know about HTML5 video and audio”</p>
+<p>对于IE浏览器，那还不知道要等到猴年马月才等到支持HTML5 video标签的时候。然而，广大劳动人民的智慧是无穷无尽的，广大开发人员的智慧也会无穷无尽的。国外领先的web开拓者们通过js，已经实现了可以让各个主流浏览器支持video标签的方法。</p>
+<h3 id="主流浏览器支持video标签"><a href="#主流浏览器支持video标签" class="headerlink" title="主流浏览器支持video标签"></a>主流浏览器支持video标签</h3><p>方法很简单，只要调用一段js，就可以让主流浏览器实现video标签的视频播放。</p>
+<p>此项目已经放到Google code上，您可以点击这里查看。</p>
+<p>使用方法：<br>要想让主流浏览器都支持HTML5标签，使用非常简单，只要链接一个js文件就可以了。所以，只要您的页面上（头部或底部）有这么段代码：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;script src=&quot;http://html5media.googlecode.com/svn/trunk/src/html5media.min.js&quot;&gt;&lt;/script&gt;</span><br></pre></td></tr></table></figure></p>
+<p>就可以了。</p>
+<p>对于HTML部分，使用类似下面：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;video src=&quot;video.mp4&quot; width=&quot;320&quot; height=&quot;240&quot; controls autobuffer&gt;&lt;/video&gt;</span><br></pre></td></tr></table></figure></p>
+<p>是不是很简单啊！</p>
+<p>为了演示效果，我就直接把此js以及video标签签到这篇文章里，您将会在下面看到这段10秒钟的关于猫咪的视频，您可以切换IE或是Firefox或是chrome或是Safari观看（界面有差别的哦~~）。<br>更新于2016-06-03<br>由于下面2个资源大大拖慢了网页的加载速度，因此，今日起博客文章不直接呈现效果，大家可以点击下面的demo链接体验。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">&lt;script src=&quot;http://html5media.googlecode.com/svn/trunk/src/html5media.min.js&quot;&gt;&lt;/script&gt;</span><br><span class="line">&lt;video src=&quot;http://www.zhangxinxu.com/study/media/cat.mp4&quot; width=&quot;352&quot; height=&quot;264&quot; controls autobuffer&gt;&lt;/video&gt;</span><br></pre></td></tr></table></figure></p>
+<p>当加载完毕，点击播放按钮，就可以看到视频播放了。<br>或者您也可以狠狠地点击这里：<a href="http://www.zhangxinxu.com/study/201003/html5-video-mp4.html" target="_blank" rel="noopener">HTML5 video多浏览器支持测试demo</a></p>
+<h3 id="三、一些说明"><a href="#三、一些说明" class="headerlink" title="三、一些说明"></a>三、一些说明</h3><h4 id="关于实现"><a href="#关于实现" class="headerlink" title="关于实现"></a>关于实现</h4><p>实现的原理大致是使用了flash技术，使用flash播放器嵌入视频的方式，使得IE及Firefox支持video标签。这个播放器称为flowplayer，具体我也不是很了解。</p>
+<h4 id="关于视频格式"><a href="#关于视频格式" class="headerlink" title="关于视频格式"></a>关于视频格式</h4><p>目前，这种多浏览器支持方法所支持的视频格式有限，为mp4和ogv格式，否则视频可能不会播放。</p>
+<h4 id="可能遇到的问题"><a href="#可能遇到的问题" class="headerlink" title="可能遇到的问题"></a>可能遇到的问题</h4><p>您可能会遇到这样的问题：我明明链接的是mp4格式的文件啊，为什么在IE及Firefox下有问题。如果您遇到的问题是在这两个浏览器下视频不播放，或是播放时只有声音而没有图像，而在chrome浏览器或是Safari下良好，则您可能要仔细您mp4文件的编码格式了。</p>
+<p>对于编码，我不在行，好像是视频要存储为h.264文件，不要问我是什么东西，我也不知道，这可能还要靠您自己解决了。</p>
+<p>最后，百无聊赖，先上一张Safari浏览器下的截图，原因是，Safari下的播放器真是卡哇伊。</p>
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags"></i>
+		<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/video视频标签/">video视频标签</a></li></ul>
+	</div>
+
+      
+	<div class="article-category tagcloud">
+	<i class="icon-book icon"></i>
+	<a class="article-category-link" href="/categories/前端技术/">前端技术</a>
+	</div>
+
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2017/12/05/blog20171205/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+
+
+
+
+
+
+
+  
+    <article id="post-blog20171201" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2017/12/01/blog20171201/">aaencode</a>
+    </h1>
+  
+
+        <a href="/2017/12/01/blog20171201/" class="archive-article-date">
+  	<time datetime="2017-12-01T03:09:05.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-12-01</time>
+</a>
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <blockquote>
+<p>可以执行，我当时吓尿了！</p>
+</blockquote>
+<p>aaencode - Encode any JavaScript program to Japanese style emoticons (^_^)</p>
+<p><a href="http://utf-8.jp/public/aaencode.html" target="_blank" rel="noopener">添加一个转换网站 aaencode</a></p>
+<h3 id="效果："><a href="#效果：" class="headerlink" title="效果："></a>效果：</h3><p><img src="https://tawen.github.io/res/aaencodeGIF.gif" alt="GIF"></p>
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags"></i>
+		<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/aaencode/">aaencode</a></li></ul>
+	</div>
+
+      
+	<div class="article-category tagcloud">
+	<i class="icon-book icon"></i>
+	<a class="article-category-link" href="/categories/编程语言/">编程语言</a>
+	</div>
+
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2017/12/01/blog20171201/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+
+
+
+
+
+
+
+  
+    <article id="post-blog20171129" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2017/11/29/blog20171129/">GifCam 更好用的 gif 动画录制/剪辑工具</a>
+    </h1>
+  
+
+        <a href="/2017/11/29/blog20171129/" class="archive-article-date">
+  	<time datetime="2017-11-29T03:09:05.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-11-29</time>
+</a>
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <blockquote>
+<p>好久没写博客了，今天给大家推荐一款录屏工具！</p>
+</blockquote>
+<p>GifCam 是款集录制与剪辑为一体的屏幕 GIF 动画制作工具，录制后的动画可以逐帧编辑。</p>
+<p><a href="https://en.softonic.com/download/gifcam/windows/post-download?sl=1" target="_blank" rel="noopener">下载链接</a></p>
+<h3 id="界面效果："><a href="#界面效果：" class="headerlink" title="界面效果："></a>界面效果：</h3><p><img src="https://tawen.github.io/res/gifcamaiming.gif" alt="gifcamaiming"></p>
+<h3 id="使用截图效果："><a href="#使用截图效果：" class="headerlink" title="使用截图效果："></a>使用截图效果：</h3><p><img src="https://tawen.github.io/res/GIF.gif" alt="GIF"></p>
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags"></i>
+		<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/GifCam/">GifCam</a></li></ul>
+	</div>
+
+      
+	<div class="article-category tagcloud">
+	<i class="icon-book icon"></i>
+	<a class="article-category-link" href="/categories/编程语言/">编程语言</a>
+	</div>
+
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2017/11/29/blog20171129/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+
+
+
+
+
+
+
+  
+    <article id="post-blog20171025" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2017/10/25/blog20171025/">SQL的JOIN语法解析(inner join, left join, right join, full outer join的区别)</a>
+    </h1>
+  
+
+        <a href="/2017/10/25/blog20171025/" class="archive-article-date">
+  	<time datetime="2017-10-25T03:09:05.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-10-25</time>
+</a>
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <blockquote>
+<p>总的来说，四种JOIN的使用/区别可以描述为:</p>
+</blockquote>
+<blockquote>
+<p>left join 会从左表(shop)那里返回所有的记录，即使在右表(sale_detail)中没有匹配的行。</p>
+</blockquote>
+<blockquote>
+<p>right outer join 右连接，返回右表中的所有记录，即使在左表中没有记录与它匹配</p>
+</blockquote>
+<blockquote>
+<p>full outer join 全连接，返回左右表中的所有记录在表中存在至少一个匹配时，inner join 返回行。 关键字inner可省略。</p>
+</blockquote>
+<p>具体可以看stackoverflow上，<a href="https://stackoverflow.com/questions/3022713/difference-between-inner-join-full-join" target="_blank" rel="noopener">Difference between Inner Join &amp; Full join</a>这个问题，说得蛮清楚的，我就搬运一下这个问题的答案好了。</p>
+<h2 id="Join"><a href="#Join" class="headerlink" title="Join"></a>Join</h2><p>一共有三种OUTER JOIN:</p>
+<ul>
+<li>LEFT OUTER JOIN</li>
+<li>RIGHT OUTER JOIN</li>
+<li>FULL OUTER JOIN</li>
+</ul>
+<p>关键字OUTER是可选择的，取决于具体语言，在实现上它们都是遵循标准的，因此FULL JOIN和FULL OUTER JOIN是一样的。</p>
+<p>接着将以简化的数据集来说明这些JOIN语句。考虑有如下两个数据集，注意到有些元素在A中有，在B中没有，反过来也是。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">Set &quot;A&quot;    Set &quot;B&quot;</span><br><span class="line"></span><br><span class="line"> AA         BB</span><br><span class="line">--------   --------</span><br><span class="line"> Item 1     Item 3</span><br><span class="line"> Item 2     Item 4</span><br><span class="line"> Item 3     Item 5</span><br><span class="line"> Item 4     Item 6</span><br></pre></td></tr></table></figure>
+<h3 id="LEFT-OUTER-JOIN"><a href="#LEFT-OUTER-JOIN" class="headerlink" title="LEFT OUTER JOIN"></a>LEFT OUTER JOIN</h3><p>现在执行如下SQL语句（左连接，LEFT OUTER JOIN）：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">SELECT * FROM A LEFT OUTER JOIN B ON AA = BB</span><br></pre></td></tr></table></figure>
+<p>将会得到如下的结果（空白的元素表示NULL）：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">AA         BB</span><br><span class="line">--------   --------</span><br><span class="line"> Item 1</span><br><span class="line"> Item 2</span><br><span class="line"> Item 3     Item 3</span><br><span class="line"> Item 4     Item 4</span><br></pre></td></tr></table></figure>
+<p>左连接（LEFT OUTER JOIN）会输出左边的表中的所有结果，如果右边的表中有相应项，则会输出，否则为NULL</p>
+<p>因此，如果要找出在AA(左边的表)中有，而在BB(右边的表)中没有的数据项，可以使用如下的SQL语句：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">SELECT * FROM A LEFT OUTER JOIN B ON AA = BB</span><br><span class="line">WHERE BB is NULL</span><br></pre></td></tr></table></figure></p>
+<h3 id="RIGHT-OUTER-JOIN"><a href="#RIGHT-OUTER-JOIN" class="headerlink" title="RIGHT OUTER JOIN"></a>RIGHT OUTER JOIN</h3><p>如果使用右连接，结果将会输出BB中所有的数据项和AA中相应的匹配项（注意你现在是获取了右边的表中的所有数据项）:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">SELECT * FROM A RIGHT OUTER JOIN B ON AA = BB</span><br><span class="line"></span><br><span class="line"> AA         BB</span><br><span class="line">--------   --------</span><br><span class="line"> Item 3     Item 3</span><br><span class="line"> Item 4     Item 4</span><br><span class="line">            Item 5</span><br><span class="line">            Item 6</span><br></pre></td></tr></table></figure></p>
+<h3 id="FULL-OUTER-JOIN"><a href="#FULL-OUTER-JOIN" class="headerlink" title="FULL OUTER JOIN"></a>FULL OUTER JOIN</h3><p>如果想要取得所有的元素项，则可以使用FULL JOIN:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">SELECT * FROM A FULL JOIN B ON AA = BB</span><br><span class="line"></span><br><span class="line"> AA         BB</span><br><span class="line">--------   --------</span><br><span class="line"> Item 1            &lt;-----+</span><br><span class="line"> Item 2                  |</span><br><span class="line"> Item 3     Item 3       |</span><br><span class="line"> Item 4     Item 4       |</span><br><span class="line">            Item 5       +--- empty holes are NULL&apos;s</span><br><span class="line">            Item 6       |</span><br><span class="line">   ^                     |</span><br><span class="line">   |                     |</span><br><span class="line">   +---------------------+</span><br></pre></td></tr></table></figure></p>
+<p>再次注意，缺失的数据项的值是NULL。</p>
+<h3 id="INNER-JOIN"><a href="#INNER-JOIN" class="headerlink" title="INNER JOIN"></a>INNER JOIN</h3><p>INNER JOIN跟JOIN是一样的，一般INNER关键字可以省略。INNER JOIN将只会返回相匹配的元素项，即不会返回结果为NULL的数据项。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">SELECT * FROM A INNER JOIN B ON AA = BB</span><br><span class="line"></span><br><span class="line"> AA         BB</span><br><span class="line">--------   --------</span><br><span class="line"> Item 3     Item 3</span><br><span class="line"> Item 4     Item 4</span><br></pre></td></tr></table></figure></p>
+<h3 id="CROSS-JOIN"><a href="#CROSS-JOIN" class="headerlink" title="CROSS JOIN"></a>CROSS JOIN</h3><p>最后还有一个CROSS JOIN，笛卡儿积，将会返回A中每个元素分别匹配B中所有元素的结果，即N*M组合。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line">SELECT * FROM A CROSS JOIN B</span><br><span class="line"></span><br><span class="line"> AA         BB</span><br><span class="line">--------   --------</span><br><span class="line"> Item 1     Item 3      ^</span><br><span class="line"> Item 1     Item 4      +--- A中第一个元素, 匹配B中所有元素</span><br><span class="line"> Item 1     Item 5      |</span><br><span class="line"> Item 1     Item 6      v</span><br><span class="line"> Item 2     Item 3      ^</span><br><span class="line"> Item 2     Item 4      +--- A中第二个元素, 匹配B中所有元素</span><br><span class="line"> Item 2     Item 5      |</span><br><span class="line"> Item 2     Item 6      v</span><br><span class="line"> Item 3     Item 3      ... and so on</span><br><span class="line"> Item 3     Item 4</span><br><span class="line"> Item 3     Item 5</span><br><span class="line"> Item 3     Item 6</span><br><span class="line"> Item 4     Item 3</span><br><span class="line"> Item 4     Item 4</span><br><span class="line"> Item 4     Item 5</span><br><span class="line"> Item 4     Item 6</span><br></pre></td></tr></table></figure></p>
+<h3 id="图解SQL的JOIN操作"><a href="#图解SQL的JOIN操作" class="headerlink" title="图解SQL的JOIN操作"></a>图解SQL的JOIN操作</h3><p>这边也有一张图清楚的说明了每个JOIN操作。建议把上面的内容浏览一边后，再好好看下这张图片，相信对JOIN的操作应该就完全明白了。<br><img src="https://tawen.github.io/res/sql-join.png" alt="sql-join.png"></p>
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags"></i>
+		<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/inner-join-left-join-right-join-full-outer-join/">inner join, left join, right join, full outer join</a></li></ul>
+	</div>
+
+      
+	<div class="article-category tagcloud">
+	<i class="icon-book icon"></i>
+	<a class="article-category-link" href="/categories/编程语言/">编程语言</a>
+	</div>
+
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2017/10/25/blog20171025/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+
+
+
+
+
+
+
+  
+    <article id="post-blog20171010" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2017/10/10/blog20171010/">英语中相似单词</a>
+    </h1>
+  
+
+        <a href="/2017/10/10/blog20171010/" class="archive-article-date">
+  	<time datetime="2017-10-10T01:26:05.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-10-10</time>
+</a>
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h2 id="ake"><a href="#ake" class="headerlink" title="ake"></a>ake</h2><p>bake 烘烤食品<br>cake 蛋糕<br>lake 湖<br>make 制作<br>sake 目的<br>stake 棍子<br>shake 摇晃</p>
+<h2 id="ame"><a href="#ame" class="headerlink" title="ame"></a>ame</h2><p>came come的过去式<br>lame 跛脚的<br>name 名字<br>dame 夫人<br>same 相同的<br>tame 驯服的</p>
+<h2 id="ane"><a href="#ane" class="headerlink" title="ane"></a>ane</h2><p>bane 毒药<br>cane 手杖<br>dane 丹麦人<br>fane 寺庙<br>lane 小港<br>mane 鬃毛<br>pane 窗格</p>
+<h2 id="ade"><a href="#ade" class="headerlink" title="ade"></a>ade</h2><p>fade 褪色<br>made 做<br>bade 命令<br>jade 翡翠<br>lade 装载<br>wade 跋涉<br>trade 交易</p>
+<h2 id="ave"><a href="#ave" class="headerlink" title="ave"></a>ave</h2><p>Dave<br>gave give的过去式<br>pave 铺设<br>save 保存<br>bave 茧丝<br>cave</p>
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags"></i>
+		<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/英语中相似单词/">英语中相似单词</a></li></ul>
+	</div>
+
+      
+	<div class="article-category tagcloud">
+	<i class="icon-book icon"></i>
+	<a class="article-category-link" href="/categories/英语/">英语</a>
+	</div>
+
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2017/10/10/blog20171010/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+
+
+
+
+
+
+
+  
+    <article id="post-blog20170929" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2017/09/29/blog20170929/">英语中最最最常用的200个动词</a>
+    </h1>
+  
+
+        <a href="/2017/09/29/blog20170929/" class="archive-article-date">
+  	<time datetime="2017-09-29T03:03:05.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-09-29</time>
+</a>
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <blockquote>
+<p>以下200个动词是英语中最常用的动词，全部都是成人高考大纲词表中的成员，希望大家花时间把它们学会，很有用。</p>
+</blockquote>
+<p>accept    接受    I accepted her birthday gift.<br>act    表演；举止    Jackie Chen acts in the film.<br>add    添加    Please add some water to the bottle.<br>agree    同意    I agree with you.<br>allow    允许    Mother allows me to go out.<br>answer    回答    Can you answer my question?<br>appear    出现；似乎    A problem appeared.<br>arrive    到达    We arrived in the afternoon.<br>ask    问    He asked a question.<br>avoid    避免    Please avoid making mistakes.<br>be    是；正在；被    We are students.    She is sleeping.    They were killed.<br>become    变成，变得    It becomes warm.<br>begin    开始    Class begins at 9.<br>believe    相信    I believe you.<br>break    打破    He broke the class.<br>bring    带来    Please bring your book tomorrow.<br>build    建造    We will build a house.<br>burn    燃烧    The fire is burning.<br>buy    买    What do you want to buy?<br>call    打电话，叫，喊    I will call you in the morning.<br>can    能    Can you swim?<br>carry    搬，携带    Please carry the desk to the door.<br>catch    抓    The boy caught a bird.<br>change    变化    Everything changes.<br>check    核对    Please check your email.<br>choose    选择    Which book will you choose?<br>clean    打扫    clean the room<br>close    关闭    Close the door, please.<br>come    来    Come in, please.<br>cost    花费    It cost me 5 yuan.<br>consider    考虑    I am considering a visit to you.<br>contain    包含    It contains 5 pages.<br>continue    继续    We will continue to work.<br>control    控制    Can you control yourself?<br>could    能    She could do that.<br>cover    覆盖    The snow covered the flowers.<br>cry    哭    Don’t cry!<br>cut    切    He cut his finger while cooking.<br>deal    处理；交易    I will deal with it.<br>decide    决定    We decided to go.<br>describe    描述    Can you describe your room?<br>design    设计    We designed the cover of the book.<br>develop    发展    China is developing very quickly.<br>die    死    You will die here.<br>discover    发现    He discovered the first man.<br>discuss    讨论    We are discussing the plan.<br>do    做    What do you do?<br>draw    画；拉    She is drawing a picture.    Draw the desk.<br>dream    做梦    He is dreaming.<br>drink    喝    What do you want to drink?<br>drive    驾驶    Can you drive?<br>drop    丢下，滴    Please drop it on the floor.<br>eat    吃    How much do you eat?<br>end    结束    The meeting ended.<br>enjoy    享受，喜欢    He enjoys music.<br>enter    进入    Please enter the room.<br>expect    期望    I expect you to come.<br>explain    解释    Can you explain it to me?<br>fail    失败，不及格    He failed in the exam.<br>fall    下降；跌倒    The raining is falling.<br>feel    感觉    Do you feel happy?<br>fight    打架；战斗    They are fighting for food.<br>fill    填充，填满    Please fill the bottle with milk.<br>find    找到    Find out the person.<br>finish    完成    We have finished it.<br>fly    飞    Birds can fly.<br>follow    跟随，跟踪    Please follow me.<br>forget    忘记    Don’t forget it.<br>get    得到，到达    The workers get their money every week.<br>give    给    Give it to me.<br>go    去    go to work<br>grow    增长，种植，成长    The number is growing. Grow trees.    You have grown up.<br>guess    猜测    Guess my age.<br>hang    挂，吊    Hang your clothes there.<br>happen    发生    What happened?<br>have    有，吃喝玩乐；一直，已经；使，让    Have a book. I have lived here since 1990.    have your hair cut<br>hear    听见    Can you hear me?<br>help    帮助    help you with your English<br>hit    打，撞    He hit his car into a tree.<br>hold    抓住；容纳    hold the ball.    The room can hold 500 people.<br>hope    希望    I hope you can come.<br>hurt    伤害，疼    You hurt me.    My head hurts.<br>improve    提高    improve our lives<br>include    包含，包括    The book includes 10 parts.<br>increase    增加    The number is increasing.<br>join    加入    Please join us to go to the part.<br>keep    保持，保存    Clothes keep us warm.    I will keep the money for my son.<br>kill    杀    kill the bird<br>know    知道    Do you know me?<br>laugh    笑    He laughed at me.<br>lay    放置；产卵    Please lay the book on the desk.<br>lead    代领，领导    He is leading the team.<br>learn    学习    learn English<br>leave    离开    Close the door before you leave.<br>let    让    Let me have a look.<br>lie    说谎；躺，位于    He is lying.    Being lies in the north of China.<br>like    喜欢    Do you like it?<br>listen    听    listen to music<br>live    居住    live here<br>look    看    look at me<br>lose    输，失去    We will lose the game.    I lost me key.<br>love    爱    I love you.<br>make    制作    make a cake for you<br>may    可能，可以    He may come tomorrow.<br>mean    意思是；意味着    What do you mean?<br>meet    见面    We meet everyday.<br>might    也许    It might rain tomorrow.<br>miss    思念；错过    I miss you very much. We missed the train.<br>move    移动    Don’t move.<br>must    必须；肯定    You must work hard.<br>need    需要    We need you.<br>occur    发生    What occurred to you?<br>offer    提供    The company offered me a job.<br>open    打开    Open the door.<br>pass    通过    pass the exam.<br>pay    付钱    I will pay for the food.<br>perform    表演    They are performing in Beijing.<br>pick    挑，捡    Pick up your bag.<br>plan    计划    They plan to go.<br>play    玩儿    play football<br>point    指（向）    He pointed at me.<br>prevent 预防  We were prevented from entering the site;<br>prepare    准备    We are preparing for the exam.<br>prefer    更喜欢    I prefer apples to oranges.<br>produce    生产    They produce 1,000 cars last week.<br>protect    保护    The glasses will protect your eyes.<br>prove    证明    It proves to be right.<br>provide    提供    Can you provide some jobs to us?<br>pull    拉    Pull the door.<br>push    推    push the door<br>put    放，放置    put it here<br>raise    提高；养（动物、家等）；抬高    raise your hands. Raise animals. Raise family<br>reach    到达    We reached in the morning.<br>read    读    Can you read in English?<br>realize    意识到；实现    We realized we were wrong.    Realize your dream.<br>receive    收到    I received a letter from her.<br>reduce    减少，降低    We should reduce the price.<br>remain    仍然    It remains to be seen. 有待观察。<br>remember    记得    Do you remember me?<br>remove    移除，除掉    Remove your enemies.<br>report    报告    You report to me.<br>require    要求    You are required to finish it.<br>return    归还，回来    return the book to the library. He will return next week.<br>rise    上升    The sun rises in the east.<br>ride    骑，乘车    ride a bike/horse<br>ring    打电话；响铃，敲钟    I will ring you tomorrow.    The bell rings.<br>run    跑    run away<br>save    挽救；保存    save my life; save water<br>say    说    What did you say?<br>see    看到    Can you see me?<br>seem    似乎    It seems you are wrong.<br>sell    卖    She sells flowers.<br>send    送，发送    send a letter<br>serve    提供    serve food<br>set    设置    set the time<br>shake    摇，震    shake hands with me<br>shoot    射击    He shoot at the bird.<br>should    应该    You should go.<br>show    给……看，表演    Show me the way.<br>shut    关闭，关    shut the window<br>sing    唱歌    sing a song.<br>sit    坐    Sit down, please.<br>sleep    睡眠    I can’t sleep.<br>smell    闻，闻起来    The food smells delicious.<br>sound    听起来    It sounds good.<br>speak    讲话，说    Can you speak Japanese?<br>spend    花费    I spent 5 yuan on the book.<br>split 分离<br>spill 溢出<br>spirit 精神</p>
+<p>stand    站立    Stand up!<br>start    开始    The film started.<br>stay    待在……，住在    stay at home<br>steal    偷    The thief stole my bag.<br>stop    停止    Stop talking.<br>study    学习    study English<br>suggest    建议    What do you suggest?<br>support    支持    I support you.<br>swim    游泳    Can you swim?<br>take    带走；花费    Take the book home.<br>talk    交谈，说话    We are talking about him.<br>teach    教    I teach English.<br>tell    告诉，讲（故事）    Tell me a story.<br>thank    感谢    Thank you.<br>think    想    I think you are right.<br>throw    扔    Throw a stone at the dog.<br>treat    治疗；对待    The doctor is treating him.<br>try    尝试，努力    I’ll try my best to do it.<br>turn    旋转    He turned around and talked to me.<br>understand    理解，明白    Do you understand me?<br>use    使用    Can you use a computer?<br>visit    拜访，参观    I will visit you.<br>wait    等    Please wait for me.<br>walk    走路    We walk in the garden everyday.<br>want    想    What do you want to buy?<br>watch    观看，欣赏    They are watching the moon.<br>wash    洗    Please wash your hands.<br>wear    穿    What are you wearing?<br>will    将会，将要    I will tell you.<br>win    赢    They win the game.<br>work    工作    I work in Beijing.<br>worry    担心    I am worrying about you.<br>would    将会    Would you like to go?<br>write    写    Write a letter.</p>
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags"></i>
+		<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/常用的200个动词/">常用的200个动词</a></li></ul>
+	</div>
+
+      
+	<div class="article-category tagcloud">
+	<i class="icon-book icon"></i>
+	<a class="article-category-link" href="/categories/英语/">英语</a>
+	</div>
+
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2017/09/29/blog20170929/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+
+
+
+
+
+
+
+  
+  
+    <nav id="page-nav">
+      <a class="extend prev" rel="prev" href="/">&laquo; Prev</a><a class="page-number" href="/">1</a><span class="page-number current">2</span><a class="page-number" href="/page/3/">3</a><a class="page-number" href="/page/4/">4</a><span class="space">&hellip;</span><a class="page-number" href="/page/11/">11</a><a class="extend next" rel="next" href="/page/3/">Next &raquo;</a>
+    </nav>
+  
+
+
+          </div>
+        </div>
+      </div>
+      <footer id="footer">
+  <div class="outer">
+    <div id="footer-info">
+    	<div class="footer-left">
+    		&copy; 2018 影子爱乘凉
+    	</div>
+      	<div class="footer-right">
+      		<a href="http://hexo.io/" target="_blank">Hexo</a>  Theme <a href="https://github.com/litten/hexo-theme-yilia" target="_blank">Yilia</a> by Litten
+      	</div>
+    </div>
+  </div>
+</footer>
+    </div>
+    <script>
+	var yiliaConfig = {
+		mathjax: false,
+		isHome: true,
+		isPost: false,
+		isArchive: false,
+		isTag: false,
+		isCategory: false,
+		open_in_new: false,
+		root: "/",
+		innerArchive: true
+	}
+</script>
+
+<script src="/./main.js?v=4.0.0"></script>
+
+
+    
+<div class="tools-col" q-class="show:isShow,hide:isShow|isFalse" q-on="click:stop(e)">
+  <div class="tools-wrap">
+    
+    	<section class="tools-section tools-section-all" q-show="innerArchive">
+        <div class="search-wrap">
+          <input class="search-ipt" q-model="search" type="text" placeholder="find something…">
+          <i class="icon-search icon" q-show="search|isEmptyStr"></i>
+          <i class="icon-close icon" q-show="search|isNotEmptyStr" q-on="click:clearChose(e)"></i>
+        </div>
+        <div class="widget tagcloud search-tag">
+          <p class="search-tag-wording">tag:</p>
+          <label class="search-switch">
+            <input type="checkbox" q-on="click:toggleTag(e)" q-attr="checked:showTags">
+          </label>
+          <ul class="article-tag-list" q-show="showTags">
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)">git</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)">iScroll</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)">java学习记录</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)">js</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)">jquery</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)">stop</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)">markdown</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)">npm</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)">Servlet</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)">生活</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)">--disable-web-security</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)">Bootstrap</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)">jsp</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)">位运算符NOT(~)</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)">过滤器filter</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)">ready()</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)">匿名函数自执行</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)">$.Callbacks()</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)">Listener</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)">支付宝集五福</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)">defer</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)">async</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)">$.Deferred()</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)">data()</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)">JFinal 3.0</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)">js中this</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)">js执行模型</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)">Javascript深浅拷贝</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)">dropload</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)">queue()</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)">jQuery.Validate.js</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)">ANT DESIGN</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)">迭代器</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)">for-of循环</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)">Generators</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)">setTimeout</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)">WebStorage</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)">localStorage</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)">css技巧</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)">Vue-cli proxyTable</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)">前端优化</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)">Javascript的jsonp原理</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)">ajax cache</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)">Vue.js中ajax请求</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)">tippyjs</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)">CSRF（Cross-site request forgery）</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)">英语语法</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)">插件接口extend</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)">html5 video</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)">Webpack</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)">prop-types</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)">npmrc文件中设置淘宝镜像</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)">工作总结</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)">CMD常用命令大全</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)">atom开发常用插件</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)">web开发快速提高工作效率的网址及工具</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)">常用的200个动词</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)">英语中相似单词</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)">GifCam</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)">video视频标签</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)">Immutable</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)">Will be married</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)">inner join, left join, right join, full outer join</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)">第一行 Android 代码</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)">aaencode</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)">SASS</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)">天津市津南区图书馆</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)">yarn与npm的命令行小结</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)">揭秘react生态体系</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)">排序算法</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)">大前端工具集</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)">.bat</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)">HEXO</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)">cookie</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)">session</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)">如何在 Vue.js 中使用第三方库 </a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)">activity</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)">国际音标</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)">vue 响应式原理</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)">刘姓姓名收集</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)">sublime</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)">Emmet</a>
+              </li>
+            
+            <div class="clearfix"></div>
+          </ul>
+        </div>
+        <ul class="search-ul">
+          <p q-show="jsonFail" style="padding: 20px; font-size: 12px;">
+            缺失模块。<br/>1、在博客根目录（注意不是yilia根目录）执行以下命令：<br/> npm i hexo-generator-json-content --save<br/><br/>
+            2、在根目录_config.yml里添加配置：
+<pre style="font-size: 12px;" q-show="jsonFail">
+  jsonContent:
+    meta: false
+    pages: false
+    posts:
+      title: true
+      date: true
+      path: true
+      text: true
+      raw: false
+      content: false
+      slug: false
+      updated: false
+      comments: false
+      link: false
+      permalink: false
+      excerpt: false
+      categories: false
+      tags: true
+</pre>
+          </p>
+          <li class="search-li" q-repeat="items" q-show="isShow">
+            <a q-attr="href:path|urlformat" class="search-title"><i class="icon-quo-left icon"></i><span q-text="title"></span></a>
+            <p class="search-time">
+              <i class="icon-calendar icon"></i>
+              <span q-text="date|dateformat"></span>
+            </p>
+            <p class="search-tag">
+              <i class="icon-price-tags icon"></i>
+              <span q-repeat="tags" q-on="click:choseTag(e, name)" q-text="name|tagformat"></span>
+            </p>
+          </li>
+        </ul>
+    	</section>
+    
+
+    
+
+    
+  </div>
+  
+</div>
+    <!-- Root element of PhotoSwipe. Must have class pswp. -->
+<div class="pswp" tabindex="-1" role="dialog" aria-hidden="true">
+
+    <!-- Background of PhotoSwipe. 
+         It's a separate element as animating opacity is faster than rgba(). -->
+    <div class="pswp__bg"></div>
+
+    <!-- Slides wrapper with overflow:hidden. -->
+    <div class="pswp__scroll-wrap">
+
+        <!-- Container that holds slides. 
+            PhotoSwipe keeps only 3 of them in the DOM to save memory.
+            Don't modify these 3 pswp__item elements, data is added later on. -->
+        <div class="pswp__container">
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+        </div>
+
+        <!-- Default (PhotoSwipeUI_Default) interface on top of sliding area. Can be changed. -->
+        <div class="pswp__ui pswp__ui--hidden">
+
+            <div class="pswp__top-bar">
+
+                <!--  Controls are self-explanatory. Order can be changed. -->
+
+                <div class="pswp__counter"></div>
+
+                <button class="pswp__button pswp__button--close" title="Close (Esc)"></button>
+
+                <button class="pswp__button pswp__button--share" style="display:none" title="Share"></button>
+
+                <button class="pswp__button pswp__button--fs" title="Toggle fullscreen"></button>
+
+                <button class="pswp__button pswp__button--zoom" title="Zoom in/out"></button>
+
+                <!-- Preloader demo http://codepen.io/dimsemenov/pen/yyBWoR -->
+                <!-- element will get class pswp__preloader--active when preloader is running -->
+                <div class="pswp__preloader">
+                    <div class="pswp__preloader__icn">
+                      <div class="pswp__preloader__cut">
+                        <div class="pswp__preloader__donut"></div>
+                      </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="pswp__share-modal pswp__share-modal--hidden pswp__single-tap">
+                <div class="pswp__share-tooltip"></div> 
+            </div>
+
+            <button class="pswp__button pswp__button--arrow--left" title="Previous (arrow left)">
+            </button>
+
+            <button class="pswp__button pswp__button--arrow--right" title="Next (arrow right)">
+            </button>
+
+            <div class="pswp__caption">
+                <div class="pswp__caption__center"></div>
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+  </div>
+</body>
+</html>
