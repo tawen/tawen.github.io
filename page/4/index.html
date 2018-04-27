@@ -2956,6 +2956,73 @@
           <div id="js-content" class="content-ll">
             
   
+    <article id="post-blog20170524" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2017/05/24/blog20170524/">There be 结构</a>
+    </h1>
+  
+
+        <a href="/2017/05/24/blog20170524/" class="archive-article-date">
+  	<time datetime="2017-05-24T02:03:05.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-05-24</time>
+</a>
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <blockquote>
+<p>There is/are + 名词 + 地点（存在某物在某地，名词是真正的主语）</p>
+</blockquote>
+<p>存在一棵树<br>There is a tree.</p>
+<p>There is some water under the tree.</p>
+<p>There is a cat under the tree.</p>
+<p>There are two dogs under the tree.</p>
+<p>There is a cat and two dogs under the tree.</p>
+<p>There are two dogs and a cat under the tree.</p>
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags"></i>
+		<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/英语语法/">英语语法</a></li></ul>
+	</div>
+
+      
+	<div class="article-category tagcloud">
+	<i class="icon-book icon"></i>
+	<a class="article-category-link" href="/categories/英语/">英语</a>
+	</div>
+
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2017/05/24/blog20170524/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+
+
+
+
+
+
+
+  
     <article id="post-blog20170523" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
@@ -3834,67 +3901,6 @@
 
 
   
-    <article id="post-blog20170329" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2017/03/29/blog20170329/">Vue-cli proxyTable 解决开发环境的跨域</a>
-    </h1>
-  
-
-        <a href="/2017/03/29/blog20170329/" class="archive-article-date">
-  	<time datetime="2017-03-29T04:55:05.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-03-29</time>
-</a>
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>和后端联调时总是会面对恼人的跨域问题，最近基于Vue开发项目时也遇到了这个问题，两边各自想了一堆办法，查了一堆资料，加了一堆参数，最后还得我把自己的localhost映射成上线时将要使用的域名。<br>今天翻看代码时，突然发现vue-cli的config文件里有一个参数叫proxyTable，看这个名字就感觉能解决问题，于是我就去搜了一下，果然。在vuejs-templates，也就是vue-cli的使用的模板插件里，有关于API proxy的说明，使用的就是这个参数。<br><a href="https://vuejs-templates.github.io/webpack/proxy.html" target="_blank" rel="noopener">https://vuejs-templates.github.io/webpack/proxy.html</a><br>这个参数主要是一个地址映射表，你可以通过设置将复杂的url简化，例如我们要请求的地址是api.xxxxxxxx.com/list/1，可以按照如下设置：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">proxyTable: &#123;</span><br><span class="line">  &apos;/list&apos;: &#123;</span><br><span class="line">    target: &apos;http://api.xxxxxxxx.com&apos;,</span><br><span class="line">    pathRewrite: &#123;</span><br><span class="line">      &apos;^/list&apos;: &apos;/list&apos;</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
-<p>这样我们在写url的时候，只用写成/list/1就可以代表api.xxxxxxxx.com/list/1.<br>那么又是如何解决跨域问题的呢？其实在上面的’list’的参数里有一个changeOrigin参数，接收一个布尔值，如果设置为true,那么本地会虚拟一个服务端接收你的请求并代你发送该请求，这样就不会有跨域问题了，当然这只适用于开发环境。增加的代码如下所示：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">proxyTable: &#123;</span><br><span class="line">  &apos;/list&apos;: &#123;</span><br><span class="line">    target: &apos;http://api.xxxxxxxx.com&apos;,</span><br><span class="line">    changeOrigin: true,</span><br><span class="line">    pathRewrite: &#123;</span><br><span class="line">      &apos;^/list&apos;: &apos;/list&apos;</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
-<p>vue-cli的这个设置来自于其使用的插件http-proxy-middleware<br>github：<a href="https://github.com/chimurai/http-proxy-middleware" target="_blank" rel="noopener">https://github.com/chimurai/http-proxy-middleware</a><br>深入了解的话可以看该插件配置说明，似乎还支持websocket，很强大的插件。</p>
-
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags"></i>
-		<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Vue-cli-proxyTable/">Vue-cli proxyTable</a></li></ul>
-	</div>
-
-      
-	<div class="article-category tagcloud">
-	<i class="icon-book icon"></i>
-	<a class="article-category-link" href="/categories/前端技术/">前端技术</a>
-	</div>
-
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2017/03/29/blog20170329/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-
-
-
-
-
-
-
-  
   
     <nav id="page-nav">
       <a class="extend prev" rel="prev" href="/page/3/">&laquo; Prev</a><a class="page-number" href="/">1</a><a class="page-number" href="/page/2/">2</a><a class="page-number" href="/page/3/">3</a><span class="page-number current">4</span><a class="page-number" href="/page/5/">5</a><a class="page-number" href="/page/6/">6</a><span class="space">&hellip;</span><a class="page-number" href="/page/11/">11</a><a class="extend next" rel="next" href="/page/5/">Next &raquo;</a>
@@ -3981,11 +3987,11 @@
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)">markdown</a>
+                <a href="javascript:void(0)">npm</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)">npm</a>
+                <a href="javascript:void(0)">markdown</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -4009,11 +4015,7 @@
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)">cookie</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)">session</a>
+                <a href="javascript:void(0)">ready()</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -4021,19 +4023,11 @@
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)">Listener</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)">匿名函数自执行</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)">插件接口extend</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)">ready()</a>
+                <a href="javascript:void(0)">Listener</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -4065,15 +4059,27 @@
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)">cookie</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)">session</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)">匿名函数自执行</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)">data()</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)">css技巧</a>
+                <a href="javascript:void(0)">js执行模型</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)">js执行模型</a>
+                <a href="javascript:void(0)">css技巧</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -4082,6 +4088,30 @@
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)">dropload</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)">Javascript深浅拷贝</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)">sublime</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)">Emmet</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)">setTimeout</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)">WebStorage</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)">localStorage</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -4101,39 +4131,15 @@
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)">setTimeout</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)">sublime</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)">Emmet</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)">ajax cache</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)">WebStorage</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)">localStorage</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)">Javascript深浅拷贝</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)">前端优化</a>
               </li>
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)">ANT DESIGN</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)">ajax cache</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -4153,19 +4159,11 @@
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)">Webpack</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)">CSRF（Cross-site request forgery）</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)">prop-types</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)">国际音标</a>
+                <a href="javascript:void(0)">Webpack</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -4181,6 +4179,14 @@
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)">工作总结</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)">prop-types</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)">web开发快速提高工作效率的网址及工具</a>
               </li>
              
@@ -4189,19 +4195,11 @@
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)">常用的200个动词</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)">英语中相似单词</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)">inner join, left join, right join, full outer join</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)">GifCam</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)">常用的200个动词</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -4209,27 +4207,19 @@
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)">英语中相似单词</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)">国际音标</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)">video视频标签</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)">CMD常用命令大全</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)">activity</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)">Immutable</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)">yarn与npm的命令行小结</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)">第一行 Android 代码</a>
+                <a href="javascript:void(0)">inner join, left join, right join, full outer join</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -4237,23 +4227,27 @@
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)">CMD常用命令大全</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)">Will be married</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)">SASS</a>
+                <a href="javascript:void(0)">yarn与npm的命令行小结</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)">揭秘react生态体系</a>
+                <a href="javascript:void(0)">Immutable</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)">.bat</a>
+                <a href="javascript:void(0)">第一行 Android 代码</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)">如何在 Vue.js 中使用第三方库 </a>
+                <a href="javascript:void(0)">activity</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -4261,7 +4255,7 @@
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)">刘姓姓名收集</a>
+                <a href="javascript:void(0)">揭秘react生态体系</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -4269,7 +4263,7 @@
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)">HEXO</a>
+                <a href="javascript:void(0)">.bat</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -4277,7 +4271,23 @@
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)">工作总结</a>
+                <a href="javascript:void(0)">HEXO</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)">command</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)">如何在 Vue.js 中使用第三方库 </a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)">刘姓姓名收集</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)">SASS</a>
               </li>
             
             <div class="clearfix"></div>

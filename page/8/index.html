@@ -2956,6 +2956,74 @@
           <div id="js-content" class="content-ll">
             
   
+    <article id="post-blog20170109" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2017/01/09/blog20170109/">位运算符NOT(~)</a>
+    </h1>
+  
+
+        <a href="/2017/01/09/blog20170109/" class="archive-article-date">
+  	<time datetime="2017-01-09T08:50:05.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-01-09</time>
+</a>
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>位运算符由否定好(~)表示，它是ECMAScript中为数不多的与二进制算术有关的运算符之一。位运算符NOT是三步的处理过程：</p>
+<ul>
+<li>把运算数转为32位二进制数字</li>
+<li>再转为它的二进制反码</li>
+<li>把二进制反码转为浮点数</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">var temp = ~5;</span><br><span class="line">/*</span><br><span class="line">5 二进制 101，补满 32位</span><br><span class="line">00000000000000000000000000000101</span><br><span class="line">按位取反</span><br><span class="line">11111111111111111111111111111010</span><br><span class="line">由于32位开头第一个是1，所以这是一个负数，将二进制转换成负数，需要先反码</span><br><span class="line">00000000000000000000000000000101</span><br><span class="line">之后，再+1</span><br><span class="line">00000000000000000000000000000110</span><br><span class="line">转换成十进制为6，加上符号变成负数 -6</span><br><span class="line">*/</span><br><span class="line">alert(temp);</span><br><span class="line">// 弹出【-6】</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>感觉很麻烦，而上述操作简单来说，可以相当于对数字求负，然后减1，比如~25 === -26</p>
+</blockquote>
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags"></i>
+		<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/js/">js</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/位运算符NOT/">位运算符NOT(~)</a></li></ul>
+	</div>
+
+      
+	<div class="article-category tagcloud">
+	<i class="icon-book icon"></i>
+	<a class="article-category-link" href="/categories/前端技术/">前端技术</a>
+	</div>
+
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2017/01/09/blog20170109/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+
+
+
+
+
+
+
+  
     <article id="post-blog20170106" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
@@ -3375,6 +3443,71 @@
 
 
   
+    <article id="post-blog20161230" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2016/12/29/blog20161230/">读书笔记——load-on-startup</a>
+    </h1>
+  
+
+        <a href="/2016/12/29/blog20161230/" class="archive-article-date">
+  	<time datetime="2016-12-29T01:50:05.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2016-12-29</time>
+</a>
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h2 id="web-xml中load-on-startup的作用"><a href="#web-xml中load-on-startup的作用" class="headerlink" title="web.xml中load-on-startup的作用"></a>web.xml中load-on-startup的作用</h2><p>1)load-on-startup元素标记容器是否在启动的时候就加载这个servlet(实例化并调用其init()方法)。</p>
+<p>2)它的值必须是一个整数，表示servlet应该被载入的顺序</p>
+<p>2)当值为0或者大于0时，表示容器在应用启动时就加载并初始化这个servlet；</p>
+<p>3)当值小于0或者没有指定时，则表示容器在该servlet被选择时才会去加载。</p>
+<p>4)正数的值越小，该servlet的优先级越高，应用启动时就越先加载。</p>
+<p>5)当值相同时，容器就会自己选择顺序来加载。</p>
+<p>所以，<load-on-startup>x</load-on-startup>，中x的取值1，2，3，4，5代表的是优先级，而非启动延迟时间。</p>
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags"></i>
+		<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Servlet/">Servlet</a></li></ul>
+	</div>
+
+      
+	<div class="article-category tagcloud">
+	<i class="icon-book icon"></i>
+	<a class="article-category-link" href="/categories/javaweb/">javaweb</a>
+	</div>
+
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2016/12/29/blog20161230/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+
+
+
+
+
+
+
+  
     <article id="post-blog20161229" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
@@ -3474,71 +3607,6 @@ Host:www.guet.edu.cn
       
         <p class="article-more-link">
           <a class="article-more-a" href="/2016/12/29/blog20161229/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-
-
-
-
-
-
-
-  
-    <article id="post-blog20161230" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2016/12/29/blog20161230/">读书笔记——load-on-startup</a>
-    </h1>
-  
-
-        <a href="/2016/12/29/blog20161230/" class="archive-article-date">
-  	<time datetime="2016-12-29T01:50:05.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2016-12-29</time>
-</a>
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h2 id="web-xml中load-on-startup的作用"><a href="#web-xml中load-on-startup的作用" class="headerlink" title="web.xml中load-on-startup的作用"></a>web.xml中load-on-startup的作用</h2><p>1)load-on-startup元素标记容器是否在启动的时候就加载这个servlet(实例化并调用其init()方法)。</p>
-<p>2)它的值必须是一个整数，表示servlet应该被载入的顺序</p>
-<p>2)当值为0或者大于0时，表示容器在应用启动时就加载并初始化这个servlet；</p>
-<p>3)当值小于0或者没有指定时，则表示容器在该servlet被选择时才会去加载。</p>
-<p>4)正数的值越小，该servlet的优先级越高，应用启动时就越先加载。</p>
-<p>5)当值相同时，容器就会自己选择顺序来加载。</p>
-<p>所以，<load-on-startup>x</load-on-startup>，中x的取值1，2，3，4，5代表的是优先级，而非启动延迟时间。</p>
-
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags"></i>
-		<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Servlet/">Servlet</a></li></ul>
-	</div>
-
-      
-	<div class="article-category tagcloud">
-	<i class="icon-book icon"></i>
-	<a class="article-category-link" href="/categories/javaweb/">javaweb</a>
-	</div>
-
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2016/12/29/blog20161230/">展开全文 >></a>
         </p>
       
 
@@ -3850,64 +3918,6 @@ Host:www.guet.edu.cn
 
 
   
-    <article id="post-blog20161227" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2016/12/27/blog20161227/">电脑开机没法进入系统</a>
-    </h1>
-  
-
-        <a href="/2016/12/27/blog20161227/" class="archive-article-date">
-  	<time datetime="2016-12-27T01:50:05.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2016-12-27</time>
-</a>
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <blockquote>
-<p>今天早上来公司，打开电脑电源，等了好久都没用进入windows系统，显示屏一直没画面。后来发现，鼠标和键盘的指示灯也没法点亮！导致是什么原因呢？</p>
-</blockquote>
-<h2 id="拯救电脑行动："><a href="#拯救电脑行动：" class="headerlink" title="拯救电脑行动："></a>拯救电脑行动：</h2><p>1、因为显示屏没有画面，所以怀疑是连接主机的显示数据线有问题，所以换了一根，结果还是不行；<br>2、后来仔细一开始键盘和鼠标指示灯都没法点亮；所以打开主机箱，把内存拔下来重新插上擦擦，重启插上，结果还是不行；<br>3、后来仔细观察发现cpu风扇还在正常工作；所以想bios方面有问题，所以把主板电子拔下来，给主板放电，结果终于好了。</p>
-<h2 id="后来网上查了主板电子的作用，做以下记录："><a href="#后来网上查了主板电子的作用，做以下记录：" class="headerlink" title="后来网上查了主板电子的作用，做以下记录："></a>后来网上查了主板电子的作用，做以下记录：</h2><p>（将电池取下后几秒钟即可完成放电）<br>1.以清除BIOS更改后的全部设置；<br>2.恢复BIOS的初始设置；<br>3.用于超频后，参数调得过高引起的不开机。</p>
-
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-      
-	<div class="article-category tagcloud">
-	<i class="icon-book icon"></i>
-	<a class="article-category-link" href="/categories/随笔/">随笔</a>
-	</div>
-
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2016/12/27/blog20161227/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-
-
-
-
-
-
-
-  
   
     <nav id="page-nav">
       <a class="extend prev" rel="prev" href="/page/7/">&laquo; Prev</a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/6/">6</a><a class="page-number" href="/page/7/">7</a><span class="page-number current">8</span><a class="page-number" href="/page/9/">9</a><a class="page-number" href="/page/10/">10</a><a class="page-number" href="/page/11/">11</a><a class="extend next" rel="next" href="/page/9/">Next &raquo;</a>
@@ -3994,11 +4004,11 @@ Host:www.guet.edu.cn
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)">markdown</a>
+                <a href="javascript:void(0)">npm</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)">npm</a>
+                <a href="javascript:void(0)">markdown</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -4022,11 +4032,7 @@ Host:www.guet.edu.cn
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)">cookie</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)">session</a>
+                <a href="javascript:void(0)">ready()</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -4034,19 +4040,11 @@ Host:www.guet.edu.cn
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)">Listener</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)">匿名函数自执行</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)">插件接口extend</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)">ready()</a>
+                <a href="javascript:void(0)">Listener</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -4078,15 +4076,27 @@ Host:www.guet.edu.cn
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)">cookie</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)">session</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)">匿名函数自执行</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)">data()</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)">css技巧</a>
+                <a href="javascript:void(0)">js执行模型</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)">js执行模型</a>
+                <a href="javascript:void(0)">css技巧</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -4095,6 +4105,30 @@ Host:www.guet.edu.cn
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)">dropload</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)">Javascript深浅拷贝</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)">sublime</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)">Emmet</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)">setTimeout</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)">WebStorage</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)">localStorage</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -4114,39 +4148,15 @@ Host:www.guet.edu.cn
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)">setTimeout</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)">sublime</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)">Emmet</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)">ajax cache</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)">WebStorage</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)">localStorage</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)">Javascript深浅拷贝</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)">前端优化</a>
               </li>
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)">ANT DESIGN</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)">ajax cache</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -4166,19 +4176,11 @@ Host:www.guet.edu.cn
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)">Webpack</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)">CSRF（Cross-site request forgery）</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)">prop-types</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)">国际音标</a>
+                <a href="javascript:void(0)">Webpack</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -4194,6 +4196,14 @@ Host:www.guet.edu.cn
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)">工作总结</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)">prop-types</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)">web开发快速提高工作效率的网址及工具</a>
               </li>
              
@@ -4202,19 +4212,11 @@ Host:www.guet.edu.cn
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)">常用的200个动词</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)">英语中相似单词</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)">inner join, left join, right join, full outer join</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)">GifCam</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)">常用的200个动词</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -4222,27 +4224,19 @@ Host:www.guet.edu.cn
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)">英语中相似单词</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)">国际音标</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)">video视频标签</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)">CMD常用命令大全</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)">activity</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)">Immutable</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)">yarn与npm的命令行小结</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)">第一行 Android 代码</a>
+                <a href="javascript:void(0)">inner join, left join, right join, full outer join</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -4250,23 +4244,27 @@ Host:www.guet.edu.cn
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)">CMD常用命令大全</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)">Will be married</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)">SASS</a>
+                <a href="javascript:void(0)">yarn与npm的命令行小结</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)">揭秘react生态体系</a>
+                <a href="javascript:void(0)">Immutable</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)">.bat</a>
+                <a href="javascript:void(0)">第一行 Android 代码</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)">如何在 Vue.js 中使用第三方库 </a>
+                <a href="javascript:void(0)">activity</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -4274,7 +4272,7 @@ Host:www.guet.edu.cn
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)">刘姓姓名收集</a>
+                <a href="javascript:void(0)">揭秘react生态体系</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -4282,7 +4280,7 @@ Host:www.guet.edu.cn
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)">HEXO</a>
+                <a href="javascript:void(0)">.bat</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -4290,7 +4288,23 @@ Host:www.guet.edu.cn
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)">工作总结</a>
+                <a href="javascript:void(0)">HEXO</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)">command</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)">如何在 Vue.js 中使用第三方库 </a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)">刘姓姓名收集</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)">SASS</a>
               </li>
             
             <div class="clearfix"></div>

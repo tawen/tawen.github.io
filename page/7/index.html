@@ -2956,6 +2956,76 @@
           <div id="js-content" class="content-ll">
             
   
+    <article id="post-blog20170119" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2017/01/19/blog20170119/">脚本引用中的DEFER和ASYNC的用法和区别</a>
+    </h1>
+  
+
+        <a href="/2017/01/19/blog20170119/" class="archive-article-date">
+  	<time datetime="2017-01-19T06:50:05.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-01-19</time>
+</a>
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <blockquote>
+<p>因为浏览器在遇到script标签的时候，文档的解析会停止，不再构建document，有时打开一个网页上会出现空白一段时间，浏览器显示是刷新请求状态(也就是一直转圈)，这就会给用户很不好的体验，defer和async的合理使用就可以避免这个情况，而且通常script的位置建议写在页面底部(移动端应用的比较多，这两个都是html5中的新属性)。</p>
+</blockquote>
+<p>所以相对于默认的script引用，这里配合defer和async就有两种新的用法，它们之间什么区别那？</p>
+<p>1.默认引用 script: <code>&lt;script type=&quot;text/javascript&quot; src=&quot;x.min.js&quot;&gt;&lt;/script&gt;</code></p>
+<p>　当浏览器遇到 script 标签时，文档的解析将停止，并立即下载并执行脚本，脚本执行完毕后将继续解析文档。</p>
+<p>2.async模式  <code>&lt;script type=&quot;text/javascript&quot; src=&quot;x.min.js&quot; async=&quot;async&quot;&gt;&lt;/script&gt;</code></p>
+<p>　　当浏览器遇到 script 标签时，文档的解析不会停止，其他线程将下载脚本，脚本下载完成后开始执行脚本，脚本执行的过程中文档将停止解析，直到脚本执行完毕。</p>
+<p>3.defer模式  <code>&lt;script type=&quot;text/javascript&quot; src=&quot;x.min.js&quot; defer=&quot;defer&quot;&gt;&lt;/script&gt;</code></p>
+<p>　　当浏览器遇到 script 标签时，文档的解析不会停止，其他线程将下载脚本，待到文档解析完成，脚本才会执行。</p>
+<p>所以async和defer的最主要的区别就是async是异步下载并立即执行，然后文档继续解析，defer是异步加载后解析文档，然后再执行脚本，这样说起来是不是理解了一点了；</p>
+<p>　　它们的核心功能就是异步，那么两种属性怎么去区分什么情况下用哪个那，主要的参考是如果脚本不依赖于任何脚本，并不被任何脚本依赖，那么则使用 defer，如果脚本是模块化的，不依赖于任何脚本，那么则使用 async；主要功能点说完了，小伙伴们有没有分清楚他们的区别了那。</p>
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags"></i>
+		<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/async/">async</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/defer/">defer</a></li></ul>
+	</div>
+
+      
+	<div class="article-category tagcloud">
+	<i class="icon-book icon"></i>
+	<a class="article-category-link" href="/categories/前端技术/">前端技术</a>
+	</div>
+
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2017/01/19/blog20170119/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+
+
+
+
+
+
+
+  
     <article id="post-blog20170118" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
@@ -3116,6 +3186,66 @@
 
 
   
+    <article id="post-blog20170114" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2017/01/14/blog20170114/">jQuery源码分析--工具方法$.ready()</a>
+    </h1>
+  
+
+        <a href="/2017/01/14/blog20170114/" class="archive-article-date">
+  	<time datetime="2017-01-14T12:50:05.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-01-14</time>
+</a>
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>三种dom加载方式<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">//第一种</span><br><span class="line">$(function()&#123;</span><br><span class="line">	</span><br><span class="line">&#125;)</span><br><span class="line"></span><br><span class="line">//第二种</span><br><span class="line">$(document).ready(function()&#123;</span><br><span class="line">	</span><br><span class="line">&#125;)</span><br><span class="line"></span><br><span class="line">//第三种</span><br><span class="line">$(document).on(&quot;ready&quot;,function()&#123;</span><br><span class="line">	</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure></p>
+<p>等加载外部js完成后，再执行$(function(){})<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">$.holdReady(true);</span><br><span class="line"></span><br><span class="line">$.getScript(&quot;test.js&quot;,function()&#123;</span><br><span class="line">	$.holdReady(false)</span><br><span class="line">&#125;);</span><br><span class="line"></span><br><span class="line">$(function()&#123;</span><br><span class="line">	//这样等test.js加载完成执行</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure></p>
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags"></i>
+		<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/ready/">ready()</a></li></ul>
+	</div>
+
+      
+	<div class="article-category tagcloud">
+	<i class="icon-book icon"></i>
+	<a class="article-category-link" href="/categories/jQuery源码分析/">jQuery源码分析</a>
+	</div>
+
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2017/01/14/blog20170114/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+
+
+
+
+
+
+
+  
     <article id="post-blog20170116" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
@@ -3164,66 +3294,6 @@
       
         <p class="article-more-link">
           <a class="article-more-a" href="/2017/01/14/blog20170116/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-
-
-
-
-
-
-
-  
-    <article id="post-blog20170114" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2017/01/14/blog20170114/">jQuery源码分析--工具方法$.ready()</a>
-    </h1>
-  
-
-        <a href="/2017/01/14/blog20170114/" class="archive-article-date">
-  	<time datetime="2017-01-14T12:50:05.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-01-14</time>
-</a>
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>三种dom加载方式<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">//第一种</span><br><span class="line">$(function()&#123;</span><br><span class="line">	</span><br><span class="line">&#125;)</span><br><span class="line"></span><br><span class="line">//第二种</span><br><span class="line">$(document).ready(function()&#123;</span><br><span class="line">	</span><br><span class="line">&#125;)</span><br><span class="line"></span><br><span class="line">//第三种</span><br><span class="line">$(document).on(&quot;ready&quot;,function()&#123;</span><br><span class="line">	</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure></p>
-<p>等加载外部js完成后，再执行$(function(){})<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">$.holdReady(true);</span><br><span class="line"></span><br><span class="line">$.getScript(&quot;test.js&quot;,function()&#123;</span><br><span class="line">	$.holdReady(false)</span><br><span class="line">&#125;);</span><br><span class="line"></span><br><span class="line">$(function()&#123;</span><br><span class="line">	//这样等test.js加载完成执行</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure></p>
-
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags"></i>
-		<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/ready/">ready()</a></li></ul>
-	</div>
-
-      
-	<div class="article-category tagcloud">
-	<i class="icon-book icon"></i>
-	<a class="article-category-link" href="/categories/jQuery源码分析/">jQuery源码分析</a>
-	</div>
-
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2017/01/14/blog20170114/">展开全文 >></a>
         </p>
       
 
@@ -3628,74 +3698,6 @@
 
 
   
-    <article id="post-blog20170109" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2017/01/09/blog20170109/">位运算符NOT(~)</a>
-    </h1>
-  
-
-        <a href="/2017/01/09/blog20170109/" class="archive-article-date">
-  	<time datetime="2017-01-09T08:50:05.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-01-09</time>
-</a>
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>位运算符由否定好(~)表示，它是ECMAScript中为数不多的与二进制算术有关的运算符之一。位运算符NOT是三步的处理过程：</p>
-<ul>
-<li>把运算数转为32位二进制数字</li>
-<li>再转为它的二进制反码</li>
-<li>把二进制反码转为浮点数</li>
-</ul>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">var temp = ~5;</span><br><span class="line">/*</span><br><span class="line">5 二进制 101，补满 32位</span><br><span class="line">00000000000000000000000000000101</span><br><span class="line">按位取反</span><br><span class="line">11111111111111111111111111111010</span><br><span class="line">由于32位开头第一个是1，所以这是一个负数，将二进制转换成负数，需要先反码</span><br><span class="line">00000000000000000000000000000101</span><br><span class="line">之后，再+1</span><br><span class="line">00000000000000000000000000000110</span><br><span class="line">转换成十进制为6，加上符号变成负数 -6</span><br><span class="line">*/</span><br><span class="line">alert(temp);</span><br><span class="line">// 弹出【-6】</span><br></pre></td></tr></table></figure>
-<blockquote>
-<p>感觉很麻烦，而上述操作简单来说，可以相当于对数字求负，然后减1，比如~25 === -26</p>
-</blockquote>
-
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags"></i>
-		<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/js/">js</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/位运算符NOT/">位运算符NOT(~)</a></li></ul>
-	</div>
-
-      
-	<div class="article-category tagcloud">
-	<i class="icon-book icon"></i>
-	<a class="article-category-link" href="/categories/前端技术/">前端技术</a>
-	</div>
-
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2017/01/09/blog20170109/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-
-
-
-
-
-
-
-  
   
     <nav id="page-nav">
       <a class="extend prev" rel="prev" href="/page/6/">&laquo; Prev</a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/5/">5</a><a class="page-number" href="/page/6/">6</a><span class="page-number current">7</span><a class="page-number" href="/page/8/">8</a><a class="page-number" href="/page/9/">9</a><span class="space">&hellip;</span><a class="page-number" href="/page/11/">11</a><a class="extend next" rel="next" href="/page/8/">Next &raquo;</a>
@@ -3782,11 +3784,11 @@
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)">markdown</a>
+                <a href="javascript:void(0)">npm</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)">npm</a>
+                <a href="javascript:void(0)">markdown</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -3810,11 +3812,7 @@
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)">cookie</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)">session</a>
+                <a href="javascript:void(0)">ready()</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -3822,19 +3820,11 @@
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)">Listener</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)">匿名函数自执行</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)">插件接口extend</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)">ready()</a>
+                <a href="javascript:void(0)">Listener</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -3866,15 +3856,27 @@
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)">cookie</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)">session</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)">匿名函数自执行</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)">data()</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)">css技巧</a>
+                <a href="javascript:void(0)">js执行模型</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)">js执行模型</a>
+                <a href="javascript:void(0)">css技巧</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -3883,6 +3885,30 @@
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)">dropload</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)">Javascript深浅拷贝</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)">sublime</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)">Emmet</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)">setTimeout</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)">WebStorage</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)">localStorage</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -3902,39 +3928,15 @@
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)">setTimeout</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)">sublime</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)">Emmet</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)">ajax cache</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)">WebStorage</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)">localStorage</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)">Javascript深浅拷贝</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)">前端优化</a>
               </li>
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)">ANT DESIGN</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)">ajax cache</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -3954,19 +3956,11 @@
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)">Webpack</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)">CSRF（Cross-site request forgery）</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)">prop-types</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)">国际音标</a>
+                <a href="javascript:void(0)">Webpack</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -3982,6 +3976,14 @@
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)">工作总结</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)">prop-types</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)">web开发快速提高工作效率的网址及工具</a>
               </li>
              
@@ -3990,19 +3992,11 @@
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)">常用的200个动词</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)">英语中相似单词</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)">inner join, left join, right join, full outer join</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)">GifCam</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)">常用的200个动词</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -4010,27 +4004,19 @@
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)">英语中相似单词</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)">国际音标</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)">video视频标签</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)">CMD常用命令大全</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)">activity</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)">Immutable</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)">yarn与npm的命令行小结</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)">第一行 Android 代码</a>
+                <a href="javascript:void(0)">inner join, left join, right join, full outer join</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -4038,23 +4024,27 @@
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)">CMD常用命令大全</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)">Will be married</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)">SASS</a>
+                <a href="javascript:void(0)">yarn与npm的命令行小结</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)">揭秘react生态体系</a>
+                <a href="javascript:void(0)">Immutable</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)">.bat</a>
+                <a href="javascript:void(0)">第一行 Android 代码</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)">如何在 Vue.js 中使用第三方库 </a>
+                <a href="javascript:void(0)">activity</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -4062,7 +4052,7 @@
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)">刘姓姓名收集</a>
+                <a href="javascript:void(0)">揭秘react生态体系</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -4070,7 +4060,7 @@
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)">HEXO</a>
+                <a href="javascript:void(0)">.bat</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -4078,7 +4068,23 @@
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)">工作总结</a>
+                <a href="javascript:void(0)">HEXO</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)">command</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)">如何在 Vue.js 中使用第三方库 </a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)">刘姓姓名收集</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)">SASS</a>
               </li>
             
             <div class="clearfix"></div>
